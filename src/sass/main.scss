@@ -1,4 +1,16 @@
-@import 'variables';
-@import 'mixins';
-@import 'typography';
-@import 'colors';
+// @use 'base';
+// @use 'components';
+// @use 'abstracts' ;
+
+// Base
+@import 'base/_reset';
+@import 'base/_typography';
+
+@import 'abstracts/_colors';
+@import 'abstracts/_font-face';
+@import 'abstracts/_variables';
+@import 'abstracts/_functions';
+@import 'abstracts/_mixins';
+
+@import 'components/_buttons';
+@import 'components/_card';

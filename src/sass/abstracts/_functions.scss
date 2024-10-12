@@ -1,0 +1,4 @@
+// Fonction pour récupérer les valeurs de la map
+@function get-type-size($scale, $weight) {
+  @return map-get(map-get($type-scale, $scale), $weight);
+}
