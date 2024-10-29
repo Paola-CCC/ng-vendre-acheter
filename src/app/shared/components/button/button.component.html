@@ -1,1 +1,13 @@
-<button class="button primary" (click)="handleClick()"> {{text}} </button>
+
+<button 
+    class="button"
+    [ngClass]="{
+        'primary': type == 'primary',
+        'secondary': type == 'secondary',
+        'tertiary': type == 'tertiary'
+    }"
+    [disabled]="isRequired"  
+    (click)="handleClick()"
+>  
+{{text}} 
+</button>    

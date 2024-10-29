@@ -1,4 +1,67 @@
+ <a class="card-1">
+    <div class="zone-img">
+            <img [src]="imgSrc" >
+            <span class="svg-zone">
+                <i class="fa-regular fa-heart fa-lg"></i>
+            </span>
+    </div>
+    <div class="card-body">
+        <div class="heading">
+            <span class="title"> {{title}}</span>
+            <span>
+                ${{price}}
+            </span>
+        </div>
+        <div class="content">
+            <p>
+                {{content}}
+            </p>
+            <app-stars-group [note]="itemNote" ></app-stars-group>
+        </div>
+        <div class="card-btn-container">
+                <app-button [text]="'Add to cart'" [type]="'primary'"  ></app-button>
+        </div>
+    </div>
+</a> 
 
-<div class="card">
 
-</div>
+
+
+<a class="card-2" routerLink="['/']" routerLinkActive="router-link-active" >
+    <span> {{title}} </span>
+    <img [src]="imgSrc" >
+</a>
+
+<a class="card-3" routerLink="['/']" routerLinkActive="router-link-active" >
+    <div class="heading">
+        <span> Solde </span>
+        <span class="price-info"> $34.00</span>
+        <span> Explore Our Furniture & Home
+            Furnishing Range </span>
+    </div>
+
+    <div class="card-body">
+        <img [src]="imgSrc" >
+    </div>
+</a>
+
+
+
+ <a class="card-4">
+    <div class="zone-img">
+            <img [src]="imgSrc" >
+    </div>
+    <div class="card-body">
+        <div class="heading">
+            <span class="title"> {{title}}</span>
+        </div>
+        <div class="content">
+            <p>
+                {{content}}
+            </p>
+        </div>
+        <div class="card-btn-container">
+                <app-button [text]="'Add to cart'" [type]="'secondary'"  ></app-button>
+        </div>
+    </div>
+</a> 

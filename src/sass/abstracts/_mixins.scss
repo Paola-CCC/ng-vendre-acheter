@@ -3,19 +3,24 @@
 @mixin button-style {
     display: inline-block;
     border: none;
-    padding: 8px 25px;
+    padding: 10px;
     font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    &:disabled {
-        background-color: #e8e8e8;
-        color: #818181;
-        cursor: not-allowed;
+    font-weight: 600;
+    border-radius: 50px;
+    text-align: center;
+
+    &:disabled,
+    &:disabled:hover {
+        background-color: #d2d2d2;
+        color: #656565;
+        border-color: #E7E5E5;
     }
-    &:hover {
-        background-color: #e8e8e8;
-        color: #818181;
-    }
+
+    // &:not(:disabled):focus,
+    // &:not(:disabled):active {
+    //   outline: none;
+    //   box-shadow: 0 0 0 3px hsla(220, 100%, 50%, 80%);
+    // }
 }
 
 /** Card */

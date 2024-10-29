@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ButtonComponent } from "./shared/components/button/button.component";
+import { CardComponent } from '@shared/components/card/card.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ButtonComponent],
+  imports: [RouterOutlet , CardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'vendre-acheter';
 
   clickEvent(){
-    console.log('app Event ',this.title);
+    console.log('app Event ');
     
   }
 }

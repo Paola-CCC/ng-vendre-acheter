@@ -8,7 +8,11 @@
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+
 @include mat.core();
+
 
 // Define the theme object.
 $vendre-acheter-theme: mat.define-theme((
