@@ -1,1 +1,84 @@
-<p>header works!</p>
+<header>
+    <nav>
+      <div>
+        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" >Acheter-&-Vendre</a>
+      </div>
+      <ul class="navbar-nav desktop">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" >Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/post/all']" routerLinkActive="active" >Tous les Films</a>
+        </li>
+        @if (userIsLogger) {
+          <li>
+            <a class="nav-link" [routerLink]="['/post/add']" routerLinkActive="active" >Créer un poste</a>
+          </li>
+        }
+        <li class="nav-item">
+          @if(userIsLogger){
+            <a class="nav-link"[routerLink]="['/user/profil']" routerLinkActive="active" >Espace personnel</a>
+          }
+          @else {
+            <a class="nav-link" [routerLink]="['/user/login']" routerLinkActive="active" >Connexion</a>
+          }
+        </li>
+
+        @if (userIsLogger) {
+          <li  class="nav-item logout"  tabindex="0" (click)="logOutNow()">
+            <a > 
+               <i class="fa-solid fa-arrow-right-from-bracket"></i> 
+            </a>
+          </li>
+        }
+
+      </ul>
+
+      <div class="icon-menu-mobile">
+          <button (click)="openMobileNavbar()" >
+            @if (mobileNavbarIsOpen) {
+              <i class="fa-solid fa-xmark fa-lg" ></i>  
+            } 
+            @else {
+              <i class="fa-solid fa-bars fa-lg"></i>  
+            }
+          </button>
+      </div>
+
+
+      <div class="mobile-navbar" [ngClass]="{'open': mobileNavbarIsOpen}">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" >Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/post/all']" routerLinkActive="active" >Tous les Films</a>
+            </li>
+            <li *ngIf="userIsLogger">
+              <a class="nav-link" [routerLink]="['/post/add']" routerLinkActive="active" >Créer un poste</a>
+            </li>
+            <li class="nav-item">
+              <a *ngIf="userIsLogger"   class="nav-link"[routerLink]="['/user/profil']" routerLinkActive="active" >Espace personnel</a>
+              <a *ngIf="!userIsLogger"   class="nav-link" [routerLink]="['/user/login']" routerLinkActive="active" >Connexion</a>
+            </li>
+    
+
+
+            @if (userIsLogger) {
+              <li class="nav-item"  tabindex="0" (click)="logOutNow()">
+                <a > 
+                  <span> Déconnexion </span>
+                   <i class="fa-solid fa-arrow-right-from-bracket"></i> 
+                </a>
+              </li>
+            }
+          </ul>
+      </div>
+
+      @if (mobileNavbarIsOpen) {
+        <div class="cache-header-mobile">
+        </div>
+      }
+    </nav>
+  </header>
+  

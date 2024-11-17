@@ -11,10 +11,10 @@ import { ButtonComponent } from '../button/button.component';
 })
 export class CardComponent {
 
-  @Input({required: true}) imgSrc:string = 'https://blaque.fr/wp-content/uploads/2022/01/beyonce.webp';
-  @Input({required: true}) title:string = '';
-  @Input({required: true}) price:string = '';
-  @Input({required: true}) content:string = '';
-  @Input({required: true}) itemNote:any;
+  @Input({required: false}) imgSrc:string = 'https://blaque.fr/wp-content/uploads/2022/01/beyonce.webp';
+  @Input({required: false}) title:string = '';
+  @Input({required: false}) price:string = '';
+  @Input({required: false}) content:string = '';
+  @Input({required: false}) itemNote:any;
 
 }
