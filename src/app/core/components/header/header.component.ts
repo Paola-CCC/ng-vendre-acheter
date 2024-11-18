@@ -15,7 +15,11 @@ export class HeaderComponent implements OnInit {
   /** indique si navbar mobile est ouvert */
   mobileNavbarIsOpen: boolean = false;
   /** Id de l'utilisateur */
-  userIsLogger: boolean = false;
+  userIsLogger: boolean = true;
+
+  user: any = {
+    name: 'Lucienne'
+  }
 
   constructor(
     private auth: AuthService,
