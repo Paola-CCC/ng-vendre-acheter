@@ -87,6 +87,31 @@ header {
             color: #222222;
             text-decoration: none;
 
+            span.container-cart-icon {
+              display: block;
+              width: fit-content;
+              margin: 0 auto;
+              padding: 0;
+              position: relative;
+              span.cart-item-counter{
+                background-color: rgb(217, 44, 44);
+                border: 1px solid white;
+                font-size: 10px;
+                padding: 2px;
+                position: absolute;
+                border-radius: 50%;
+                height: 13px;
+                width: 13px;
+                top: -5px;
+                right: -19px;
+                color: white;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+              }
+            }
+
             i {
               display: block;
               text-align: center;
@@ -177,6 +202,34 @@ header {
         display: block;
         position: absolute;
         right: 1rem;
+
+        a {
+          margin-right: 18px;
+        }
+                    
+        a span.container-cart-icon {
+          width: fit-content;
+          margin: 0 auto;
+          padding: 0;
+          position: relative;
+          span.cart-item-counter{
+            background-color: rgb(217, 44, 44);
+            border: 1px solid white;
+            font-size: 10px;
+            padding: 2px;
+            position: absolute;
+            border-radius: 50%;
+            height: 13px;
+            width: 13px;
+            top: -10px;
+            right: -18px;
+            color: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+          }
+        }
       }
 
       div.mobile-navbar {

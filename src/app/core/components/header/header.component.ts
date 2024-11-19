@@ -21,6 +21,8 @@ export class HeaderComponent implements OnInit {
     name: 'Lucienne'
   }
 
+  cartItemsCount = 10;
+
   constructor(
     private auth: AuthService,
     private router: Router
