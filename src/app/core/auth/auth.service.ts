@@ -9,4 +9,14 @@ export class AuthService {
   
   constructor() { }
 
+  logOutNow(){
+    if(localStorage.getItem('user')){
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('user');
+    }
+    
+    window.location.reload();
+
+  }
+
 }

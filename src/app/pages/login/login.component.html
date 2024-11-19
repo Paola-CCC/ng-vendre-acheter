@@ -1,0 +1,55 @@
+<div class="register-container">
+    <h3> Connexion </h3>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    
+      <div class="form-group">
+        <label for="email">Adresse Email</label>
+        <input 
+        type="email" 
+        formControlName="email" 
+        class="form-control" 
+        id="email" 
+        name="email" 
+        placeholder="Adresse Email" 
+        [ngClass]="{ 'is-invalid': submitted && controlRegister['email'].errors || controlRegister['email'].touched && controlRegister['email'].invalid }"
+        >
+        <ng-template [ngIf]="controlRegister['email'].invalid" class="alert alert-danger">
+            <div *ngIf="!submitted && controlRegister['email'].touched && controlRegister['email'].invalid" [ngClass]= "'error'">L' Email n'est pas valide</div>
+            <div *ngIf="submitted && controlRegister['email'].errors && controlRegister['email'].errors['required'] ">L' Email requis.</div>
+        </ng-template>
+  
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input 
+          type="password" 
+          formControlName="password" 
+          class="form-control" 
+          id="password" 
+          name="password"
+          placeholder="Mot de passe"
+          [ngClass]="{ 'is-invalid': submitted && controlRegister['password'].errors || controlRegister['password'].touched && controlRegister['password'].invalid }"
+        >
+        <ng-template [ngIf]="controlRegister['password'].invalid" class="alert alert-danger">
+            <div *ngIf="!submitted && controlRegister['email'].touched && controlRegister['password'].invalid">Le mot de passe n'est pas valide</div>
+            <div *ngIf="submitted && controlRegister['password']">Le Mot de passe requis.</div>
+  
+        </ng-template>
+      </div>
+  
+      <div>
+        <p>Vous n'avez pas de compte ? 
+          <a class="nav-link" routerLink="/inscription" routerLinkActive="active" > S'inscrire</a>
+        </p>
+      </div>
+      <button type="submit" class="btn btn-primary">Connexion</button>
+    </form>
+    
+    <ng-template [ngIf]="submitted && !signUpIsSuccessful && errorMessage" >
+      <div class="messages-failed">
+        <p>{{ errorMessage }}</p>
+      </div>
+    </ng-template>
+  </div>
+  
+  
