@@ -1,18 +1,31 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, DoCheck, OnChanges, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { FooterComponent } from '@core/components/footer/footer.component';
 import { HeaderComponent } from '@core/components/header/header.component';
-import { RegistrationComponent } from '@pages/registration/registration.component';
-import { CardComponent } from '@shared/components/card/card.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet ,HeaderComponent , FooterComponent ,RegistrationComponent ],
+  imports: [RouterOutlet ,HeaderComponent , FooterComponent ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements DoCheck {
+
+  pathURL : string = '';
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {}
+
+  ngDoCheck() {
+    this.pathURL = this.router.url;
+
+    console.log( " xx ", this.router.url)
+  };
+   
+  
 
   clickEvent(){
     console.log('app Event ');

@@ -10,7 +10,6 @@
         class="form-control" 
         id="email" 
         name="email" 
-        placeholder="Adresse Email" 
         [ngClass]="{ 'is-invalid': submitted && controlRegister['email'].errors || controlRegister['email'].touched && controlRegister['email'].invalid }"
         >
         <ng-template [ngIf]="controlRegister['email'].invalid" class="alert alert-danger">
@@ -27,7 +26,6 @@
           class="form-control" 
           id="password" 
           name="password"
-          placeholder="Mot de passe"
           [ngClass]="{ 'is-invalid': submitted && controlRegister['password'].errors || controlRegister['password'].touched && controlRegister['password'].invalid }"
         >
         <ng-template [ngIf]="controlRegister['password'].invalid" class="alert alert-danger">
@@ -50,6 +48,12 @@
         <p>{{ errorMessage }}</p>
       </div>
     </ng-template>
-  </div>
-  
+</div>
+<div class="btn-back">
+  <a routerLink="/" >
+    <i class="fa-solid fa-arrow-right fa-rotate-180"></i>
+    Retour à l'accueil
+  </a>
+</div>
+
   

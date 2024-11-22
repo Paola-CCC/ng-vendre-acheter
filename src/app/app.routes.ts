@@ -1,49 +1,56 @@
 import { Routes } from '@angular/router';
-import { CartPageComponent } from '@pages/cart-page/cart-page.component';
-import { HomeComponent } from '@pages/home/home.component';
-import { LoginComponent } from '@pages/login/login.component';
-import { NotFoundComponent } from '@pages/not-found/not-found.component';
-import { ProductAddComponent } from '@pages/product-add/product-add.component';
-import { ProductPageComponent } from '@pages/product-page/product-page.component';
-import { RegistrationComponent } from '@pages/registration/registration.component';
-import { UserProfileComponent } from '@pages/user-profile/user-profile.component';
 
 export const routes: Routes = [
   {
-    path: '', 
-    redirectTo: '/accueil', 
+    path: '',
+    redirectTo: '/accueil',
     pathMatch: 'full',
   },
   {
     path: 'accueil',
-    component: HomeComponent,
+    loadComponent: () =>
+      import('@pages/home/home.component').then(
+        (m) => m.HomeComponent),
   },
   {
     path: 'connexion',
-    component: LoginComponent,
+    loadComponent: () =>
+      import('@pages/login/login.component').then(
+        (m) => m.LoginComponent),
   },
   {
     path: 'inscription',
-    component: RegistrationComponent,
+    loadComponent: () =>
+      import('@pages/registration/registration.component').then(
+        (m) => m.RegistrationComponent
+      ),
   },
   {
     path: 'panier',
-    component: CartPageComponent,
+    loadComponent: () =>
+      import('@pages/product-page/product-page.component').then(
+        (m) => m.ProductPageComponent
+      ),
   },
   {
-    path: 'profile',
-    component: UserProfileComponent,
+    path: 'profil',
+    loadComponent: () =>
+      import('@pages/user-profile/user-profile.component').then(
+        (m) => m.UserProfileComponent
+      ),
   },
-  {    
-    path: 'product/:id',
-    component: ProductPageComponent,
-  },
-  {    
+  {
     path: 'product-add',
-    component: ProductAddComponent,
+    loadComponent: () =>
+      import('@pages/product-add/product-add.component').then(
+        (m) => m.ProductAddComponent
+      ),
   },
   {
     path: '**',
-    component: NotFoundComponent,
+    loadComponent: () =>
+      import('@pages/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent
+      ),
   },
 ];

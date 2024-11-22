@@ -1,15 +1,15 @@
 div.register-container {
-    background-color: #f2f2f2;
-    border-radius: 10px;
+    background-color: #ffffff;
+    border-radius: 30px;
     padding: 40px;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
     width: 500px;
-    margin: 70px auto;
+    margin: 70px auto 0 auto ;
 
     h3 {
       text-align: center;
       font-size: 20px;
-      font-weight: 500;
+      font-weight: bold;
       color: #4747b8;;
     }
 
@@ -46,7 +46,7 @@ div.register-container {
     
         label {
           display: block;
-          font-weight: bold;
+          // font-weight: bold;
           margin-bottom: 5px;
         }
     
@@ -187,7 +187,14 @@ div.register-container {
       }
     }
 }
-
+.btn-back {
+  margin: 20px auto;
+  width: 580px;
+  padding: 0px;
+  a {
+    font-size: 16px;
+  }
+}
 
 
 @media only screen and (max-width: 700px) {
