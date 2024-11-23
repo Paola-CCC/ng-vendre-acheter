@@ -8,18 +8,57 @@
     </div>
 </section>
 
+
 <app-section-group  text="Nos catégories">
-    <div class="container"> 
+    <div class="categories container"> 
+
+        @for (item of categoriesList; track item.id) {
+            <app-card 
+            type="card-2" 
+            [title]="item.title"
+            [imgSrc]="item.imgSrc"
+            > 
+            </app-card>
+        }
 
     </div>
 </app-section-group>
 
 <app-section-group  text="Nos meilleurs ventes">
-    <p> HHHH</p>
+    
+    <div class="categories container">
+
+        @for (item of bestSoldProduct; track item.id) {
+
+            <app-card 
+             type="card-1" 
+             [title]="item.title"
+             [imgSrc]="item.imgSrc"
+             [price]="item.price"
+             [productNote]="(item.productNote * 5 / 20)"
+             >
+            </app-card>
+         }
+    </div> 
+
+ 
 </app-section-group>
 
 <app-section-group  text="Les bonnes affaires du jour">
-    <p> HHHH</p>
+    <div class="categories container">
+
+        @for (item of goodDealsProduct; track item.id) {
+
+            <app-card 
+             type="card-1" 
+             [title]="item.title"
+             [imgSrc]="item.imgSrc"
+             [price]="item.price"
+             [productNote]="(item.productNote * 5 / 20)"
+             >
+            </app-card>
+         }
+    </div>
 </app-section-group>
 
 <app-section-group  text="Les marques">
