@@ -21,14 +21,7 @@ export class AppComponent implements DoCheck {
 
   ngDoCheck() {
     this.pathURL = this.router.url;
-
-    console.log( " xx ", this.router.url)
   };
    
-  
 
-  clickEvent(){
-    console.log('app Event ');
-    
-  }
 }

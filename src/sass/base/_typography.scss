@@ -45,7 +45,7 @@ $body-weight: $weight-regular;
 $body-line-height: 1.5;
 $heading-line-height: 1.2;
  
-$color-text-heading: red;
+$color-text-heading: rgb(0, 0, 0);
 
 body {
     font-size: $text-base-size;
@@ -130,7 +130,7 @@ h5 {
 }
 
 p {
-    margin: 0 0 1rem;
+    margin: 0;
     font-size: $text-md;
     font-weight: $body-weight;
     line-height: $body-line-height;

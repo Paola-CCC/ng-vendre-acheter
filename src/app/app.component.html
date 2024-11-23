@@ -2,9 +2,12 @@
 @if(pathURL ==='/connexion' || pathURL ==='/inscription'){
     <router-outlet></router-outlet>
 } @else {
-    <app-header  ></app-header>
-    <main>
-        <router-outlet></router-outlet>
-    </main>
-    <app-footer ></app-footer>
+
+    <div class="container-global">
+        <app-header></app-header>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+        <app-footer ></app-footer>
+    </div>  
 }

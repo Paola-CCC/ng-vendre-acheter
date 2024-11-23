@@ -1,0 +1,64 @@
+section {
+  &.hero-img {
+    position: relative;
+    // background-color: rgb(208, 128, 29);
+    height: 460px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 40px;
+
+    .content-hero {
+      position: absolute;
+      width: 90%;
+      max-width: 1235px;
+      margin: 0 auto;
+      height: fit-content;
+      padding: 20px;
+      bottom: 10px;
+
+      .text-hero {
+        background-color: rgb(255, 255, 255);
+        width: 400px;
+        border-radius: 10px;
+        padding: 15px;
+
+        h1 {
+          font-size: 1.25rem;
+          margin: 1em 0 0 0;
+          color: black;
+        }
+
+        h3 {
+          margin: 1.5em 0;
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); // 6 colonnes de tailles égales
+  gap: 1rem; // Espacement entre les éléments
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr); // 4 colonnes sur les écrans moyens
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr); // 2 colonnes sur les écrans petits
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr; // 1 colonne sur les écrans très petits
+  }
+}

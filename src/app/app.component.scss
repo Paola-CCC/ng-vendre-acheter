@@ -1,6 +1,17 @@
-main {
-    width: 90%;
-    max-width: 1235px;
-    margin: 0 auto;
+
+.container-global {
+
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+    padding-bottom: 50px;
+    
+    main {
+        padding-bottom: 50px;
+        // max-width: 1235px;
+        // margin: 0 auto;
+    
+    }
+    
 
 }
