@@ -42,24 +42,50 @@ section {
 }
 
 
+.swiper-button-prev {
+  color: #ffffff; 
+  font-size: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  z-index: 9999;
+  cursor: pointer;
+  display: none;
+}
+
+.swiper-button-next {
+  color: #ffffff; 
+  font-size: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  right: 10px; 
+  z-index: 9999; 
+  display: none;
+}
 
 
+swiper-container {
+  width: 100%;
+  height: auto;
+  position: relative;
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); // 6 colonnes de tailles égales
-  gap: 1rem; // Espacement entre les éléments
-
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(4, 1fr); // 4 colonnes sur les écrans moyens
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr); // 2 colonnes sur les écrans petits
-  }
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr; // 1 colonne sur les écrans très petits
+  swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
+
+swiper-container:hover + .swiper-button-prev,
+swiper-container + .swiper-button-prev:hover
+{
+  display: block;
+}
+swiper-container:hover ~ .swiper-button-next,
+swiper-container ~ .swiper-button-next:hover
+{
+  display: block;
+}
+
+

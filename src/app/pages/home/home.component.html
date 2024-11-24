@@ -1,51 +1,74 @@
-<section class="hero-img" [ngStyle]="{'background-image': 'url('+ bgImg + ')'}">
-    <div class="content-hero">
-        <div class="text-hero">
-            <h1> Vendez et achetez partout en France</h1>
-            <h3> Favoriser la deuxième mains est essentiel pour une consommation durable</h3>
-            <app-button text="En savoir plus" type="secondary" />
-        </div>
+<section
+  class="hero-img"
+  [ngStyle]="{ 'background-image': 'url(' + bgImg + ')' }"
+>
+  <div class="content-hero">
+    <div class="text-hero">
+      <h1>Vendez et achetez partout en France</h1>
+      <h3>
+        Favoriser la deuxième mains est essentiel pour une consommation durable
+      </h3>
+      <app-button text="En savoir plus" type="secondary" />
     </div>
+  </div>
 </section>
 
+<app-section-group text="Nos catégories">
+  <swiper-container
+    slides-per-view="6"
+    speed="500"
+    loop="false"
+    [breakpoints]="breakpoints"
+    #swiper
+  >
+    @for (item of categoriesList; track item.id) {
+    <swiper-slide>
+      <app-card type="card-2" [title]="item.title" [imgSrc]="item.imgSrc">
+      </app-card>
+    </swiper-slide>
+    }
+  </swiper-container>
 
-<app-section-group  text="Nos catégories">
-    <div class="categories container"> 
+  <button class="swiper-button-prev" (click)="onPrevClick(swiper)">
+    &#9664;
+  </button>
+  <button class="swiper-button-next" (click)="onNextClick(swiper)">
+    &#9654;
+  </button>
+</app-section-group>
 
-        @for (item of categoriesList; track item.id) {
-            <app-card 
-            type="card-2" 
+<app-section-group text="Nos meilleurs ventes">
+  <swiper-container
+    class="custom-swiper"
+    slides-per-view="3"
+    speed="500"
+    loop="true"
+    [breakpoints]="breakpointsB"
+    #swiper2
+  >
+        @for (item of bestSoldProduct; track item.id) {
+        <swiper-slide>
+        <app-card
+            type="card-1"
             [title]="item.title"
             [imgSrc]="item.imgSrc"
-            > 
-            </app-card>
+            [price]="item.price"
+            [productNote]="(item.productNote * 5) / 20"
+        >
+        </app-card>
+        </swiper-slide>
         }
-
-    </div>
+  </swiper-container>
+  <button class="swiper-button-prev" (click)="onPrevClick(swiper2)">
+    &#9664;
+  </button>
+  <button class="swiper-button-next" (click)="onNextClick(swiper2)">
+    &#9654;
+  </button>
 </app-section-group>
 
-<app-section-group  text="Nos meilleurs ventes">
-    
-    <div class="categories container">
-
-        @for (item of bestSoldProduct; track item.id) {
-
-            <app-card 
-             type="card-1" 
-             [title]="item.title"
-             [imgSrc]="item.imgSrc"
-             [price]="item.price"
-             [productNote]="(item.productNote * 5 / 20)"
-             >
-            </app-card>
-         }
-    </div> 
-
- 
-</app-section-group>
-
-<app-section-group  text="Les bonnes affaires du jour">
-    <div class="categories container">
+<!-- <app-section-group  text="Les bonnes affaires du jour">
+    <div class="good-deals container">
 
         @for (item of goodDealsProduct; track item.id) {
 
@@ -59,12 +82,12 @@
             </app-card>
          }
     </div>
+</app-section-group> -->
+
+<app-section-group text="Les marques">
+  <p>HHHH</p>
 </app-section-group>
 
-<app-section-group  text="Les marques">
-    <p> HHHH</p>
-</app-section-group>
-
-<app-section-group  text="Les produits populaires de la semaine">
-    <p> HHHH</p>
+<app-section-group text="Les produits populaires de la semaine">
+  <p>HHHH</p>
 </app-section-group>

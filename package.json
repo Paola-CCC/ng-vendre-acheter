@@ -11,7 +11,6 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "api": "json-server api/db.json --port 8000"
-
   },
   "private": true,
   "dependencies": {
@@ -32,6 +31,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "rxjs": "~7.8.0",
+    "swiper": "^11.1.15",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
