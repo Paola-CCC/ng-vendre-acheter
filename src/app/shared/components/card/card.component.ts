@@ -17,6 +17,8 @@ export class CardComponent {
   @Input({required: false}) title:string = '';
   @Input({required: false}) price:string = '';
   @Input({required: false}) content:string = '';
-  @Input({required: false}) productNote:any;
+  @Input({required: false}) productNote:number | null = null;
+  @Input({required: false}) description:string = '';
+  @Input({required: false}) reductionPercentage:string = '';
 
 }

@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
   categoriesList: any[] = [];
   bestSoldProduct: any[] = [];
   goodDealsProduct: any[] = [];
+  savingOptions: any[] = [];
+
   canShowArrow : boolean = false;
 
   bgImg: string = "https://www.dldp-dressing.fr/public/img/big/AdobeStock237791258jpeg_5ddd7f087a95c.jpeg";
@@ -67,6 +69,7 @@ export class HomeComponent implements OnInit {
     this.getCategories();
     this.getBestSold();
     this.getGoodDealsProduct();
+    this.getSavingOptions();
   }
 
   getCategories(): void {
@@ -102,7 +105,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
+  getSavingOptions(): void {
+    this.productService.getSavingOptions().subscribe({
+      next: (data: any) => {
+        this.savingOptions = data;
+      },
+      error: (err) => {
+        console.error('Error fetching savingOptions:', err);
+      }
+    });
+  }
   onPrevClick(swiper: SwiperContainer) {
     swiper?.swiper.slidePrev()
   }

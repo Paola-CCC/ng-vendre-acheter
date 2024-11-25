@@ -34,4 +34,9 @@ export class ProductService {
     return this.http.get<any>(API + 'trademark' );
   } 
 
+
+  getSavingOptions(): Observable<any> {
+    return this.http.get<any>(API + 'saving_options' );
+  } 
+
 }

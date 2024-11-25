@@ -18,7 +18,8 @@
                 <p>
                     {{content}}
                 </p>
-                <app-stars-group [note]="productNote" ></app-stars-group>
+                <app-stars-group [note]="productNote ? productNote : 0" ></app-stars-group>
+
             </div>
             <div class="card-btn-container">
                     <app-button [text]="'Add to cart'" [type]="'primary'"  ></app-button>
@@ -41,10 +42,10 @@
 @if (type === 'card-3') {
     <a class="card-3" [routerLink]="['/']" routerLinkActive="router-link-active" >
         <div class="heading">
-            <span> Solde </span>
-            <span class="price-info"> $34.00</span>
-            <span> Explore Our Furniture & Home
-                Furnishing Range </span>
+            <h3> Solde </h3>
+            <span class="price-info"> {{reductionPercentage}}<span class="icon-percentage">%</span>
+            </span>
+            <p> {{description}} </p>
         </div>
     
         <div class="card-body">
@@ -54,7 +55,7 @@
 }
 
 
-@if (type === 'card-3') {
+@if (type === 'card-4') {
     <a class=""  [routerLink]="['/']" >
         <div class="zone-img">
                 <img [src]="imgSrc" >

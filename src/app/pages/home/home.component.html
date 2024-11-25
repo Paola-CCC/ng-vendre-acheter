@@ -37,7 +37,7 @@
   </button>
 </app-section-group>
 
-<app-section-group text="Nos meilleurs ventes">
+<app-section-group text="Les bonnes affaires du jour pour vous">
   <swiper-container
     class="custom-swiper"
     slides-per-view="3"
@@ -46,18 +46,18 @@
     [breakpoints]="breakpointsB"
     #swiper2
   >
-        @for (item of bestSoldProduct; track item.id) {
-        <swiper-slide>
-        <app-card
-            type="card-1"
-            [title]="item.title"
-            [imgSrc]="item.imgSrc"
-            [price]="item.price"
-            [productNote]="(item.productNote * 5) / 20"
-        >
-        </app-card>
-        </swiper-slide>
-        }
+    @for (item of goodDealsProduct; track item.id) {
+    <swiper-slide>
+    <app-card
+        type="card-1"
+        [title]="item.title"
+        [imgSrc]="item.imgSrc"
+        [price]="item.price"
+        [productNote]="(item.productNote * 5) / 20"
+    >
+    </app-card>
+    </swiper-slide>
+    }
   </swiper-container>
   <button class="swiper-button-prev" (click)="onPrevClick(swiper2)">
     &#9664;
@@ -67,27 +67,48 @@
   </button>
 </app-section-group>
 
-<!-- <app-section-group  text="Les bonnes affaires du jour">
-    <div class="good-deals container">
+<app-section-group  text="Nos meilleurs ventes">
 
-        @for (item of goodDealsProduct; track item.id) {
-
-            <app-card 
-             type="card-1" 
-             [title]="item.title"
-             [imgSrc]="item.imgSrc"
-             [price]="item.price"
-             [productNote]="(item.productNote * 5 / 20)"
-             >
-            </app-card>
-         }
-    </div>
-</app-section-group> -->
-
-<app-section-group text="Les marques">
-  <p>HHHH</p>
+  <swiper-container
+    class="custom-swiper"
+    slides-per-view="3"
+    speed="500"
+    loop="true"
+    [breakpoints]="breakpointsB"
+    #swiper3
+  >
+    @for (item of bestSoldProduct; track item.id) {
+    <swiper-slide>
+    <app-card
+        type="card-1"
+        [title]="item.title"
+        [imgSrc]="item.imgSrc"
+        [price]="item.price"
+        [productNote]="(item.productNote * 5) / 20"
+    >
+    </app-card>
+    </swiper-slide>
+    }
+  </swiper-container>
+  <button class="swiper-button-prev" (click)="onPrevClick(swiper3)">
+    &#9664;
+  </button>
+  <button class="swiper-button-next" (click)="onNextClick(swiper3)">
+    &#9654;
+  </button>
 </app-section-group>
 
-<app-section-group text="Les produits populaires de la semaine">
-  <p>HHHH</p>
+<app-section-group text="Profiter de nos réductions">
+  
+  <div class="container saving">
+    @for (item of savingOptions; track item.id) {
+      <app-card
+          type="card-3"
+          [description]="item.description"
+          [imgSrc]="item.imgSrc"
+          [reductionPercentage]="item.reduction_percentage"
+      >
+      </app-card>
+      }
+  </div>
 </app-section-group>
