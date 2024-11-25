@@ -47,15 +47,13 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  breakpointsB = {
+  breakpointsCard1 = {
     400: {
       slidesPerView: 1,
     },
-
     850: {
       slidesPerView: 2,
     },
-
     1440: {
       slidesPerView: 3,
     }

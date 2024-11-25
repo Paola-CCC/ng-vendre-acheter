@@ -15,8 +15,8 @@
 
 <app-section-group text="Nos catégories">
   <swiper-container
-    slides-per-view="6"
     speed="500"
+    class="custom-swiper card-2"
     loop="false"
     [breakpoints]="breakpoints"
     #swiper
@@ -39,11 +39,10 @@
 
 <app-section-group text="Les bonnes affaires du jour pour vous">
   <swiper-container
-    class="custom-swiper"
-    slides-per-view="3"
+    class="custom-swiper card-1"
     speed="500"
     loop="true"
-    [breakpoints]="breakpointsB"
+    [breakpoints]="breakpointsCard1"
     #swiper2
   >
     @for (item of goodDealsProduct; track item.id) {
@@ -70,11 +69,10 @@
 <app-section-group  text="Nos meilleurs ventes">
 
   <swiper-container
-    class="custom-swiper"
-    slides-per-view="3"
+    class="custom-swiper card-1"
     speed="500"
     loop="true"
-    [breakpoints]="breakpointsB"
+    [breakpoints]="breakpointsCard1"
     #swiper3
   >
     @for (item of bestSoldProduct; track item.id) {
@@ -99,8 +97,7 @@
 </app-section-group>
 
 <app-section-group text="Profiter de nos réductions">
-  
-  <div class="container saving">
+  <div class="container-saving">
     @for (item of savingOptions; track item.id) {
       <app-card
           type="card-3"
