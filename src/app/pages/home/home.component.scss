@@ -8,7 +8,7 @@ section {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 
     .content-hero {
       position: absolute;
@@ -94,8 +94,6 @@ app-section-group {
   max-width: 1235px;
   margin: 0 auto;
 
- 
-
   swiper-container.custom-swiper.card-1  {
     display: flex;
     flex-direction: row;
@@ -126,6 +124,39 @@ app-section-group {
     app-card {
       flex: 1 0 calc(25% - 15px);
       box-sizing: border-box; 
+      border-radius: 10px;
+      &:first-of-type {
+        background-color: rgb(224, 234, 255);
+        a.card-3 .heading span {
+          &:nth-of-type(2){
+            color: rgb(101, 137, 214);
+          }
+        }
+      }
+      &:nth-of-type(2) {
+        background-color: rgb(255, 210, 210);
+        a.card-3 .heading span {
+          &:nth-of-type(2){
+            color: rgb(158, 62, 62);
+          }
+        }
+      }
+      &:nth-of-type(3) {
+        background-color: rgb(255, 238, 209);
+        a.card-3 .heading span {
+          &:nth-of-type(2){
+            color: rgb(167, 128, 60);
+          }
+        }
+      }
+      &:nth-of-type(4) {
+        background-color: rgb(230, 255, 217);
+        a.card-3 .heading span {
+          &:nth-of-type(2){
+            color: rgb(86, 133, 61);
+          }
+        }
+      }
     }
   }
 }

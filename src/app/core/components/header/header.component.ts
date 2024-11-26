@@ -21,7 +21,9 @@ export class HeaderComponent implements OnInit {
     name: 'Lucienne'
   }
 
-  cartItemsCount = null;
+  cartItemsCount: number | null = null;
+
+  favorisCount: number | null = null;
 
   constructor(
     private auth: AuthService,

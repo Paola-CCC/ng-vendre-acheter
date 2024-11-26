@@ -23,7 +23,11 @@
   >
     @for (item of categoriesList; track item.id) {
     <swiper-slide>
-      <app-card type="card-2" [title]="item.title" [imgSrc]="item.imgSrc">
+      <app-card 
+      type="card-2" 
+      [id]="item.id"
+      [title]="item.title" 
+      [imgSrc]="item.imgSrc">
       </app-card>
     </swiper-slide>
     }
@@ -49,6 +53,7 @@
     <swiper-slide>
     <app-card
         type="card-1"
+        [id]="item.id"
         [title]="item.title"
         [imgSrc]="item.imgSrc"
         [price]="item.price"
@@ -79,6 +84,7 @@
     <swiper-slide>
     <app-card
         type="card-1"
+        [id]="item.id"
         [title]="item.title"
         [imgSrc]="item.imgSrc"
         [price]="item.price"

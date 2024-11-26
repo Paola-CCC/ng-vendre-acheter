@@ -30,15 +30,31 @@
         </a>
       </li>
 
+        
+      <li class="nav-item">
+          <a
+          class="nav-link"
+          routerLink="/favoris"
+          routerLinkActive="active"
+        >
+          <span class="header-container-icon">
+            <i class="fa-solid fa-heart"></i>
+            <span class="item-counter">
+              {{ cartItemsCount ? cartItemsCount : 0 }}
+            </span>
+          </span>
+          Favoris
+        </a>
+      </li>
       <li class="nav-item">
         <a
           class="nav-link"
           routerLink="/panier"
           routerLinkActive="active"
         >
-          <span class="container-cart-icon">
+          <span class="header-container-icon">
             <i class="fa-solid fa-cart-shopping"></i>
-            <span class="cart-item-counter">
+            <span class="item-counter">
               {{ cartItemsCount ? cartItemsCount : 0 }}
             </span>
           </span>
@@ -80,9 +96,23 @@
         routerLink="/panier"
         routerLinkActive="active"
       >
-        <span class="container-cart-icon">
+        <span class="header-container-icon">
+          <i class="fa-solid fa-heart"></i>
+          <span class="item-counter">
+            {{ cartItemsCount ? cartItemsCount : 0 }}
+          </span>
+        </span>
+      </a>
+
+
+      <a
+        class="nav-link"
+        routerLink="/panier"
+        routerLinkActive="active"
+      >
+        <span class="header-container-icon">
           <i class="fa-solid fa-cart-shopping"></i>
-          <span class="cart-item-counter">
+          <span class="item-counter">
             {{ cartItemsCount ? cartItemsCount : 0 }}
           </span>
         </span>

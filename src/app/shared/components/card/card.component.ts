@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { StarsGroupComponent } from '../stars-group/stars-group.component';
 import { ButtonComponent } from '../button/button.component';
 import { RouterLink } from '@angular/router';
@@ -8,10 +8,12 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [StarsGroupComponent,ButtonComponent ,RouterLink],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss'
+  styleUrl: './card.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class CardComponent {
 
+  @Input({required: false}) id: number | null = null;
   @Input({required: false}) type:string = '';
   @Input({required: false}) imgSrc:string = 'https://blaque.fr/wp-content/uploads/2022/01/beyonce.webp';
   @Input({required: false}) title:string = '';
@@ -20,5 +22,10 @@ export class CardComponent {
   @Input({required: false}) productNote:number | null = null;
   @Input({required: false}) description:string = '';
   @Input({required: false}) reductionPercentage:string = '';
+  
+  @ViewChild("heartRef") heartRef?: ElementRef<HTMLElement>;
 
+  checkSelected(heart:any){
+    this.heartRef?.nativeElement.classList.toggle('selected');
+  }
 }

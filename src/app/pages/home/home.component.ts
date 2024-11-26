@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ButtonComponent } from "../../shared/components/button/button.component";
 import { NgStyle } from '@angular/common';
 import { SectionGroupComponent } from "../../shared/components/section-group/section-group.component";
@@ -15,7 +15,9 @@ import { faker } from '@faker-js/faker';
   providers: [ProductService],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class HomeComponent implements OnInit {
 
