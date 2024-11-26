@@ -3,7 +3,7 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  
+
   nav {
     display: flex;
     flex-direction: row;
@@ -12,40 +12,46 @@ header {
     width: 90%;
     max-width: 1235px;
 
-    div .logo {
-      font-family: "Gill Sans", sans-serif;
-      font-weight: 600;
-      text-transform: uppercase;
-      display: block;
-      text-wrap: nowrap;
-    }
-
-    div.search {
-      height: 50px;
-      width: 25%;
+    > div.container-logo-search {
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin-left: 25px;
-      position: relative;
 
-      input[type="search"] {
-        background-color: rgb(246, 246, 246);
-        width: 100%;
-        padding: 5px 10px 5px 30px;
-        border: 1px solid rgb(232, 232, 232);
-        border-radius: 10px;
+      a.logo {
+        display: block;
+        font-family: "Gill Sans", sans-serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-wrap: nowrap;
       }
 
-      svg {
-        position: absolute;
-        left: 10px; 
-        top: 50%;
-        transform: translateY(-50%);
-        width: 16px;
-        height: 16px;
-        fill: rgb(150, 150, 150);
-        pointer-events: none;
+      div.search {
+        height: 50px;
+        width: 55%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 60px;
+        position: relative;
+
+        input[type="search"] {
+          background-color: rgb(246, 246, 246);
+          width: 100%;
+          padding: 5px 10px 5px 30px;
+          border: 1px solid rgb(232, 232, 232);
+          border-radius: 10px;
+        }
+
+        svg {
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 16px;
+          height: 16px;
+          fill: rgb(150, 150, 150);
+          pointer-events: none;
+        }
       }
     }
 
@@ -62,25 +68,31 @@ header {
     ul.navbar-nav.desktop {
       list-style-type: none;
       margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: row;
       li {
-        padding: 20px 3px;
+        padding: 20px 0px;
         position: relative;
         width: fit-content;
         display: flex;
         flex-direction: column;
         justify-content: center;
 
-        &.add-posts a {
-          padding: 8px 20px;
-          border-radius: 20px;
-          background-color: rgb(56, 51, 134);
-          color: white;
+        &.add-posts {
+          margin-right: 15px;
+          a {
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: rgb(56, 51, 134);
+            color: white;
+          }
         }
 
         &:not(.add-posts) {
-          margin: 0 0 0 10px;
+          &:not(.favoris) {
+            margin: 0 0 0 6px;
+          }
           a {
             font-size: 16px;
             font-weight: 400;
@@ -93,8 +105,8 @@ header {
               margin: 0 auto;
               padding: 0;
               position: relative;
-              span.item-counter{
-                background-color: rgb(217, 44, 44);
+              span.item-counter {
+                background-color: rgb(192, 67, 67);
                 border: 1px solid white;
                 font-size: 10px;
                 padding: 2px;
@@ -166,9 +178,7 @@ header {
   }
 }
 
-
-@media only screen and (max-width: 1090px){
-
+@media only screen and (max-width: 1090px) {
   header nav {
     width: 95%;
     div.search {
@@ -177,13 +187,11 @@ header {
     ul.desktop {
       padding: 0 0 0 15px;
     }
-
   }
 }
 
 @media only screen and (max-width: 900px) {
   header {
-
     nav {
       padding: 15px 1em;
       position: relative;
@@ -191,7 +199,7 @@ header {
       box-shadow: none;
       width: 100%;
 
-      div.search {
+      > div.container-logo-search div.search {
         display: none;
       }
 
@@ -204,16 +212,16 @@ header {
         right: 1rem;
 
         a {
-          margin-right: 18px;
+          margin-right: 20px;
         }
-                    
+
         a span.header-container-icon {
           width: fit-content;
           margin: 0 auto;
           padding: 0;
           position: relative;
           span.item-counter {
-            background-color: rgb(217, 44, 44);
+            background-color: rgb(192, 67, 67);
             border: 1px solid white;
             font-size: 10px;
             padding: 2px;
@@ -229,6 +237,10 @@ header {
             justify-content: center;
             align-items: center;
           }
+        }
+
+        button {
+          padding: 0 !important;
         }
       }
 
@@ -254,20 +266,17 @@ header {
           margin: 20px 1rem 0 1rem;
           position: relative;
 
-
           input[type="search"] {
             background-color: rgb(246, 246, 246);
             width: 100%;
             padding: 5px 10px 5px 30px;
             border: 1px solid rgb(232, 232, 232);
             border-radius: 10px;
-
           }
-
 
           svg {
             position: absolute;
-            left: 10px; 
+            left: 10px;
             top: 50%;
             transform: translateY(-50%);
             width: 16px;
@@ -288,8 +297,6 @@ header {
             a i {
               padding-right: 8px;
             }
-
-
           }
         }
       }
