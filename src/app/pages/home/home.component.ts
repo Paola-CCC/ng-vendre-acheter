@@ -5,7 +5,8 @@ import { SectionGroupComponent } from "../../shared/components/section-group/sec
 import { ProductService } from '@features/product/services/product.service';
 import { CardComponent } from '@shared/components/card/card.component';
 import { SwiperContainer } from 'swiper/element';
-import { Swiper } from 'swiper/types';
+import { faker } from '@faker-js/faker';
+
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,8 @@ export class HomeComponent implements OnInit {
   savingOptions: any[] = [];
 
   canShowArrow : boolean = false;
+
+  randomName : any;
 
   bgImg: string = "https://www.dldp-dressing.fr/public/img/big/AdobeStock237791258jpeg_5ddd7f087a95c.jpeg";
 
@@ -84,7 +87,15 @@ export class HomeComponent implements OnInit {
   getBestSold(): void {
     this.productService.getBestSold().subscribe({
       next: (data: any) => {
-        this.bestSoldProduct = data;
+        let datas = data.map((obj : any) => {
+          if (Object.keys(obj).includes('imgSrc')) {
+            return { ...obj, imgSrc: faker.image.url() };
+          }
+          return obj;
+        });
+          
+
+        this.bestSoldProduct = datas;
       },
       error: (err) => {
         console.error('Error fetching bestSoldProduct:', err);
@@ -95,7 +106,12 @@ export class HomeComponent implements OnInit {
   getGoodDealsProduct(): void {
     this.productService.getGoodDealsProduct().subscribe({
       next: (data: any) => {
-        this.goodDealsProduct = data;
+        this.goodDealsProduct = data.map((obj : any) => {
+          if (Object.keys(obj).includes('imgSrc')) {
+            return { ...obj, imgSrc: faker.image.url() };
+          }
+          return obj;
+        });
       },
       error: (err) => {
         console.error('Error fetching goodDealsProduct:', err);
@@ -119,5 +135,10 @@ export class HomeComponent implements OnInit {
 
   onNextClick(swiper: SwiperContainer) {
     swiper?.swiper.slideNext();
+  }
+
+  getImageRandom(){
+    this.console.log("faker.image.url() " , faker.image.url())
+    return faker.image.url();
   }
 }

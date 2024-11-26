@@ -1,5 +1,6 @@
 button {
   @include button-style;
+  cursor: pointer;
 
   &.primary {
     color: black;
@@ -31,7 +32,6 @@ button {
       color:white ;
     }
   }
-  
   
   &.tertiary {
     color: $tertiary-color;
