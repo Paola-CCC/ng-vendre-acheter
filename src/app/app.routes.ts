@@ -28,8 +28,15 @@ export const routes: Routes = [
   {
     path: 'panier',
     loadComponent: () =>
-      import('@pages/product-page/product-page.component').then(
-        (m) => m.ProductPageComponent
+      import('@pages/cart-page/cart-page.component').then(
+        (m) => m.CartPageComponent
+      ),
+  },
+  {
+    path: 'favoris',
+    loadComponent: () =>
+      import('@pages/favoris/favoris.component').then(
+        (m) => m.FavorisComponent
       ),
   },
   {
@@ -44,6 +51,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('@pages/product-add/product-add.component').then(
         (m) => m.ProductAddComponent
+      ),
+  },
+  {
+    path: 'product/:id',
+    loadComponent: () =>
+      import('@pages/product-page/product-page.component').then(
+        (m) => m.ProductPageComponent
       ),
   },
   {

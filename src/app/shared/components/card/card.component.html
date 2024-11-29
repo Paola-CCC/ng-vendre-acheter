@@ -1,6 +1,6 @@
  
 @if( type === 'card-1'){
-    <div class="card-1" [routerLink]="['/']">
+    <div class="card-1" [routerLink]="['/product/', id]">
         <div class="zone-img">
             <img [src]="imgSrc" >
             <span class="svg-favorite-heart" 
@@ -31,7 +31,7 @@
 
 
 @if (type === 'card-2') {
-    <a class="card-2" [routerLink]="['/']" routerLinkActive="router-link-active" >
+    <a class="card-2" [routerLink]="['/product/']" routerLinkActive="router-link-active" >
         <span> {{title}} </span>
         <img [src]="imgSrc" >
         <div class="shadow-bg">
@@ -41,7 +41,7 @@
 
 
 @if (type === 'card-3') {
-    <a class="card-3" [routerLink]="['/']" routerLinkActive="router-link-active" >
+    <a class="card-3" [routerLink]="['/product/percentage=', reductionPercentage]" routerLinkActive="router-link-active" >
         <div class="heading">
             <span> Solde </span>
             <span class="price-info"> {{reductionPercentage}}%</span>
@@ -56,7 +56,7 @@
 
 
 @if (type === 'card-4') {
-    <a class=""  [routerLink]="['/']" >
+    <a class=""  [routerLink]="['/product/',id]" >
         <div class="zone-img">
                 <img [src]="imgSrc" >
         </div>
