@@ -1,6 +1,6 @@
  
 @if( type === 'card-1'){
-    <div class="card-1" [routerLink]="['/product/', id]">
+    <div class="card-1" >
         <div class="zone-img">
             <img [src]="imgSrc" >
             <span class="svg-favorite-heart" 
@@ -21,7 +21,7 @@
                 <app-stars-group [note]="productNote ? productNote : 0" ></app-stars-group>
 
             </div>
-            <div class="card-btn-container">
+            <div class="card-btn-container" (click)="goTo()">
                     <app-button [text]="'Acheter'" [type]="'primary'"  ></app-button>
             </div>
         </div>

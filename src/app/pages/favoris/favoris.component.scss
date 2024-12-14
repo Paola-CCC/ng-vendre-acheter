@@ -2,6 +2,17 @@
     width: 90%;
     max-width: 1235px;
     margin: 0 auto;
-    background-color: aquamarine;
     margin-top: 80px;
-}
+    // background-color: aquamarine;
+    font-family: Arial, sans-serif;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+
+  

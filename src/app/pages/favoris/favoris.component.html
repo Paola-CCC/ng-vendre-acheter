@@ -1,3 +1,16 @@
 <section class="container-product">
-    <p>favoris works!</p>
-</section>
+    <h1>Mes Favoris: </h1>
+    <div class="grid-container">
+      @for (item of goodDealsProduct; track item.id) {
+            <app-card
+            type="card-1"
+            [id]="item.id"
+            [title]="item.title"
+            [imgSrc]="item.imgSrc"
+            [price]="item.price"
+            [productNote]="(item.productNote * 5) / 20"
+            />
+      }
+    </div>
+  </section>
+  

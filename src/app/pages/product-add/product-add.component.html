@@ -1,5 +1,108 @@
 
 <section class="container-product">
-    <p>product-add works!</p>
+    
+  <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+    <h1> Ajouter un produit</h1>
+
+    <div>
+      <label style="display: block">Uploader une image</label> 
+      
+      <div class="img-load-container">
+        <img  [src]="previewImageFile !== '' ? previewImageFile : 'https://freesvg.org/img/abstract-user-flat-3.png' "  width="80px" height="80px" />
+
+          <div class="input-btn image-uploaded"   >
+            <input 
+            type="file" 
+            class="file-upload"
+            name="thumbnailUpload"         
+            formControlName="thumbnailUpload"
+            (change)="onFileSelected($event)"  
+            >
+
+            @if(previewImageFile !== '' ){
+              <button (click)="cleanThumbnailUpload()">
+                Supprimer
+              </button>
+            }
+        
+          </div>
+      </div>
+
+    </div>
+
+    <div>
+      <label for="productName">Nom du produit:</label>
+      <input
+        id="productName"
+        type="text"
+        formControlName="productName"
+      />
+      @if (addProductForm.get('productName')?.invalid && addProductForm.get('productName')?.touched) {
+        <div>
+          <small>Le nom du produit est requis.</small>
+        </div>
+      }
+    </div>
+  
+    <div>
+      <label for="brandName">Marque:</label>
+      <input
+        id="brandName"
+        type="text"
+        formControlName="brandName"
+      />
+    </div>
+  
+    <div>
+      <label for="price">Prix:</label>
+      <input
+        id="price"
+        type="number"
+        formControlName="price"
+      />
+      
+      @if (addProductForm.get('price')?.invalid && addProductForm.get('price')?.touched) {
+        <div>
+          <small>Le prix est requis.</small>
+        </div>
+      }
+    </div>
+  
+    <div>
+      <label for="category">Catégorie:</label>
+      <select id="category" formControlName="category">
+        <option value="">-- Sélectionnez une catégorie --</option>
+        <option value="electronique">Électronique</option>
+        <option value="vetements">Vêtements</option>
+        <option value="meubles">Meubles</option>
+      </select>
+      @if (addProductForm.get('category')?.invalid && addProductForm.get('category')?.touched) {
+        <div>
+          <small>La catégorie est requise.</small>
+        </div>
+      } 
+   
+    </div>
+  
+    <div>
+      <label for="tags">Tags:</label>
+      <input
+        id="tags"
+        type="text"
+        formControlName="tags"
+        placeholder="Entrez des tags séparés par des virgules"
+      />
+ 
+
+      @if (addProductForm.get('tags')?.invalid && addProductForm.get('tags')?.touched) {
+        <div>
+          <small>Les tags sont requis.</small>
+        </div>
+      } 
+    </div>
+  
+    <button type="submit" >Ajouter le produit</button>
+  </form>
+      
 
 </section>

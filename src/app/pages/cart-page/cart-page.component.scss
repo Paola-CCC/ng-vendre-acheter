@@ -20,7 +20,7 @@
     .cart-container {
         width: 100%;
         background-color: #fff;
-        background-color: rgb(243, 248, 255);
+        // background-color: rgb(243, 248, 255);
         overflow-y: auto;
         padding: 2em;
         margin-right: 10px;
@@ -60,11 +60,11 @@
                 }
                 div.number-action {
 
-                    input {
+                    input[type="number"] {
                         width: 50px;
                         padding: 2px;
                         margin: 0;
-                        background-color: rgb(247, 247, 247);
+                        background-color: rgb(255, 255, 255);
                     }
 
                     button {
@@ -88,6 +88,7 @@
 
   .summary {
     width: 35%;
+    height: fit-content;
     background-color: #ddd;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
@@ -98,9 +99,8 @@
     .row {
         // background-color: darkgreen;
         margin-bottom: 15px;
-        label {
+        label , .label{
             font-weight: 500;
-            
         }
        input#code {
             background-color: #fff;

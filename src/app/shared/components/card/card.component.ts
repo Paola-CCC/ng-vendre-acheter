@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { StarsGroupComponent } from '../stars-group/stars-group.component';
 import { ButtonComponent } from '../button/button.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -27,5 +27,13 @@ export class CardComponent {
 
   checkSelected(heart:any){
     this.heartRef?.nativeElement.classList.toggle('selected');
+  }
+
+  constructor(private router: Router){
+
+  }
+
+  goTo(){
+    this.router.navigate(['/product/', this.id])
   }
 }
