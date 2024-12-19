@@ -1,0 +1,32 @@
+<section class="container-product">
+
+  <div class="header-sort">
+
+    <h1>
+      Les annonces 
+      
+      <span> {{goodDealsProduct.length}} annonces </span>
+
+    </h1>
+
+    <app-button text= 'Filtrer' type="tertiary"  >
+        <i class="fa-solid fa-arrow-up-wide-short"></i>
+        Filtrer
+    </app-button>
+
+  </div>
+
+    <div class="grid-container">
+      @for (item of goodDealsProduct; track item.id) {
+            <app-card
+            type="card-1"
+            [id]="item.id"
+            [title]="item.title"
+            [imgSrc]="item.imgSrc"
+            [price]="item.price"
+            [productNote]="(item.productNote * 5) / 20"
+            />
+      }
+    </div>
+ </section>
+  

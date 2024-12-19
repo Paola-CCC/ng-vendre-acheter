@@ -8,12 +8,15 @@
       <h3>
         Favoriser la deuxième mains est essentiel pour une consommation durable
       </h3>
-      <app-button text="En savoir plus" type="secondary" />
+      <app-button type="secondary" >
+        En savoir plus
+      </app-button>
+  
     </div>
   </div>
 </section>
 
-<app-section-group text="Nos catégories">
+<app-section-group text="Nos catégories"  >
   <swiper-container
     speed="500"
     class="custom-swiper card-2"
@@ -41,7 +44,7 @@
   </button>
 </app-section-group>
 
-<app-section-group text="Les bonnes affaires du jour pour vous">
+<app-section-group text="Les bonnes affaires du jour pour vous" [path]="{path: '/products', name: 'En voir plus' }">
   <swiper-container
     class="custom-swiper card-1"
     speed="500"
@@ -71,7 +74,7 @@
   </button>
 </app-section-group>
 
-<app-section-group  text="Nos meilleurs ventes">
+<app-section-group  text="Nos meilleurs ventes" [path]="{path: '/', name: 'En voir plus' }">
 
   <swiper-container
     class="custom-swiper card-1"

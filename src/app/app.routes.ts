@@ -47,6 +47,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'products',
+    loadComponent: () =>
+      import('@pages/all-products-list/all-products-list.component').then(
+        (m) => m.AllProductsListComponent
+      ),
+  },
+  {
     path: 'product-add',
     loadComponent: () =>
       import('@pages/product-add/product-add.component').then(

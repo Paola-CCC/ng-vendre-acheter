@@ -5,10 +5,27 @@ section {
 
     div.heading {
         margin-bottom: 25px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
         h4 {
             font-size: 1.25rem;
             font-weight: 600;
             margin: 0;
+            display: inline;
+           align-self: center;
+        }
+
+        a {
+            display: inline-block;
+            background-image: url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+            background-repeat: no-repeat;
+            background-position-x: 95%;
+            background-position-y: center;
+            width: 110px;
+            padding: 10px 0;
+            color: black;
         }
     }
 

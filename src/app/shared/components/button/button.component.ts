@@ -9,10 +9,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './button.component.scss'
 })
 export class ButtonComponent {
-  @Input({ required: true })
-  text!: string;
-
-  @Input({ required: true })
+  
+  @Input({ required: false })
   type!: string;
 
   @Input({ required: false })

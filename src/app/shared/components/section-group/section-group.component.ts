@@ -9,12 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SectionGroupComponent implements OnInit {
 
   
-  @Input() text: string = '' ;
+  @Input({required:true}) text: string = '' ;
+  @Input() path: {
+    path: string,
+    name: string
+  } = { path: '', name: ''} ;
 
 
   constructor() { }
 
   ngOnInit() {
+    console.log(" path ", this.path  )
   }
 
 }

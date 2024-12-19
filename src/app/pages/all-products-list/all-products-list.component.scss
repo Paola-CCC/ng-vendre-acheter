@@ -1,0 +1,40 @@
+.container-product {
+    width: 90%;
+    max-width: 1235px;
+    margin: 0 auto;
+    margin-top: 80px;
+    // background-color: aquamarine;
+    font-family: Arial, sans-serif;
+
+    .header-sort {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h1 {
+      margin: 0;
+    }
+
+    h1 span {
+      font-weight: 300;
+      font-size: 16px;
+    }
+
+    app-button {
+      margin-left: 10px;
+    }
+
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+  }
+  
+
+  
+
+  
