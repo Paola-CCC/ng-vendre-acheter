@@ -4,6 +4,15 @@ import { faker } from '@faker-js/faker';
 import { ProductService } from '@features/product/services/product.service';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { CardComponent } from '@shared/components/card/card.component';
+import { ModalService } from '@shared/components/modal/modal.service';
+
+import {
+  TemplateRef,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
+import { ModalContentComponent } from '@shared/components/modal-content/modal-content.component';
+
 
 @Component({
   selector: 'app-all-products-list',
@@ -14,10 +23,13 @@ import { CardComponent } from '@shared/components/card/card.component';
 })
 export class AllProductsListComponent {
 
-  constructor(private readonly productService: ProductService
+  constructor(private readonly productService: ProductService,
+    private modalService: ModalService
   ) {}
   goodDealsProduct: any[] = [];
 
+  @ViewChild('viewRef', { static: true, read: ViewContainerRef }) 
+   vcr!: ViewContainerRef;
 
 
 
@@ -43,8 +55,44 @@ export class AllProductsListComponent {
     });
   }
 
-  onCreateModal(): void {
-  
+
+
+  openModalTemplate(view: TemplateRef<Element>) {
+    this.modalService.open(this.vcr, view, {
+      animations: {
+        modal: {
+          enter: 'enter-slide-down 0.8s',
+        },
+        overlay: {
+          enter: 'fade-in 0.8s',
+          leave: 'fade-out 0.3s forwards',
+        },
+      },
+      size: {
+        width: '40rem',
+      },
+    });
   }
 
+  openModalComponent() {
+    this.modalService.open(ModalContentComponent, {
+      animations: {
+        modal: {
+          enter: 'enter-scaling 0.3s ease-out',
+          leave: 'fade-out 0.1s forwards',
+        },
+        overlay: {
+          enter: 'fade-in 1s',
+          leave: 'fade-out 0.3s forwards',
+        },
+      },
+      size: {
+        width: '40rem',
+      },
+    });
+  }
+
+  close() {
+    this.modalService.close();
+  }
 }

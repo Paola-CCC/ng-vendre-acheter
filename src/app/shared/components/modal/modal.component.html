@@ -1,1 +1,7 @@
-<p>modal works!</p>
+<div class="modal-wrapper">
+  <section class="modal" #modal>
+    <ng-content></ng-content>
+  </section>
+
+  <div class="modal-overlay" #overlay [tabIndex]="0"  (click)="onClose()"></div>
+</div>
