@@ -12,6 +12,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { ModalContentComponent } from '@shared/components/modal-content/modal-content.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,10 +24,14 @@ import { ModalContentComponent } from '@shared/components/modal-content/modal-co
 })
 export class AllProductsListComponent {
 
+  productsList: any[] = [];
+
+
+
   constructor(private readonly productService: ProductService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private router: Router
   ) {}
-  goodDealsProduct: any[] = [];
 
   @ViewChild('viewRef', { static: true, read: ViewContainerRef }) 
    vcr!: ViewContainerRef;
@@ -35,14 +40,19 @@ export class AllProductsListComponent {
 
 
   ngOnInit(): void {
-    this.getGoodDealsProduct();
+
+    if (this.router.url === '/good_deals'){
+      this.getGoodDealsProduct();
+    } else {
+      this.getBestSold();
+    }
   }
 
 
   getGoodDealsProduct(): void {
     this.productService.getGoodDealsProduct().subscribe({
       next: (data: any) => {
-        this.goodDealsProduct = data.map((obj : any) => {
+        this.productsList = data.map((obj : any) => {
           if (Object.keys(obj).includes('imgSrc')) {
             return { ...obj, imgSrc: faker.image.url() };
           }
@@ -55,6 +65,20 @@ export class AllProductsListComponent {
     });
   }
 
+  getBestSold() {
+    this.productService.getBestSold().subscribe({
+      next: (data: any) => {
+        this.productsList = data.map((obj : any) => {
+          if (Object.keys(obj).includes('imgSrc')) {
+            return { ...obj, imgSrc: faker.image.url() };
+          }
+          return obj;
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching bestSoldProduct:', err);
+      }
+    });  }  
 
 
   openModalTemplate(view: TemplateRef<Element>) {

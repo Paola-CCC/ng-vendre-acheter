@@ -17,6 +17,14 @@ const httpOptions = {
 export class ProductService {
 
   constructor(private http: HttpClient) {}
+
+  getAllProducts(): Observable<any> {
+    return this.http.get<any>(API + 'products' );
+  }  
+
+  getProductById(id: any): Observable<any> {
+    return this.http.get<any>(API + 'products' + '/' +  id );
+  }  
   
   getAllCategories(): Observable<any> {
     return this.http.get<any>(API + 'categories' );

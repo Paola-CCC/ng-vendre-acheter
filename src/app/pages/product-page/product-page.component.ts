@@ -1,4 +1,6 @@
-import { Component, ElementRef, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '@features/product/services/product.service';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 
 @Component({
@@ -8,38 +10,41 @@ import { LocalStorageService } from '@shared/services/local-storage/local-storag
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.scss'
 })
-export class ProductPageComponent {
-
-  console = console;
+export class ProductPageComponent implements OnInit {
 
   @ViewChild('imageSrc') imageSrc!: ElementRef;
+
+  console = console;
 
   item: any[] = [];
 
   chosenQuantity: number = 0; 
 
-  contentType = {
-    id: Math.floor(Math.random() * 100),
-    price: Math.floor(Math.random() * 1000),
-    title:"nike shoes",
-    description: "La conception AF1 confortable et intemporelle de ce classique revisité associe des tons neutres riches à des détails hivernaux. Tissu CORDURA résistant, notamment à l'abrasion, pour un look et une sensation de chaleur qui surmonteront l'épreuve du temps et des intempéries.",
-    counter: 2,
-    imgs_url: [
-      "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg",
-      "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg",
-      "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg",
-      "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
-    ],
-  };
+  contentType : any ;
 
+  id: string | null = null;
 
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(private localStorageService: LocalStorageService, 
+    private productService: ProductService,
+    private route : ActivatedRoute
+  ) {}
 
+  ngOnInit(){
+    this.id = this.route.snapshot.params['id'];
+
+    this.productService.getProductById(this.id).subscribe({
+      next:(data: any) => { 
+        this.contentType = data ;
+      },
+      error: (err) => {
+        console.error('Error fetching goodDealsProduct:', err);
+      }
+    })
+  }
 
   updatePreview(item: any){
     this.imageSrc.nativeElement.src = item;
   }
-
 
   addToCart() {
     this.localStorageService.saveData(this.contentType);
