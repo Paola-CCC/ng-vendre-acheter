@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '@core/auth/auth.service';
+import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -27,10 +28,13 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private storageCart: LocalStorageService
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cartItemsCount = this.storageCart.getLengthDataCart();
+  }
 
   ngDoCheck() {
     this.userIsLogger = this.auth.userIsLogged;    

@@ -6,13 +6,13 @@
               <div class="img-showcase">
                 <img
                   #imageSrc
-                  src={{listPhoto[0]}}
-                  alt="shoe image"
+                  src="{{contentType.imgs_url[0]}}"
+                  alt="shoes image"
                 />
               </div>
             </div>
             <div class="img-select">
-              @for (item of listPhoto; track item) {
+              @for (item of contentType.imgs_url; track item) {
                 <div class="img-item">
                     <div (click)="updatePreview(item)" >
                       <img src={{item}}  />
@@ -22,34 +22,30 @@
                 }
             </div>
           </div>
-          <!-- card right -->
           <div class="product-content">
-            <h2 class="product-title">nike shoes</h2>
+            <h2 class="product-title">{{contentType.title}}</h2>
             <div class="product-rating">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star-half-alt"></i>
-              <span> Avis: 4.7/5 (21 votes)</span>
+              <!-- <span> Avis: 4.7/5 (21 votes)</span> -->
             </div>
   
             <div class="product-price">
-              <p class="last-price">Prix: <span>$257.00</span></p>
-              <p class="new-price">Nouveau Prix: <span>$249.00 (5%)</span></p>
+               <span>{{contentType.price}} €</span>
+
+              <!-- <p class="last-price">Prix: <span>{{contentType.price}}</span></p> -->
+              <!-- <p class="new-price">Nouveau Prix: <span>{{contentType.price}} (5%)</span></p> -->
             </div>
   
             <div class="product-detail">
               <h2>Description:</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
-                eveniet veniam tempora fuga tenetur placeat sapiente architecto
-                illum soluta consequuntur, aspernatur quidem at sequi ipsa!
+               {{ contentType.description}}
               </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.
-              </p>
+             
               <!-- <ul>
                 <li>Couleur: <span>Black</span></li>
                 <li>Stock: <span>in stock</span></li>
@@ -58,8 +54,7 @@
             </div>
   
             <div class="purchase-info">
-              <input type="number" min="0" value="1" />
-              <button type="button" class="btn">
+              <button type="button" class="btn" (click)="addToCart()">
                 Ajouter au panier <i class="fas fa-shopping-cart"></i>
               </button>
             </div>

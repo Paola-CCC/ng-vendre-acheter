@@ -47,7 +47,14 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'products',
+    path: 'good_deals',
+    loadComponent: () =>
+      import('@pages/all-products-list/all-products-list.component').then(
+        (m) => m.AllProductsListComponent
+      ),
+  },
+  {
+    path: 'best_sold',
     loadComponent: () =>
       import('@pages/all-products-list/all-products-list.component').then(
         (m) => m.AllProductsListComponent

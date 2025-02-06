@@ -1,81 +1,44 @@
 
 <section class="container-product">
+    
         <div class="cart-list-container">
           <div class="cart-container">
                 <div class="title">
                   <h5>MON PANIER</h5>
                 </div>
-                <hr />
+                <!-- <hr /> -->
 
-     
+                @for (item of myArray; track $index) {
 
-                <div class="rows-container">
-                    <div class="img-container">
-                        <img  src="https://i.imgur.com/1GrakTl.jpg" />
-                    </div>
-                    <div class="description-product">
-                        <span class="price">  44.00  &euro; </span>
+                  <div class="rows-container">
+                      <div class="img-container">
+                          <img  src="{{item.imgs_url[0]}}" />
+                      </div>
+                      <div class="description-product">
+                          <span class="price"> {{item.price}}  &euro; </span>
 
-                        <div class="txt">
-                            <span class="row text-muted">Shirt</span>{{'\n'}}
-                            <span class="row">Cotton T-shirt</span>
-                        </div>
-                        <div class="number-action">
-                            <input type="number" class="border" value="1" min="1" max="10">
-                        </div>
+                          <div class="txt">
+                              <span class="row">{{item.name}} </span>
+                          </div>
+                          <div class="number-action">
+                              <label> Quantité:</label>
+                              <input 
+                                  type="number" 
+                                  class="border"  
+                                  value={{item.counter}}
+                                  min="1" max="10"
+                                  (change)="updateQuantity(item.id, $event)"
 
-                        <button class="close">
-                            &#10005;
-                        </button>
-                    </div>
-              
-                </div>
-  
-                <div class="rows-container">
-                    <div class="img-container">
-                        <img  src="https://i.imgur.com/1GrakTl.jpg" />
-                    </div>
-                    <div class="description-product">
-                        <span class="price">  44.00  &euro; </span>
+                              >
+                          </div>
 
-                        <div class="txt">
-                            <span class="row text-muted">Shirt</span>{{'\n'}}
-                            <span class="row">Cotton T-shirt</span>
-                        </div>
-                        <div class="number-action">
-                            <input type="number" class="border" value="1" min="1" max="10">
-                        </div>
-
-                        <button class="close">
-                            &#10005;
-                        </button>
-                    </div>
-              
-                </div>
-                <div class="rows-container">
-                    <div class="img-container">
-                        <img  src="https://i.imgur.com/1GrakTl.jpg" />
-                    </div>
-                    <div class="description-product">
-                        <span class="price">  44.00  &euro; </span>
-
-                        <div class="txt">
-                            <span class="row text-muted">Shirt</span>{{'\n'}}
-                            <span class="row">Cotton T-shirt</span>
-                        </div>
-                        <div class="number-action">
-                            <input type="number" class="border" value="1" min="1" max="10">
-                        </div>
-
-                        <button class="close">
-                            &#10005;
-                        </button>
-                    </div>
-              
-                </div>
-  
-           
-
+                          <button class="close" (click)="deleteItem(item.id)">
+                              &#10005;
+                          </button>
+                      </div>
+                
+                  </div>
+                }
 
 
 
@@ -91,19 +54,19 @@
             <div class="title">
               <h5>TOTAL</h5>
             </div>
-            <hr />
-            <!-- <div class="row">
-              <div class="col">ITEMS 3</div>
-              <div class="col text-right">&euro; 132.00</div>
-            </div> -->
+            <button (click)="addData()">
+              add dans panier
+            </button>
             <div class="row">
-                <label>Code de réduction</label>
-                <input type="text" id="code" placeholder="Enter your code" />
+              <div class="col">Nombre d'article: {{totalQte}}</div>
             </div>
+      
             <div class="row">
               <div class="label">TOTAL DE VOTRE PANIER</div>
-              <div class="col text-right">&euro; 137.00</div>
+              <div class="col text-right"> {{totalPricing}} &euro; </div>
             </div>
+            <button class="btn" (click)="clearStorage()"> Vider le panier</button>
+
             <button class="btn"> PAYER</button>
           </div>
         </div>
