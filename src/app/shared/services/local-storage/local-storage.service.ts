@@ -49,7 +49,6 @@ export class LocalStorageService {
     this.totalQtyCart = qty;
   }
   
-
   public update(data: any[]) {
     localStorage.setItem(this.storageKey, JSON.stringify(data));
     if (this.getData().length === 0) {

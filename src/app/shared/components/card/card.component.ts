@@ -1,7 +1,8 @@
-import { Component, ElementRef, Input, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { StarsGroupComponent } from '../stars-group/stars-group.component';
 import { ButtonComponent } from '../button/button.component';
 import { Router, RouterLink } from '@angular/router';
+import { FavorisStorageService } from '@shared/services/favoris-storage/favoris-storage.service';
 
 @Component({
   selector: 'app-card',
@@ -11,7 +12,7 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './card.component.scss',
   encapsulation: ViewEncapsulation.None
 })
-export class CardComponent {
+export class CardComponent implements OnInit  , AfterViewInit{
 
   @Input({required: false}) id: number | null = null;
   @Input({required: false}) type:string = '';
@@ -22,15 +23,30 @@ export class CardComponent {
   @Input({required: false}) productNote:number | null = null;
   @Input({required: false}) description:string = '';
   @Input({required: false}) reductionPercentage:string = '';
+
+  @Input({required:false}) obj = {}
   
   @ViewChild("heartRef") heartRef?: ElementRef<HTMLElement>;
 
-  checkSelected(heart:any){
-    this.heartRef?.nativeElement.classList.toggle('selected');
+  constructor(
+    private router: Router,
+    private favorisStorage: FavorisStorageService
+  ){}
+
+  ngOnInit(): void {
+    this.favorisStorage.getData();
   }
 
-  constructor(private router: Router){
+  ngAfterViewInit(): void {
+    let isFavoris = this.favorisStorage.searchFavoris(this.obj);
+    if(isFavoris ){      
+      this.heartRef?.nativeElement.classList.add('selected');
+    } 
+  }
 
+  checkSelected(){
+    this.favorisStorage.saveData(this.obj);
+    this.heartRef?.nativeElement.classList.toggle('selected');
   }
 
   goTo(){

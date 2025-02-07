@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '@core/auth/auth.service';
+import { FavorisStorageService } from '@shared/services/favoris-storage/favoris-storage.service';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 
 @Component({
@@ -29,7 +30,9 @@ export class HeaderComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private storageCart: LocalStorageService
+    private storageCart: LocalStorageService,
+    private storageFavoris: FavorisStorageService
+
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +40,10 @@ export class HeaderComponent implements OnInit {
     this.storageCart.totalQtyCart$.subscribe(qty => {
       this.cartItemsCount = qty;
     });
+
+    this.storageFavoris.favorisList$.subscribe(qty => {
+      this.favorisCount = qty;
+    })
   }
 
   ngDoCheck() {
