@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './section-group.component.html',
   styleUrls: ['./section-group.component.scss']
 })
-export class SectionGroupComponent implements OnInit {
+export class SectionGroupComponent {
 
   
   @Input({required:true}) text: string = '' ;
@@ -17,9 +17,5 @@ export class SectionGroupComponent implements OnInit {
 
 
   constructor() { }
-
-  ngOnInit() {
-    console.log(" path ", this.path  )
-  }
 
 }

@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 @Component({
   selector: 'app-product-add',
   standalone: true,
-  imports: [ReactiveFormsModule ,NgClass],
+  imports: [ReactiveFormsModule],
   templateUrl: './product-add.component.html',
   styleUrl: './product-add.component.scss'
 })

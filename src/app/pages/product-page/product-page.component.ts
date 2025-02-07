@@ -16,13 +16,16 @@ export class ProductPageComponent implements OnInit {
 
   console = console;
 
-  item: any[] = [];
+  item: string[] = [];
 
   chosenQuantity: number = 0; 
 
   contentType : any ;
 
-  id: string | null = null;
+  cartStorage : any[] = [];
+
+  /** id du produit */
+  id: string = '';
 
   constructor(private localStorageService: LocalStorageService, 
     private productService: ProductService,

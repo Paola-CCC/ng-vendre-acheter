@@ -22,8 +22,12 @@ export class ProductService {
     return this.http.get<any>(API + 'products' );
   }  
 
-  getProductById(id: any): Observable<any> {
+  getProductById(id: string): Observable<any> {
     return this.http.get<any>(API + 'products' + '/' +  id );
+  }  
+
+  getProductShearched( reduction: string = '', bags: string = '', brands:string = '', priceGte: string = '' , priceLte:string = ''): Observable<any> {
+    return this.http.get<any>(API + 'products' + '/?reduction=' +  reduction + '&category='+ bags + '&brands=' + brands + '&price_gte='+ priceGte + '&price_lte=' + priceLte);
   }  
   
   getAllCategories(): Observable<any> {

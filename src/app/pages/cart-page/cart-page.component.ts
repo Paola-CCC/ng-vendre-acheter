@@ -18,15 +18,7 @@ export class CartPageComponent implements DoCheck {
 
   totalPricing: number  = 0;
   
-  totalQte: number = 0;
-
-  myArrayType = {
-    id: Math.floor(Math.random() * 100),
-    price: Math.floor(Math.random() * 100),
-    name:'Shirt Cotton T-shirt',
-    counter: 2,
-    img_url: 'https://thumbor.comeup.com/unsafe/fit-in/630x354/filters:quality(90):no_upscale()/uploads/media/picture/2021-05-17/joshua-woroniecki-hxgugpd1dls-unsplash-60a268ea7a499.jpg',
-  };
+  totalQty: number = 0;
 
   constructor(private localStorageService: LocalStorageService) {}
 
@@ -48,15 +40,10 @@ export class CartPageComponent implements DoCheck {
     });
   
     this.totalPricing = countTotal;
-    this.totalQte = qte;
-  }
+    this.totalQty = qte;
+    this.localStorageService.totalQtyCart = qte;
 
-  addData() {
-    this.myArray.push({...this.myArrayType, 
-      id:  Math.floor(Math.random() * 100),
-      price: Math.floor(Math.random() * 100),
-    });
-    this.localStorageService.saveData(this.myArray);
+
   }
 
   clearStorage() {
@@ -72,14 +59,13 @@ export class CartPageComponent implements DoCheck {
 
   updateQuantity(id: number, event:any){
     let data = this.myArray.map((e) => {
-      if( e.id === id){
-         e.counter = Number(event.target.value);
-         return e;
+      if(e.id === id){
+        e.counter = Number(event.target.value);
+        return e;
       }
      return e;
     });
-
-
+    
     this.localStorageService.update(data);
 
   }

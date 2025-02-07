@@ -33,7 +33,10 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cartItemsCount = this.storageCart.getLengthDataCart();
+    this.storageCart.getTotalQty();
+    this.storageCart.totalQtyCart$.subscribe(qty => {
+      this.cartItemsCount = qty;
+    });
   }
 
   ngDoCheck() {
