@@ -35,38 +35,98 @@
   }
   
 
+
+  .modal-container {
+
+    padding: 20px;
+    .header {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      button {
+        padding: 0;
+      }
+    }
+
+   
+
+    .title {
+      // background-color: chocolate;
+      text-align: center;
+    }
+    .content {
+      form .form-group {
+        display: flex;
+        flex-direction: column;
+   
+
+        span {
+          padding: 15px 0;
+          font-size: 18px;
+          font-weight: 400;
+
+        }
+
+        label {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          cursor: pointer;
+          font-size: 1rem;
+        }
+
+        .search-price input[type="number"] {
+          background-color: rgb(239, 239, 239);
+          margin-right: 10px;
+          padding: 5px;
+          
+        }
+      
+        input[type="radio"] {
+          appearance: none; /* Supprime le style natif */
+          width: 1.2rem;
+          height: 1.2rem;
+          border: 2px solid #007BFF;
+          border-radius: 50%; /* Cercle */
+          outline: none;
+          cursor: pointer;
+          transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      
+          &:checked {
+            background-color: #007BFF; /* Couleur du cercle rempli */
+            border-color: #0056b3;
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2); /* Effet focus */
+          }
+      
+          &:hover {
+            border-color: #0056b3;
+          }
+        }
+
+       &.btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-top: 20px;
+        app-button {
+          color: white;
+        }
+
+        app-button.tertiary {
+          color: white;
+          margin-right: 10px;
+        }
+
+       } 
+      }
+    }
+  }
+
   
 
-  .container {
-    padding: 1rem;
-    margin-top: 15rem;
-    display: flex;
-    justify-content: center;
-  }
-  .container button {
-    border: none;
-    padding: 0.625rem;
-    cursor: pointer;
-    border-radius: 0.3rem;
-  }
-  .container button.template {
-    margin-right: 2rem;
-  }
-  .modal-container {
-    padding: 1rem;
-  }
-  .title {
-    margin-bottom: 3rem;
-  }
-  .content p {
-    line-height: 1.4;
-    font-size: 1.1rem;
-  }
-  .content .current {
-    color: rgb(24, 71, 129);
-    font-weight: 600;
-  }
-  .footer {
-    margin-top: 2rem;
-  }
+ 
+ 
+  
+
+  
   

@@ -1,20 +1,116 @@
 <ng-template #viewRef>
+
   <div class="modal-container">
+    <div class="header">
+      <button (click)="close()">X</button>
+    </div>
     <div class="title">
-      <h2>How to create component dynamically in Angular ?</h2>
+      <h2>Filtrer</h2>
     </div>
     <div class="content">
-      <p class="current">
-        This is the first method. First method is to use a ViewContainerRef
-        with a Template Ref. You create the view contained within the
-        TemplateRef, then create the modal component and inject the view.
-      </p>
+        <form [formGroup]="filtrerForm" (ngSubmit)="onSubmit()">
+
+
+          <div class="form-group">
+            <span>Prix</span>
+
+            <div class="search-price">
+              <input 
+              type="number" 
+              formControlName="minPrice" 
+              placeholder="0"
+              min="0" 
+            />
+
+            <input 
+            type="number" 
+            formControlName="maxPrice" 
+            placeholder="900"
+            max="0" 
+          />
+            </div>
+
+          </div>
+        
+        
+
+          <div class="form-group">
+            <span>Réduction</span>
+            @for(  reduction of reductionList; track reduction){
+              <label>
+                <input 
+                  type="radio" 
+                  formControlName="reductions" 
+                  [value]="reduction" 
+                />
+                {{ reduction }}
+              </label>
+            }
+          </div>
+          
+          <div class="form-group">
+
+            <span>Marques</span>
+            @for(brand of brandsList; track brand){
+              <label>
+                <input 
+                  type="radio" 
+                  formControlName="brands" 
+                  [value]="brand" 
+                />
+                {{ brand }}
+              </label>
+            }
+
+          </div>
+          
+          <div class="form-group">
+            <span>Catégories</span>
+
+
+            @for(category of categoriesList; track category){
+              <label>
+                <input 
+                  type="radio" 
+                  formControlName="categories" 
+                  [value]="category" 
+                />
+                {{ category }}
+              </label>
+            }
+
+          </div>
+          
+          <div class="form-group btn">
+
+            <app-button 
+            type="tertiary"
+            class="btn tertiary"
+            (click)="onReset()"
+            >
+            Réinitialiser
+          </app-button>
+
+            <app-button 
+            type="secondary"
+            class="btn btn-primary"
+            (click)="getCorrectSearchedData()"
+            >
+            Filtrer
+          </app-button>
+
+          </div>
+        </form>
+        
+        <ng-template [ngIf]="submitted && !signUpIsSuccessful && errorMessage" >
+          <div class="messages-failed">
+            <p>{{ errorMessage }}</p>
+          </div>
+        </ng-template>
     </div>
-    <div class="footer">
-      <button (click)="close()">Close</button>
-    </div>
+
   </div>
-</ng-template>
+</ng-template> 
 
 
 <section class="container-product">
@@ -32,7 +128,7 @@
     <app-button text= 'Filtrer' type="tertiary" (clickEvent)="openModalTemplate(viewRef)" >
       <i class="fa-solid fa-arrow-up-wide-short"></i>
       Filtrer
-  </app-button>
+  </app-button> 
   </div>
 
     <div class="grid-container">
@@ -48,5 +144,5 @@
             />
       }
     </div>
- </section>
+</section>
   

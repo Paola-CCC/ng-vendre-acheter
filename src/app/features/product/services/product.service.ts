@@ -26,8 +26,8 @@ export class ProductService {
     return this.http.get<any>(API + 'products' + '/' +  id );
   }  
 
-  getProductShearched( reduction: string = '', bags: string = '', brands:string = '', priceGte: string = '' , priceLte:string = ''): Observable<any> {
-    return this.http.get<any>(API + 'products' + '/?reduction=' +  reduction + '&category='+ bags + '&brands=' + brands + '&price_gte='+ priceGte + '&price_lte=' + priceLte);
+  getProductShearched( reduction: string = '', category: string = '', brands:string = '', priceGte: string = '' , priceLte:string = ''): Observable<any> {
+    return this.http.get<any>(API + 'products' + '/?reduction=' +  reduction + '&category='+ category + '&brands=' + brands + '&price_gte='+ priceGte + '&price_lte=' + priceLte);
   }  
   
   getAllCategories(): Observable<any> {
@@ -38,9 +38,19 @@ export class ProductService {
     return this.http.get<any>(API + 'best_sold' );
   }  
 
+  getProductShearchedBestSold( reduction: string = '', category: string = '', brands:string = '', priceGte: string = '' , priceLte:string = ''): Observable<any> {
+    return this.http.get<any>(API + 'best_sold' + '/?reduction=' +  reduction + '&category='+ category + '&brands=' + brands + '&price_gte='+ priceGte + '&price_lte=' + priceLte);
+  }  
+  
+
   getGoodDealsProduct(): Observable<any> {
     return this.http.get<any>(API + 'good_deals' );
   }  
+
+  getProductShearchedGoodDeals( reduction: string = '', category: string = '', brands:string = '', priceGte: string = '' , priceLte:string = ''): Observable<any> {
+    return this.http.get<any>(API + 'good_deals' + '/?reduction=' +  reduction + '&category='+ category + '&brands=' + brands + '&price_gte='+ priceGte + '&price_lte=' + priceLte);
+  }  
+  
 
   getTrademark(): Observable<any> {
     return this.http.get<any>(API + 'trademark' );

@@ -13,12 +13,14 @@ import {
 } from '@angular/core';
 import { ModalContentComponent } from '@shared/components/modal-content/modal-content.component';
 import { Router } from '@angular/router';
+import { CommonModule, NgClass } from '@angular/common';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
 @Component({
   selector: 'app-all-products-list',
   standalone: true,
-  imports: [CardComponent , ButtonComponent],
+  imports: [CardComponent, ButtonComponent, CommonModule ,ReactiveFormsModule],
   templateUrl: './all-products-list.component.html',
   styleUrl: './all-products-list.component.scss'
 })
@@ -27,21 +29,66 @@ export class AllProductsListComponent {
   productsList: any[] = [];
 
 
+  filtrerForm = this.fb.group({
+    reductions: [''],
+    brands: [''],
+    categories: [''],
+    minPrice: new FormControl(null),
+    maxPrice: new FormControl(null)
+  })
+  /** indique si le formulaire a été envoyé ou non  */
+  submitted: boolean = false;
+  /** indique si s'inscription a réussi ou non  */
+  signUpIsSuccessful = false;
+  errorMessage = '';
 
-  constructor(private readonly productService: ProductService,
+  reductionList: number[] = [10, 25, 50, 75];
+  brandsList: string[] = ["Nike", "Puma", "Asics", "Adidas"];
+  categoriesList: string[] = ["bags", "shoes"];
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private readonly productService: ProductService,
     private modalService: ModalService,
-    private router: Router
-  ) {}
+  ) { }
 
-  @ViewChild('viewRef', { static: true, read: ViewContainerRef }) 
-   vcr!: ViewContainerRef;
+  get reduction(): any {
+    return this.filtrerForm.get('reductions');
+  }
+
+  get brands(): any {
+    return this.filtrerForm.get('brands');
+  }
+
+  get categories(): any {
+    return this.filtrerForm.get('categories');
+  }
 
 
 
+  get minPrices(): any {
+    return this.filtrerForm.get('minPrice');
+  }
+
+  get maxPrices(): any {
+    return this.filtrerForm.get('maxPrice');
+  }
+
+  get controlFilterForm(): { [key: string]: AbstractControl } {
+    return this.filtrerForm.controls;
+  }
+
+  @ViewChild('viewRef', { static: true, read: ViewContainerRef })
+  vcr!: ViewContainerRef;
 
   ngOnInit(): void {
+    this.getdatas();
 
-    if (this.router.url === '/good_deals'){
+  }
+
+  getdatas(){
+    if (this.router.url === '/good_deals') {
       this.getGoodDealsProduct();
     } else {
       this.getBestSold();
@@ -52,7 +99,7 @@ export class AllProductsListComponent {
   getGoodDealsProduct(): void {
     this.productService.getGoodDealsProduct().subscribe({
       next: (data: any) => {
-        this.productsList = data.map((obj : any) => {
+        this.productsList = data.map((obj: any) => {
           if (Object.keys(obj).includes('imgSrc')) {
             return { ...obj, imgSrc: faker.image.url() };
           }
@@ -68,7 +115,7 @@ export class AllProductsListComponent {
   getBestSold() {
     this.productService.getBestSold().subscribe({
       next: (data: any) => {
-        this.productsList = data.map((obj : any) => {
+        this.productsList = data.map((obj: any) => {
           if (Object.keys(obj).includes('imgSrc')) {
             return { ...obj, imgSrc: faker.image.url() };
           }
@@ -78,7 +125,78 @@ export class AllProductsListComponent {
       error: (err) => {
         console.error('Error fetching bestSoldProduct:', err);
       }
-    });  }  
+    });
+  }
+
+  getProductShearched() {
+
+    let min = this.minPrices.value !== null ? this.minPrices.value : '';
+    let max = this.maxPrices.value !== null ? this.minPrices.value : '';
+
+    this.productService.getProductShearched( this.reduction.value, this.categories.value , this.brands.value, min , max).subscribe({
+      next: (data: any) => {
+        this.productsList = data.map((obj: any) => {
+          if (Object.keys(obj).includes('imgSrc')) {
+            return { ...obj, imgSrc: faker.image.url() };
+          }
+          return obj;
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching bestSoldProduct:', err);
+      }
+    });
+  }
+
+  getProductShearchedGoodDeals() {
+
+    let min = this.minPrices.value !== null ? this.minPrices.value : '';
+    let max = this.maxPrices.value !== null ? this.minPrices.value : '';
+
+    this.productService.getProductShearchedGoodDeals( this.reduction.value, this.categories.value , this.brands.value, min , max).subscribe({
+      next: (data: any) => {
+        this.productsList = data.map((obj: any) => {
+          if (Object.keys(obj).includes('imgSrc')) {
+            return { ...obj, imgSrc: faker.image.url() };
+          }
+          return obj;
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching bestSoldProduct:', err);
+      }
+    });
+  }
+
+  getProductShearchedBestSold() {
+
+    let min = this.minPrices.value !== null ? this.minPrices.value : '';
+    let max = this.maxPrices.value !== null ? this.minPrices.value : '';
+
+    this.productService.getProductShearchedBestSold( this.reduction.value, this.categories.value , this.brands.value, min , max).subscribe({
+      next: (data: any) => {
+        this.productsList = data.map((obj: any) => {
+          if (Object.keys(obj).includes('imgSrc')) {
+            return { ...obj, imgSrc: faker.image.url() };
+          }
+          return obj;
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching bestSoldProduct:', err);
+      }
+    });
+  }
+
+  getCorrectSearchedData(){
+    if (this.router.url === '/good_deals') {
+      this.getProductShearchedGoodDeals();
+    } else if(this.router.url === '/best_sold')  {
+      this.getProductShearchedBestSold();
+    } else {
+      this.getProductShearched()
+    }
+  }
 
 
   openModalTemplate(view: TemplateRef<Element>) {
@@ -118,5 +236,32 @@ export class AllProductsListComponent {
 
   close() {
     this.modalService.close();
+  }
+
+
+  setDefaultValue() {
+    this.filtrerForm.setValue({
+      reductions:'',
+      brands: '',
+      categories: '',
+      minPrice: null,
+      maxPrice: null
+    });
+  }
+
+
+  onReset(): void {
+    this.submitted = false;
+    this.filtrerForm.reset();
+    this.getdatas();
+  }
+
+  onSubmit() {
+
+    this.submitted = true;
+
+    if (this.filtrerForm.invalid) {
+      return;
+    }
   }
 }
