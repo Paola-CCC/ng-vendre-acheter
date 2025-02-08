@@ -43,7 +43,12 @@
 
 
 @if (type === 'card-3') {
-    <a class="card-3" [routerLink]="['/product/percentage=', reductionPercentage]" routerLinkActive="router-link-active" >
+    <a 
+    class="card-3" 
+    [routerLink]="['/product' ]" 
+    [queryParams]="{ name: 'reductions', value: reductionPercentage}"
+    
+    routerLinkActive="router-link-active" >
         <div class="heading">
             <span> Solde </span>
             <span class="price-info"> {{reductionPercentage}}%</span>

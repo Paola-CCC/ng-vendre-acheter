@@ -12,7 +12,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { ModalContentComponent } from '@shared/components/modal-content/modal-content.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, NgClass } from '@angular/common';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -46,14 +46,21 @@ export class AllProductsListComponent {
   brandsList: string[] = ["Nike", "Puma", "Asics", "Adidas"];
   categoriesList: string[] = ["bags", "shoes"];
 
+  objJS = Object;
+
+  console = console;
+
+  listSelected: string[]= [];
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private readonly productService: ProductService,
-    private modalService: ModalService,
+    private modalService: ModalService
   ) { }
 
-  get reduction(): any {
+  get reductions(): any {
     return this.filtrerForm.get('reductions');
   }
 
@@ -64,8 +71,6 @@ export class AllProductsListComponent {
   get categories(): any {
     return this.filtrerForm.get('categories');
   }
-
-
 
   get minPrices(): any {
     return this.filtrerForm.get('minPrice');
@@ -83,16 +88,60 @@ export class AllProductsListComponent {
   vcr!: ViewContainerRef;
 
   ngOnInit(): void {
-    this.getdatas();
+
+    const query = {
+      name: '',
+      value: ''
+    };
+
+    let sub = this.route.queryParams.subscribe((params: any) => {
+      query.name = params.name
+      query.value = params.value      
+    });
+
+    if( query.name !== '' ){
+      this.filtrerForm.patchValue({
+        [query.name]: query.value
+      });
+
+      this.getProductShearched();
+    } else {
+      this.getdatas();
+    }
+
+    this.data();
+
+  }
+
+  data() {
+
+    const data = [ ]
+    for (const [key, value] of Object.entries(this.controlFilterForm)) {
+      if( key === 'brands' && (value.value !== '' && value.value !== null )){
+        data.push(`Marque: ${value.value}`);
+      } else if(key === 'categories' && (value.value !== '' && value.value !== null )) {
+        data.push(`Catégorie: ${value.value}`);
+      } else if(key === 'reductions' && (value.value !== '' && value.value !== null )) {
+        data.push(`Réduction: -${value.value}%`);
+      } else if((key === 'minPrice' || key === 'maxPrice') && value.value !== null) {
+        data.push(`Min: ${value} € - Max: ${value.value} €`);
+      } 
+    }
+
+    this.listSelected = data ;
 
   }
 
   getdatas(){
     if (this.router.url === '/good_deals') {
       this.getGoodDealsProduct();
-    } else {
+    } else if(this.router.url === '/best_sold')  {
       this.getBestSold();
+    } else {
+      this.getAllProduct();
     }
+    this.data();
+
   }
 
 
@@ -108,6 +157,22 @@ export class AllProductsListComponent {
       },
       error: (err) => {
         console.error('Error fetching goodDealsProduct:', err);
+      }
+    });
+  }
+
+  getAllProduct() {
+    this.productService.getAllProducts().subscribe({
+      next: (data: any) => {
+        this.productsList = data.map((obj: any) => {
+          if (Object.keys(obj).includes('imgSrc')) {
+            return { ...obj, imgSrc: faker.image.url() };
+          }
+          return obj;
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching bestSoldProduct:', err);
       }
     });
   }
@@ -133,7 +198,7 @@ export class AllProductsListComponent {
     let min = this.minPrices.value !== null ? this.minPrices.value : '';
     let max = this.maxPrices.value !== null ? this.minPrices.value : '';
 
-    this.productService.getProductShearched( this.reduction.value, this.categories.value , this.brands.value, min , max).subscribe({
+    this.productService.getProductShearched( this.reductions.value, this.categories.value , this.brands.value, min , max).subscribe({
       next: (data: any) => {
         this.productsList = data.map((obj: any) => {
           if (Object.keys(obj).includes('imgSrc')) {
@@ -153,7 +218,7 @@ export class AllProductsListComponent {
     let min = this.minPrices.value !== null ? this.minPrices.value : '';
     let max = this.maxPrices.value !== null ? this.minPrices.value : '';
 
-    this.productService.getProductShearchedGoodDeals( this.reduction.value, this.categories.value , this.brands.value, min , max).subscribe({
+    this.productService.getProductShearchedGoodDeals( this.reductions.value, this.categories.value , this.brands.value, min , max).subscribe({
       next: (data: any) => {
         this.productsList = data.map((obj: any) => {
           if (Object.keys(obj).includes('imgSrc')) {
@@ -173,7 +238,7 @@ export class AllProductsListComponent {
     let min = this.minPrices.value !== null ? this.minPrices.value : '';
     let max = this.maxPrices.value !== null ? this.minPrices.value : '';
 
-    this.productService.getProductShearchedBestSold( this.reduction.value, this.categories.value , this.brands.value, min , max).subscribe({
+    this.productService.getProductShearchedBestSold( this.reductions.value, this.categories.value , this.brands.value, min , max).subscribe({
       next: (data: any) => {
         this.productsList = data.map((obj: any) => {
           if (Object.keys(obj).includes('imgSrc')) {
@@ -196,6 +261,8 @@ export class AllProductsListComponent {
     } else {
       this.getProductShearched()
     }
+    this.data();
+
   }
 
 

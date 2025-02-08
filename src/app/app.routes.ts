@@ -68,6 +68,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'product',
+    loadComponent: () =>
+      import('@pages/all-products-list/all-products-list.component').then(
+        (m) => m.AllProductsListComponent
+      ),
+  },
+  {
     path: 'product/:id',
     loadComponent: () =>
       import('@pages/product-page/product-page.component').then(

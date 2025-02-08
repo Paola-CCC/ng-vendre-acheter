@@ -11,14 +11,31 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-    }
-    h1 {
-      margin: 0;
+      h1 {
+        margin: 0;
+        span {
+          font-weight: 300;
+          font-size: 16px;
+        }
+      }
     }
 
-    h1 span {
-      font-weight: 300;
-      font-size: 16px;
+
+    
+
+    .selected-sorting {
+      margin: 15px 0 ;
+      height: 30px;
+      
+       span {
+        padding: 10px 15px;
+        background-color: rgb(250, 250, 250);
+        border-radius: 50px;
+        border: 1px solid rgb(222, 222, 222);
+        font-size: 14px;
+        font-weight: 500;
+        margin-right: 10px ;
+       }
     }
 
     app-button {
@@ -30,7 +47,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1rem;
-      margin-top: 1rem;
+      margin-top: 30px;
     }
   }
   
@@ -82,7 +99,8 @@
           
         }
       
-        input[type="radio"] {
+        input[type="radio"],
+        .checked {
           appearance: none; /* Supprime le style natif */
           width: 1.2rem;
           height: 1.2rem;

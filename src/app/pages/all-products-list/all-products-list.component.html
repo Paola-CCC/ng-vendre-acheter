@@ -10,7 +10,6 @@
     <div class="content">
         <form [formGroup]="filtrerForm" (ngSubmit)="onSubmit()">
 
-
           <div class="form-group">
             <span>Prix</span>
 
@@ -23,11 +22,11 @@
             />
 
             <input 
-            type="number" 
-            formControlName="maxPrice" 
-            placeholder="900"
-            max="0" 
-          />
+              type="number" 
+              formControlName="maxPrice" 
+              placeholder="900"
+              max="0" 
+            />
             </div>
 
           </div>
@@ -41,9 +40,16 @@
                 <input 
                   type="radio" 
                   formControlName="reductions" 
-                  [value]="reduction" 
-                />
-                {{ reduction }}
+                  [value]="reduction"
+                  [checked]="reductions.value === reduction + ''"
+                  [ngStyle]="{
+                    'border': reductions.value === reduction + '' ? '2px solid #0056b3' : '2px solid #007BFF',
+                    'backgroundColor':  reductions.value === reduction + '' ? '#007BFF' : null,
+                    'boxShadow': reductions.value === reduction + '' ? '0 0 0 4px rgba(0, 123, 255, 0.2)' : null
+                  }"
+      
+              />
+                {{ reduction }}%
               </label>
             }
           </div>
@@ -116,19 +122,20 @@
 <section class="container-product">
 
   <div class="header-sort">
-
     <h1>
       Les annonces 
-      
       <span> {{productsList.length}} annonces </span>
-
     </h1>
-
-
     <app-button text= 'Filtrer' type="tertiary" (clickEvent)="openModalTemplate(viewRef)" >
       <i class="fa-solid fa-arrow-up-wide-short"></i>
       Filtrer
   </app-button> 
+  </div>
+
+  <div class="selected-sorting">
+    @for(listValues of listSelected; track listValues){
+        <span>{{listValues}} </span>
+    }
   </div>
 
     <div class="grid-container">
@@ -137,10 +144,11 @@
             type="card-1"
             [id]="item.id"
             [title]="item.title"
-            [imgSrc]="item.imgSrc"
+            [imgSrc]="item.imgs_url[0]"
             [price]="item.price"
             [productNote]="(item.productNote * 5) / 20"
             [obj]="item"
+            [reductionPercentage]="item.reduction+''"
             />
       }
     </div>

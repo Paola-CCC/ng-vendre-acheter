@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '@features/product/services/product.service';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 
