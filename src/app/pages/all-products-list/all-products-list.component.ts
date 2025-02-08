@@ -105,17 +105,32 @@ export class AllProductsListComponent {
     };
 
     let sub = this.route.queryParams.subscribe((params: any) => {
-      query.name = params.name
-      query.value = params.value      
+
+      this.console.log( "params ", params , Object.values(params).length > 0)
+      this.console.log( "query ", query , ' j ', query.name)
+
+      if( Object.values(params).length > 0 ){
+        query.name = params.name
+        query.value = params.value   
+        this.console.log( "query K", query , 'KK ', query.name)
+      }
+   
     });
 
-    if( query.name !== '' ){
+    this.console.log( "query.value ", query.value)
+
+
+    if( query.value !== ''  ){
+      console.log( "dd");
+      
       this.filtrerForm.patchValue({
         [query.name]: query.value
       });
 
       this.getProductShearched();
     } else {
+      console.log('LL');
+      
       this.getdatas();
     }
 
@@ -169,12 +184,7 @@ export class AllProductsListComponent {
   getGoodDealsProduct(): void {
     this.productService.getGoodDealsProduct().subscribe({
       next: (data: any) => {
-        this.productsList = data.map((obj: any) => {
-          if (Object.keys(obj).includes('imgSrc')) {
-            return { ...obj, imgSrc: faker.image.url() };
-          }
-          return obj;
-        });
+        this.productsList = data;
       },
       error: (err) => {
         console.error('Error fetching goodDealsProduct:', err);
@@ -190,12 +200,7 @@ export class AllProductsListComponent {
 
     this.productService.getProductShearchedGoodDeals( this.reductions.value, this.categories.value , this.brands.value, min , max).subscribe({
       next: (data: any) => {
-        this.productsList = data.map((obj: any) => {
-          if (Object.keys(obj).includes('imgSrc')) {
-            return { ...obj, imgSrc: faker.image.url() };
-          }
-          return obj;
-        });
+        this.productsList = data;
       },
       error: (err) => {
         console.error('Error fetching bestSoldProduct:', err);
@@ -207,12 +212,7 @@ export class AllProductsListComponent {
   getBestSold() {
     this.productService.getBestSold().subscribe({
       next: (data: any) => {
-        this.productsList = data.map((obj: any) => {
-          if (Object.keys(obj).includes('imgSrc')) {
-            return { ...obj, imgSrc: faker.image.url() };
-          }
-          return obj;
-        });
+        this.productsList = data;
       },
       error: (err) => {
         console.error('Error fetching bestSoldProduct:', err);
@@ -227,12 +227,7 @@ export class AllProductsListComponent {
 
     this.productService.getProductShearchedBestSold( this.reductions.value, this.categories.value , this.brands.value, min , max).subscribe({
       next: (data: any) => {
-        this.productsList = data.map((obj: any) => {
-          if (Object.keys(obj).includes('imgSrc')) {
-            return { ...obj, imgSrc: faker.image.url() };
-          }
-          return obj;
-        });
+        this.productsList = data;
       },
       error: (err) => {
         console.error('Error fetching bestSoldProduct:', err);
@@ -244,12 +239,7 @@ export class AllProductsListComponent {
   getAllProduct() {
     this.productService.getAllProducts().subscribe({
       next: (data: any) => {
-        this.productsList = data.map((obj: any) => {
-          if (Object.keys(obj).includes('imgSrc')) {
-            return { ...obj, imgSrc: faker.image.url() };
-          }
-          return obj;
-        });
+        this.productsList = data;
       },
       error: (err) => {
         console.error('Error fetching bestSoldProduct:', err);
@@ -265,12 +255,7 @@ export class AllProductsListComponent {
 
     this.productService.getProductShearched( this.reductions.value, this.categories.value , this.brands.value, min , max).subscribe({
       next: (data: any) => {
-        this.productsList = data.map((obj: any) => {
-          if (Object.keys(obj).includes('imgSrc')) {
-            return { ...obj, imgSrc: faker.image.url() };
-          }
-          return obj;
-        });
+        this.productsList = data;
       },
       error: (err) => {
         console.error('Error fetching bestSoldProduct:', err);
