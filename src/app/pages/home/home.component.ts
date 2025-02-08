@@ -124,8 +124,7 @@ export class HomeComponent implements OnInit {
   getSavingOptions(): void {
     this.productService.getSavingOptions().subscribe({
       next: (data: any) => {
-        // this.savingOptions = data;
-
+        
         this.savingOptions = data.map((obj : any) => {
           if (Object.keys(obj).includes('imgSrc')) {
             return { ...obj, imgSrc: faker.image.url() };
@@ -147,7 +146,6 @@ export class HomeComponent implements OnInit {
   }
 
   getImageRandom(){
-    this.console.log("faker.image.url() " , faker.image.url())
     return faker.image.url();
   }
 }

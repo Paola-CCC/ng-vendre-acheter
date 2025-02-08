@@ -13,9 +13,20 @@ import {
 } from '@angular/core';
 import { ModalContentComponent } from '@shared/components/modal-content/modal-content.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule, NgClass } from '@angular/common';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AbstractControl, FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 
+export interface IProduct {
+  id: number;
+  price: number;
+  title: string;
+  description: string;
+  category: string;
+  tags: string[];
+  brands: string;
+  reduction?: number;
+  imgs_url: string[];
+}
 
 @Component({
   selector: 'app-all-products-list',
@@ -26,15 +37,14 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, Reac
 })
 export class AllProductsListComponent {
 
-  productsList: any[] = [];
-
+  productsList: IProduct[] = [];
 
   filtrerForm = this.fb.group({
     reductions: [''],
     brands: [''],
     categories: [''],
-    minPrice: new FormControl(null),
-    maxPrice: new FormControl(null)
+    minPrice: [null],
+    maxPrice: [null]
   })
   /** indique si le formulaire a été envoyé ou non  */
   submitted: boolean = false;
@@ -113,6 +123,16 @@ export class AllProductsListComponent {
 
   }
 
+  /** Vérifie si le formulaire est vide */
+  isFormEmpty(): boolean {
+    const formValues = this.filtrerForm.value;
+  
+    return Object.values(formValues).every(
+      value => value === null || value === '' || (Array.isArray(value) && value.length === 0)
+    );
+  }
+
+  /** Affiche tableau des conditions de recherche  */
   data() {
 
     const data = [ ]
@@ -132,19 +152,20 @@ export class AllProductsListComponent {
 
   }
 
-  getdatas(){
+  /** Router pour Appel API selon path URL */
+  getdatas(){    
     if (this.router.url === '/good_deals') {
       this.getGoodDealsProduct();
     } else if(this.router.url === '/best_sold')  {
       this.getBestSold();
-    } else {
+    } else if(this.router.url.includes('/product')  ){      
       this.getAllProduct();
     }
     this.data();
 
   }
 
-
+  /** Affiche les bonnes affaires */
   getGoodDealsProduct(): void {
     this.productService.getGoodDealsProduct().subscribe({
       next: (data: any) => {
@@ -161,58 +182,7 @@ export class AllProductsListComponent {
     });
   }
 
-  getAllProduct() {
-    this.productService.getAllProducts().subscribe({
-      next: (data: any) => {
-        this.productsList = data.map((obj: any) => {
-          if (Object.keys(obj).includes('imgSrc')) {
-            return { ...obj, imgSrc: faker.image.url() };
-          }
-          return obj;
-        });
-      },
-      error: (err) => {
-        console.error('Error fetching bestSoldProduct:', err);
-      }
-    });
-  }
-
-  getBestSold() {
-    this.productService.getBestSold().subscribe({
-      next: (data: any) => {
-        this.productsList = data.map((obj: any) => {
-          if (Object.keys(obj).includes('imgSrc')) {
-            return { ...obj, imgSrc: faker.image.url() };
-          }
-          return obj;
-        });
-      },
-      error: (err) => {
-        console.error('Error fetching bestSoldProduct:', err);
-      }
-    });
-  }
-
-  getProductShearched() {
-
-    let min = this.minPrices.value !== null ? this.minPrices.value : '';
-    let max = this.maxPrices.value !== null ? this.minPrices.value : '';
-
-    this.productService.getProductShearched( this.reductions.value, this.categories.value , this.brands.value, min , max).subscribe({
-      next: (data: any) => {
-        this.productsList = data.map((obj: any) => {
-          if (Object.keys(obj).includes('imgSrc')) {
-            return { ...obj, imgSrc: faker.image.url() };
-          }
-          return obj;
-        });
-      },
-      error: (err) => {
-        console.error('Error fetching bestSoldProduct:', err);
-      }
-    });
-  }
-
+  /** Affiche les recherches parmis bonnes affaires */
   getProductShearchedGoodDeals() {
 
     let min = this.minPrices.value !== null ? this.minPrices.value : '';
@@ -233,6 +203,23 @@ export class AllProductsListComponent {
     });
   }
 
+  /** Affiche les meilleures ventes */
+  getBestSold() {
+    this.productService.getBestSold().subscribe({
+      next: (data: any) => {
+        this.productsList = data.map((obj: any) => {
+          if (Object.keys(obj).includes('imgSrc')) {
+            return { ...obj, imgSrc: faker.image.url() };
+          }
+          return obj;
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching bestSoldProduct:', err);
+      }
+    });
+  }
+  /** Affiche les recherches parmi les meilleurs ventes */
   getProductShearchedBestSold() {
 
     let min = this.minPrices.value !== null ? this.minPrices.value : '';
@@ -253,13 +240,52 @@ export class AllProductsListComponent {
     });
   }
 
+  /** Affiche tous les produits */
+  getAllProduct() {
+    this.productService.getAllProducts().subscribe({
+      next: (data: any) => {
+        this.productsList = data.map((obj: any) => {
+          if (Object.keys(obj).includes('imgSrc')) {
+            return { ...obj, imgSrc: faker.image.url() };
+          }
+          return obj;
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching bestSoldProduct:', err);
+      }
+    });
+  }
+
+  /** Affiche les recherches parmi toutes les produits */
+  getProductShearched() {
+
+    let min = this.minPrices.value !== null ? this.minPrices.value : '';
+    let max = this.maxPrices.value !== null ? this.minPrices.value : '';
+
+    this.productService.getProductShearched( this.reductions.value, this.categories.value , this.brands.value, min , max).subscribe({
+      next: (data: any) => {
+        this.productsList = data.map((obj: any) => {
+          if (Object.keys(obj).includes('imgSrc')) {
+            return { ...obj, imgSrc: faker.image.url() };
+          }
+          return obj;
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching bestSoldProduct:', err);
+      }
+    });
+  }
+
+  /** Router pour Appel API de recherche selon path URL */
   getCorrectSearchedData(){
     if (this.router.url === '/good_deals') {
       this.getProductShearchedGoodDeals();
     } else if(this.router.url === '/best_sold')  {
       this.getProductShearchedBestSold();
     } else {
-      this.getProductShearched()
+      this.getProductShearched();
     }
     this.data();
 
@@ -305,7 +331,7 @@ export class AllProductsListComponent {
     this.modalService.close();
   }
 
-
+  /** Met le formulaire avec ses valeurs par défaut */
   setDefaultValue() {
     this.filtrerForm.setValue({
       reductions:'',
@@ -319,7 +345,7 @@ export class AllProductsListComponent {
 
   onReset(): void {
     this.submitted = false;
-    this.filtrerForm.reset();
+    this.setDefaultValue();
     this.getdatas();
   }
 

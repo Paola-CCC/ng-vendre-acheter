@@ -2,7 +2,7 @@
 
   <div class="modal-container">
     <div class="header">
-      <button (click)="close()">X</button>
+      <button (click)="close()"> <i class="fa-solid fa-xmark fa-2xl"></i> </button>
     </div>
     <div class="title">
       <h2>Filtrer</h2>
@@ -99,10 +99,10 @@
 
             <app-button 
             type="secondary"
-            class="btn btn-primary"
             (click)="getCorrectSearchedData()"
+            [disabled]="isFormEmpty()"
             >
-            Filtrer
+            Filtrer 
           </app-button>
 
           </div>
@@ -146,7 +146,7 @@
             [title]="item.title"
             [imgSrc]="item.imgs_url[0]"
             [price]="item.price"
-            [productNote]="(item.productNote * 5) / 20"
+            [productNote]="(3 * 5) / 20"
             [obj]="item"
             [reductionPercentage]="item.reduction+''"
             />

@@ -6,8 +6,8 @@
         'secondary': type == 'secondary',
         'tertiary': type == 'tertiary'
     }"
-    [disabled]="isRequired"  
-    (click)="handleClick()"
+    [disabled]="disabled"  
+    (click)=" disabled === false  ? handleClick() : null"
 >  
 <ng-content />
 </button>    

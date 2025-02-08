@@ -16,9 +16,9 @@ export class CardComponent implements OnInit  , AfterViewInit{
 
   @Input({required: false}) id: number | null = null;
   @Input({required: false}) type:string = '';
-  @Input({required: false}) imgSrc:string = 'https://blaque.fr/wp-content/uploads/2022/01/beyonce.webp';
+  @Input({required: false}) imgSrc:string = '';
   @Input({required: false}) title:string = '';
-  @Input({required: false}) price:string = '';
+  @Input({required: false}) price: number | null = null;
   @Input({required: false}) content:string = '';
   @Input({required: false}) productNote:number | null = null;
   @Input({required: false}) description:string = '';

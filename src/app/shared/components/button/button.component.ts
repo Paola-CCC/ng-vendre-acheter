@@ -16,6 +16,9 @@ export class ButtonComponent {
   @Input({ required: false })
   isRequired!: boolean;
 
+  @Input({ required: false })
+  disabled: boolean = false;
+
   @Output()
   clickEvent = new EventEmitter()
 
