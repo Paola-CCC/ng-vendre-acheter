@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://my-api-url'
+    apiUrl: 'https://db-ng-vendre-acheter.onrender.com/'
 };
