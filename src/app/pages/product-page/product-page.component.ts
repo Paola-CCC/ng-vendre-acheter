@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '@features/product/services/product.service';
@@ -6,7 +7,7 @@ import { LocalStorageService } from '@shared/services/local-storage/local-storag
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.scss'
 })

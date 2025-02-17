@@ -125,12 +125,7 @@ export class HomeComponent implements OnInit {
     this.productService.getSavingOptions().subscribe({
       next: (data: any) => {
         
-        this.savingOptions = data.map((obj : any) => {
-          if (Object.keys(obj).includes('imgSrc')) {
-            return { ...obj, imgSrc: faker.image.url() };
-          }
-          return obj;
-        });
+        this.savingOptions = data;
       },
       error: (err) => {
         console.error('Error fetching savingOptions:', err);

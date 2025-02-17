@@ -34,7 +34,7 @@
 
 @if (type === 'card-2') {
     <a class="card-2" [routerLink]="['/product/']" routerLinkActive="router-link-active" >
-        <span> {{title}} </span>
+        <span> {{title.charAt(0).toUpperCase() + title.slice(1)}} </span>
         <img [src]="imgSrc" >
         <div class="shadow-bg">
         </div>

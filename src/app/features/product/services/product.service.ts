@@ -52,9 +52,6 @@ export class ProductService {
   }  
   
 
-  getTrademark(): Observable<any> {
-    return this.http.get<any>(API + 'trademark' );
-  } 
 
 
   getSavingOptions(): Observable<any> {

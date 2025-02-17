@@ -125,6 +125,7 @@ app-section-group {
       flex: 1 0 calc(25% - 15px);
       box-sizing: border-box; 
       border-radius: 10px;
+      height: 480px;
       &:first-of-type {
         background-color: rgb(224, 234, 255);
         a.card-3 .heading span {

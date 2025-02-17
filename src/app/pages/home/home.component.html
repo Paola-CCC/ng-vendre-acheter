@@ -8,9 +8,9 @@
       <h3>
         Favoriser la deuxième mains est essentiel pour une consommation durable
       </h3>
-      <app-button type="secondary" >
+      <!-- <app-button type="secondary" >
         En savoir plus
-      </app-button>
+      </app-button> -->
   
     </div>
   </div>
@@ -113,7 +113,6 @@
     @for (item of savingOptions; track item.id) {
       <app-card
           type="card-3"
-          [description]="item.description"
           [imgSrc]="item.imgSrc"
           [reductionPercentage]="item.reduction_percentage"
       >
