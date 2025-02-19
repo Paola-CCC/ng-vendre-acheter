@@ -14,28 +14,23 @@ import { FavorisStorageService } from '@shared/services/favoris-storage/favoris-
 export class FavorisComponent implements OnInit , DoCheck{
 
   constructor(
-    private readonly productService: ProductService,
     private storageFavoris: FavorisStorageService
   
   ) {}
-  goodDealsProduct: any[] = [];
+  favorisProductsList: any[] = [];
 
 
   ngOnInit(): void {
-    this.getGoodDealsProduct();
+    this.getFavorisProductsList();
   }
   
   ngDoCheck(): void {
-    this.getGoodDealsProduct();
+    this.getFavorisProductsList();
 
   }
 
-  getGoodDealsProduct(): void {
-
-    this.goodDealsProduct = this.storageFavoris.getData().map((obj : any) => {
-      if (Object.keys(obj).includes('imgSrc')) {
-        return { ...obj, imgSrc: faker.image.url() };
-      }
+  getFavorisProductsList(): void {
+    this.favorisProductsList = this.storageFavoris.getData().map((obj : any) => {
       return obj;
     });
   }

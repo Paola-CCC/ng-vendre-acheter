@@ -1,6 +1,5 @@
 <section class="container-product">
     <div class="card-wrapper">
-          <!-- card left -->
           <div 
           class="product-imgs" 
           [ngClass]="{'full-imgs': (contentType.imgs_url).length > 1}"
@@ -14,7 +13,6 @@
                 />
               </div>
             </div>
-            <!-- <h1> longueur {{(contentType.imgs_url).length }}</h1> -->
             @if((contentType.imgs_url).length > 1){
               <div class="img-select">
                 @for (item of contentType.imgs_url; track item) {
@@ -32,32 +30,18 @@
           <div class="product-content">
             <h2 class="product-title">{{contentType.title}}</h2>
             <div class="product-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-              <!-- <span> Avis: 4.7/5 (21 votes)</span> -->
+              <app-stars-group [note]="productNote ? productNote : 0" ></app-stars-group>
+
             </div>
   
-            <div class="product-price">
-               <span>{{contentType.price}} €</span>
-
-              <!-- <p class="last-price">Prix: <span>{{contentType.price}}</span></p> -->
-              <!-- <p class="new-price">Nouveau Prix: <span>{{contentType.price}} (5%)</span></p> -->
+            <div class="product-price">                
+              <p class="new-price">{{contentType.price}} €</p>
+              <p class="last-price">Prix d'origine : <span>{{contentType.price}} €</span></p> 
             </div>
   
             <div class="product-detail">
               <h2>Description:</h2>
-              <p>
-               {{ contentType.description}}
-              </p>
-             
-              <!-- <ul>
-                <li>Couleur: <span>Black</span></li>
-                <li>Stock: <span>in stock</span></li>
-                <li>Categorie: <span>Shoes</span></li>
-              </ul> -->
+              <p> {{ contentType.description}} </p>
             </div>
   
             <div class="purchase-info">
@@ -66,5 +50,5 @@
               </button>
             </div>
           </div>
-        </div>
+    </div>
 </section>

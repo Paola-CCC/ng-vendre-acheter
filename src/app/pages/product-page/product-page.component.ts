@@ -1,13 +1,14 @@
 import { NgClass } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '@features/product/services/product.service';
+import { StarsGroupComponent } from '@shared/components/stars-group/stars-group.component';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, StarsGroupComponent],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.scss'
 })
@@ -27,6 +28,9 @@ export class ProductPageComponent implements OnInit {
 
   /** id du produit */
   id: string = '';
+
+  @Input({required: false}) productNote:number | null = null;
+  
 
   constructor(private localStorageService: LocalStorageService, 
     private productService: ProductService,

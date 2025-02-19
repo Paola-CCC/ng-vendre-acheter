@@ -56,14 +56,14 @@
             </div>
         
             <div class="row">
-              <div class="col">Nombre d'article: {{totalQty}}</div>
+              <div >Nombre d'article: <strong>{{totalQty}}</strong> </div>
             </div>
       
             <div class="row">
               <div class="label">TOTAL DE VOTRE PANIER</div>
               <div class="col text-right"> {{totalPricing}} &euro; </div>
             </div>
-            <button class="btn" (click)="clearStorage()"> Vider le panier</button>
+            <button class="btn clear" (click)="clearStorage()"> Vider le panier</button>
 
             <button class="btn"> PAYER</button>
           </div>
