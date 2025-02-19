@@ -75,8 +75,8 @@
 
       span {
         padding: 15px 0;
-        font-size: 18px;
-        font-weight: 400;
+        font-size: 1.15rem;
+        font-weight: 600;
       }
 
       label {
@@ -85,6 +85,7 @@
         gap: 0.5rem;
         cursor: pointer;
         font-size: 1rem;
+        font-weight: 400;
       }
 
       .search-price input[type="number"] {
@@ -98,7 +99,7 @@
         appearance: none; /* Supprime le style natif */
         width: 1.2rem;
         height: 1.2rem;
-        border: 2px solid #007bff;
+        border: 2px solid #939393;
         border-radius: 50%; /* Cercle */
         outline: none;
         cursor: pointer;

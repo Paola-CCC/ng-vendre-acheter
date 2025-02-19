@@ -127,19 +127,13 @@ export class AllProductsListComponent {
     }
 
     this.productService.getAllCriterias().subscribe({
-
       next: (data: any) => {
-
         this.reductionList = data.reduction;
         this.categoriesList = data.categories.map((e:any) => ({
           label: e.label,
           slug: e.slug
         }));
-
         this.brandsList = data.brands; 
-        
-        this.console.log("data.brands - ", data.brands)
-
       },
       error: (err) => {
         console.error('Error fetching getProductShearchedGoodDealst:', err);

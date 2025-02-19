@@ -31,7 +31,7 @@
     </div>
 
     <div>
-      <label for="productName">Nom du produit:</label>
+      <label for="productName">Nom du produit</label>
       <input
         id="productName"
         type="text"
@@ -40,6 +40,19 @@
       @if (addProductForm.get('productName')?.invalid && addProductForm.get('productName')?.touched) {
         <div>
           <small>Le nom du produit est requis.</small>
+        </div>
+      }
+    </div>
+
+    <div>
+      <label for="description">Description</label>
+      <input
+        type="text"
+        formControlName="description"
+      />
+      @if (addProductForm.get('description')?.invalid && addProductForm.get('description')?.touched) {
+        <div>
+          <small>La description du produit est requis.</small>
         </div>
       }
     </div>
@@ -54,7 +67,7 @@
     </div>
   
     <div>
-      <label for="price">Prix:</label>
+      <label for="price">Prix</label>
       <input
         id="price"
         type="number"
@@ -69,13 +82,15 @@
     </div>
   
     <div>
-      <label for="category">Catégorie:</label>
+      <label for="category">Catégorie</label>
       <select id="category" formControlName="category">
         <option value="">-- Sélectionnez une catégorie --</option>
-        <option value="electronique">Électronique</option>
-        <option value="vetements">Vêtements</option>
-        <option value="meubles">Meubles</option>
+        @for (item of categoriesList; track $index) {
+          <option [value]="item.slug">{{item.label}}</option>
+        }
       </select>
+
+
       @if (addProductForm.get('category')?.invalid && addProductForm.get('category')?.touched) {
         <div>
           <small>La catégorie est requise.</small>
@@ -85,13 +100,27 @@
     </div>
   
     <div>
-      <label for="tags">Tags:</label>
+      <label for="tags">Tags</label>
       <input
         id="tags"
         type="text"
-        formControlName="tags"
         placeholder="Entrez des tags séparés par des virgules"
+        #valueTags   
       />
+
+      <button class="btn-add-tags" (click)="addTags(valueTags.value)">
+        Ajouter tags
+      </button>
+
+      <div formArrayName="tags">
+        @for( tag of tags.controls; track tags;let idx = $index, e = $even){
+              <button  
+                class="tags-added"           
+                (click)="deleteTags(idx)"
+                > {{tag.value}}
+              </button>
+        }
+      </div>
  
 
       @if (addProductForm.get('tags')?.invalid && addProductForm.get('tags')?.touched) {
@@ -103,6 +132,5 @@
   
     <button type="submit" >Ajouter le produit</button>
   </form>
-      
 
 </section>

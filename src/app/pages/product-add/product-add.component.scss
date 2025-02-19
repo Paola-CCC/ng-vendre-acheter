@@ -17,7 +17,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 10px;
 
 
  
@@ -39,8 +39,7 @@
     .input-btn.image-uploaded {
         background-color: transparent;
         width: calc( 100% - 100px);
-      
-
+    
         input[type=file] {
           width: 100%;
           color: #222245;
@@ -94,13 +93,12 @@
   label {
     font-size: 1rem;
     font-weight: 400;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     display: block;
   }
   
   input,
-  select,
-  button {
+  select {
     width: calc(100% - 24px);
     padding: 0.75rem;
     font-size: 1rem;
@@ -129,10 +127,34 @@
     transition: background-color 0.3s ease;
     border: none;
   }
-  
-  button:hover {
-    background-color: #0056b3;
+
+  button.btn-add-tags,
+  button:focus,
+  button:active {
+    background-color: rgb(80, 80, 80);
+    margin-top: 10px;
   }
+
+  button.tags-added {
+    border: 1px solid rgba(59, 57, 57, 0.222);
+    background-color: transparent;
+    margin-top: 15px;
+    color: rgb(72, 72, 72);
+    border-radius: 4px;
+    margin-right: 5px;
+
+  }
+
+  button[type="submit"]{
+    // background-color: rgb(126, 165, 42);
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 10px 20px;
+  }
+  
+  // button:hover {
+  //   background-color: #0056b3;
+  // }
   
   button:disabled {
     background-color: #ccc;
