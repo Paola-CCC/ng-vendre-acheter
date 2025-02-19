@@ -32,7 +32,11 @@ export class ProductService {
   
   getAllCategories(): Observable<any> {
     return this.http.get<any>(API + 'categories' );
-  }  
+  } 
+  
+  getAllCriterias(): Observable<any> {
+    return this.http.get<any>(API + 'sheach_criterias' );
+  } 
 
   getBestSold(): Observable<any> {
     return this.http.get<any>(API + 'best_sold' );
@@ -51,11 +55,15 @@ export class ProductService {
     return this.http.get<any>(API + 'good_deals' + '/?reduction=' +  reduction + '&category='+ category + '&brands=' + brands + '&price_gte='+ priceGte + '&price_lte=' + priceLte);
   }  
   
-
-
-
   getSavingOptions(): Observable<any> {
     return this.http.get<any>(API + 'saving_options' );
   } 
+
+
+
+  calculerReductionDetail(prixInitial: number, pourcentage: number) {
+    const montantReduction = prixInitial * (pourcentage / 100);
+    return prixInitial - montantReduction;
+  };
 
 }

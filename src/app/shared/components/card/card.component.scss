@@ -28,6 +28,22 @@ div.card-1 {
       }
     }
 
+    span.promo {
+      background-color: #C04343;
+      position: absolute;
+      width: 70px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: 0px;
+      left: 0px;
+      color: white;
+      font-weight: 500;
+      
+
+    }
+
     span.svg-favorite-heart {
       cursor: pointer;
       position: absolute;
@@ -62,9 +78,15 @@ div.card-1 {
       flex-direction: row;
       justify-content: space-between;
       padding: 4px;
-      font-weight: 600;
-      font-size: 1.2rem;
+      // font-weight: 600;
+      font-size: 1.15rem;
       color: #000;
+
+      .price {
+            font-weight: 600;
+            font-size: 1.2rem;
+
+      }
     }
 
     .content {

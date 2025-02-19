@@ -11,7 +11,7 @@ import { faker } from '@faker-js/faker';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ButtonComponent, NgStyle, CardComponent, SectionGroupComponent],
+  imports: [NgStyle, CardComponent, SectionGroupComponent],
   providers: [ProductService],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],

@@ -3,6 +3,7 @@ import { StarsGroupComponent } from '../stars-group/stars-group.component';
 import { ButtonComponent } from '../button/button.component';
 import { Router, RouterLink } from '@angular/router';
 import { FavorisStorageService } from '@shared/services/favoris-storage/favoris-storage.service';
+import { ProductService } from '@features/product/services/product.service';
 
 @Component({
   selector: 'app-card',
@@ -12,7 +13,7 @@ import { FavorisStorageService } from '@shared/services/favoris-storage/favoris-
   styleUrl: './card.component.scss',
   encapsulation: ViewEncapsulation.None
 })
-export class CardComponent implements OnInit  , AfterViewInit{
+export class CardComponent implements OnInit, AfterViewInit{
 
   @Input({required: false}) id: number | null = null;
   @Input({required: false}) type:string = '';
@@ -22,19 +23,27 @@ export class CardComponent implements OnInit  , AfterViewInit{
   @Input({required: false}) content:string = '';
   @Input({required: false}) productNote:number | null = null;
   @Input({required: false}) description:string = '';
-  @Input({required: false}) reductionPercentage:string = '';
-
+  @Input({required: false}) reductionPercentage: number| null = null;
+  @Input({required: false}) categoryName: string | undefined = "";
+  
   @Input({required:false}) obj = {}
   
   @ViewChild("heartRef") heartRef?: ElementRef<HTMLElement>;
 
+  priceReduction: number | null = null ;
+
   constructor(
     private router: Router,
-    private favorisStorage: FavorisStorageService
+    private favorisStorage: FavorisStorageService,
+    private productService: ProductService
   ){}
 
   ngOnInit(): void {
     this.favorisStorage.getData();
+
+    if(this.price && this.reductionPercentage ){
+      this.priceReduction = this.productService.calculerReductionDetail(this.price, this.reductionPercentage)
+    }
   }
 
   ngAfterViewInit(): void {

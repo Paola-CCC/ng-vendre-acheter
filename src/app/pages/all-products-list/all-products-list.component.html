@@ -18,8 +18,7 @@
               type="number" 
               formControlName="minPrice" 
               placeholder="0"
-              min="0" 
-            />
+              min="0"/>
 
             <input 
               type="number" 
@@ -35,6 +34,9 @@
 
           <div class="form-group">
             <span>Réduction</span>
+
+            <div  class="list">
+
             @for(  reduction of reductionList; track reduction){
               <label>
                 <input 
@@ -53,10 +55,15 @@
               </label>
             }
           </div>
+        </div>
+
           
           <div class="form-group">
 
             <span>Marques</span>
+
+            <div  class="list">
+
             @for(brand of brandsList; track brand){
               <label>
                 <input 
@@ -67,24 +74,26 @@
                 {{ brand }}
               </label>
             }
+          </div>
 
           </div>
           
-          <div class="form-group">
+          <div class="form-group categories">
             <span>Catégories</span>
 
+            <div  class="list">
+              @for(category of categoriesList; track category){
+                <label>
+                  <input 
+                    type="radio" 
+                    formControlName="categories" 
+                    [value]="category.slug" 
+                  />
+                  {{ category.label }}
+                </label>
+              }
 
-            @for(category of categoriesList; track category){
-              <label>
-                <input 
-                  type="radio" 
-                  formControlName="categories" 
-                  [value]="category" 
-                />
-                {{ category }}
-              </label>
-            }
-
+            </div>
           </div>
           
           <div class="form-group btn">
@@ -148,7 +157,7 @@
             [price]="item.price"
             [productNote]="(3 * 5) / 20"
             [obj]="item"
-            [reductionPercentage]="item?.reduction+''"
+            [reductionPercentage]="item.reduction ? item.reduction : null"
             />
       }
     </div>

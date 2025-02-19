@@ -3,6 +3,12 @@
     <div class="card-1" >
         <div class="zone-img">
             <img [src]="imgSrc" >
+
+            @if(price && reductionPercentage){
+                <!-- <span class="promo"> Promo</span> -->
+
+                <span class="promo"> {{ '-'+ reductionPercentage + '%'}}</span>
+            }
             <span class="svg-favorite-heart" 
             #heartRef
             (click)="checkSelected()"  
@@ -14,7 +20,15 @@
         <div class="card-body">
             <div class="heading">
                 <span class="title"> {{title}}</span>
-                <span> {{price}}€ </span>
+                @if(price && reductionPercentage){
+                    <span [style.color]="'#C04343'"
+                    class="price"
+                    > {{this.priceReduction}} € </span>
+                } @else {
+                    <span class="price"
+                    > {{price}} € </span>
+
+                }
             </div>
             <div class="content">
                 <p> {{content}} </p>
@@ -33,7 +47,11 @@
 
 
 @if (type === 'card-2') {
-    <a class="card-2" [routerLink]="['/product/']" routerLinkActive="router-link-active" >
+    <a class="card-2" 
+    [routerLink]="['/product']" 
+    [queryParams]="{ name: 'categories', value: categoryName}"
+    routerLinkActive="router-link-active" 
+    >
         <span> {{title.charAt(0).toUpperCase() + title.slice(1)}} </span>
         <img [src]="imgSrc" >
         <div class="shadow-bg">

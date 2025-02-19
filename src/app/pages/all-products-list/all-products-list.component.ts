@@ -52,15 +52,15 @@ export class AllProductsListComponent {
   signUpIsSuccessful = false;
   errorMessage = '';
 
-  reductionList: number[] = [10, 25, 50, 75];
-  brandsList: string[] = ["Nike", "Puma", "Asics", "Adidas"];
-  categoriesList: string[] = ["bags", "shoes"];
-
-  objJS = Object;
+  reductionList: any[] = [];
+  brandsList: any[] = [];
+  categoriesList: any[] = [];
 
   console = console;
 
   listSelected: string[]= [];
+
+  queryIsEmpty: boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -106,34 +106,45 @@ export class AllProductsListComponent {
 
     let sub = this.route.queryParams.subscribe((params: any) => {
 
-      this.console.log( "params ", params , Object.values(params).length > 0)
-      this.console.log( "query ", query , ' j ', query.name)
 
       if( Object.values(params).length > 0 ){
-        query.name = params.name
-        query.value = params.value   
-        this.console.log( "query K", query , 'KK ', query.name)
+        query.name = params.name;
+        query.value = params.value;   
       }
    
     });
 
-    this.console.log( "query.value ", query.value)
-
-
-    if( query.value !== ''  ){
-      console.log( "dd");
-      
+    if( query.value !== ''  ){      
       this.filtrerForm.patchValue({
         [query.name]: query.value
       });
 
+
+
       this.getProductShearched();
     } else {
-      console.log('LL');
-      
       this.getdatas();
     }
 
+    this.productService.getAllCriterias().subscribe({
+
+      next: (data: any) => {
+
+        this.reductionList = data.reduction;
+        this.categoriesList = data.categories.map((e:any) => ({
+          label: e.label,
+          slug: e.slug
+        }));
+
+        this.brandsList = data.brands; 
+        
+        this.console.log("data.brands - ", data.brands)
+
+      },
+      error: (err) => {
+        console.error('Error fetching getProductShearchedGoodDealst:', err);
+      }
+      })
     this.data();
 
   }
@@ -150,7 +161,7 @@ export class AllProductsListComponent {
   /** Affiche tableau des conditions de recherche  */
   data() {
 
-    const data = [ ]
+    const data = [];
     for (const [key, value] of Object.entries(this.controlFilterForm)) {
       if( key === 'brands' && (value.value !== '' && value.value !== null )){
         data.push(`Marque: ${value.value}`);
@@ -203,7 +214,7 @@ export class AllProductsListComponent {
         this.productsList = data;
       },
       error: (err) => {
-        console.error('Error fetching bestSoldProduct:', err);
+        console.error('Error fetching getProductShearchedGoodDealst:', err);
       }
     });
   }
@@ -242,7 +253,7 @@ export class AllProductsListComponent {
         this.productsList = data;
       },
       error: (err) => {
-        console.error('Error fetching bestSoldProduct:', err);
+        console.error('Error fetching getAllProduct:', err);
       }
     });
   }
@@ -294,23 +305,23 @@ export class AllProductsListComponent {
     });
   }
 
-  openModalComponent() {
-    this.modalService.open(ModalContentComponent, {
-      animations: {
-        modal: {
-          enter: 'enter-scaling 0.3s ease-out',
-          leave: 'fade-out 0.1s forwards',
-        },
-        overlay: {
-          enter: 'fade-in 1s',
-          leave: 'fade-out 0.3s forwards',
-        },
-      },
-      size: {
-        width: '40rem',
-      },
-    });
-  }
+  // openModalComponent() {
+  //   this.modalService.open(ModalContentComponent, {
+  //     animations: {
+  //       modal: {
+  //         enter: 'enter-scaling 0.3s ease-out',
+  //         leave: 'fade-out 0.1s forwards',
+  //       },
+  //       overlay: {
+  //         enter: 'fade-in 1s',
+  //         leave: 'fade-out 0.3s forwards',
+  //       },
+  //     },
+  //     size: {
+  //       width: '40rem',
+  //     },
+  //   });
+  // }
 
   close() {
     this.modalService.close();
@@ -333,6 +344,27 @@ export class AllProductsListComponent {
     this.setDefaultValue();
     this.getdatas();
   }
+
+  // getAllSearchDetail(data: any){
+  //   this.reductionList = [...new Set(data
+  //     .map((e: any) => e.reduction)
+  //     .filter((r: any) => r !== "")
+  //     .sort()
+  //   )];
+
+  //   this.brandsList = [...new Set(data
+  //     .map((e:any) => e.brands)          
+  //     .filter((r: any) => r !== "")
+  //     .sort()
+  //   )];
+
+  //   this.categoriesList = [...new Set(data
+  //     .map((e:any) => e.category)
+  //     .filter((r: any) => r !== "")
+  //     .sort()
+  //   )];
+
+  // }
 
   onSubmit() {
 

@@ -6,7 +6,7 @@
     <div class="text-hero">
       <h1>Vendez et achetez partout en France</h1>
       <h3>
-        Favoriser la deuxième mains est essentiel pour une consommation durable
+        Favoriser la deuxième main est essentiel pour une consommation durable
       </h3>
       <!-- <app-button type="secondary" >
         En savoir plus
@@ -30,7 +30,8 @@
       type="card-2" 
       [id]="item.id"
       [title]="item.title" 
-      [imgSrc]="item.imgSrc">
+      [imgSrc]="item.imgSrc"
+      [categoryName]="item.slug">
       </app-card>
     </swiper-slide>
     }
@@ -62,6 +63,8 @@
         [price]="item.price"
         [obj]="item"
         [productNote]="(item.productNote * 5) / 20"
+        [reductionPercentage]="item.reduction ? item.reduction : null"
+
     >
     </app-card>
     </swiper-slide>
@@ -94,6 +97,7 @@
         [price]="item.price"
         [productNote]="(item.productNote * 5) / 20"
         [obj]="item"
+        [reductionPercentage]="item.reduction ? item.reduction : null"
 
     >
     </app-card>
