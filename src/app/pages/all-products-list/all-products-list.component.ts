@@ -156,15 +156,18 @@ export class AllProductsListComponent {
   data() {
 
     const data = [];
-    for (const [key, value] of Object.entries(this.controlFilterForm)) {
-      if( key === 'brands' && (value.value !== '' && value.value !== null )){
-        data.push(`Marque: ${value.value}`);
-      } else if(key === 'categories' && (value.value !== '' && value.value !== null )) {
-        data.push(`Catégorie: ${value.value}`);
-      } else if(key === 'reductions' && (value.value !== '' && value.value !== null )) {
-        data.push(`Réduction: -${value.value}%`);
-      } else if((key === 'minPrice' || key === 'maxPrice') && value.value !== null) {
-        data.push(`Min: ${value} € - Max: ${value.value} €`);
+    for (const [key, content] of Object.entries(this.controlFilterForm)) {
+      if( key === 'brands' && (content.value !== '' && content.value !== null )){
+        data.push(`Marque: ${content.value}`);
+      } else if(key === 'categories' && (content.value !== '' && content.value !== null )) {
+
+        const found = this.categoriesList.find((element) => element.slug === content.value );
+
+        data.push(`Catégorie: ${found.label}`);
+      } else if(key === 'reductions' && (content.value !== '' && content.value !== null )) {
+        data.push(`Réduction: -${content.value}%`);
+      } else if((key === 'minPrice' || key === 'maxPrice') && content.value !== null) {
+        data.push(`Min: ${content} € - Max: ${content.value} €`);
       } 
     }
 
