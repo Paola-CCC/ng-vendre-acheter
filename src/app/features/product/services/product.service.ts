@@ -18,6 +18,10 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
+  addProduct(body: any): Observable<any> {
+    return this.http.post<any>(API + 'products', body );
+  } 
+
   getAllProducts(): Observable<any> {
     return this.http.get<any>(API + 'products' );
   }  
@@ -109,8 +113,6 @@ export class ProductService {
   getSavingOptions(): Observable<any> {
     return this.http.get<any>(API + 'saving_options' );
   } 
-
-
 
   calculerReductionDetail(prixInitial: number, pourcentage: number) {
     const montantReduction = prixInitial * (pourcentage / 100);

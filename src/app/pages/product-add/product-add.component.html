@@ -1,11 +1,29 @@
 
+
+<ng-template  #viewRef>
+  <div class="modal-success">
+    <h2> Votre annonce a bien été ajoutée.</h2>
+
+    <div>
+      <button> 
+        <a routerLink="/">
+          Retour à l'accueil  
+        </a>
+      </button>
+      <app-button [type]="'primary'" (click)="cleanForm()"> Continuer</app-button>
+    </div>
+  </div>
+</ng-template>
+
+
+<!-- {{ openModalTemplate(viewRef)}} -->
 <section class="container-product">
     
-  <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="addProductForm">
     <h1> Ajouter un produit</h1>
 
     <div>
-      <label style="display: block">Uploader une image</label> 
+      <label style="display: block">Télécharger une image</label> 
       
       <div class="img-load-container">
         <img  [src]="previewImageFile !== '' ? previewImageFile : 'https://freesvg.org/img/abstract-user-flat-3.png' "  width="80px" height="80px" />
@@ -14,13 +32,13 @@
             <input 
             type="file" 
             class="file-upload"
-            name="thumbnailUpload"         
-            formControlName="thumbnailUpload"
+            name="imgs_url"         
+            formControlName="imgs_url"
             (change)="onFileSelected($event)"  
             >
 
             @if(previewImageFile !== '' ){
-              <button (click)="cleanThumbnailUpload()">
+              <button (click)="cleanImgsUrl()">
                 Supprimer
               </button>
             }
@@ -31,13 +49,13 @@
     </div>
 
     <div>
-      <label for="productName">Nom du produit</label>
+      <label for="title">Nom du produit</label>
       <input
-        id="productName"
+        id="title"
         type="text"
-        formControlName="productName"
+        formControlName="title"
       />
-      @if (addProductForm.get('productName')?.invalid && addProductForm.get('productName')?.touched) {
+      @if (addProductForm.get('title')?.invalid && addProductForm.get('title')?.touched) {
         <div>
           <small>Le nom du produit est requis.</small>
         </div>
@@ -58,11 +76,11 @@
     </div>
   
     <div>
-      <label for="brandName">Marque:</label>
+      <label for="brands">Marque</label>
       <input
-        id="brandName"
+        id="brands"
         type="text"
-        formControlName="brandName"
+        formControlName="brands"
       />
     </div>
   
@@ -130,7 +148,7 @@
       } 
     </div>
   
-    <button type="submit" >Ajouter le produit</button>
+    <button type="submit" (click)="onSubmit(viewRef)">Ajouter le produit</button>
   </form>
 
 </section>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { faker } from '@faker-js/faker';
 import { ProductService } from '@features/product/services/product.service';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { CardComponent } from '@shared/components/card/card.component';
@@ -11,22 +10,12 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { ModalContentComponent } from '@shared/components/modal-content/modal-content.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AbstractControl, FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ICategory, ICriterias, IProduct } from '@features/product/interfaces/product';
 
-export interface IProduct {
-  id: number;
-  price: number;
-  title: string;
-  description: string;
-  category: string;
-  tags: string[];
-  brands: string;
-  reduction?: number;
-  imgs_url: string[];
-}
+
 
 @Component({
   selector: 'app-all-products-list',
@@ -51,10 +40,12 @@ export class AllProductsListComponent {
   /** indique si s'inscription a réussi ou non  */
   signUpIsSuccessful = false;
   errorMessage = '';
-
-  reductionList: any[] = [];
-  brandsList: any[] = [];
-  categoriesList: any[] = [];
+  /** Affiche la liste des réductions */
+  reductionList: number[] = [];
+  /** Affiche la liste des marques */
+  brandsList: string[] = [];
+  /** Affiche la liste des catégories */
+  categoriesList: ICategory[] = [];
 
   console = console;
 
@@ -98,48 +89,47 @@ export class AllProductsListComponent {
   vcr!: ViewContainerRef;
 
   ngOnInit(): void {
-
     const query = {
       name: '',
       value: ''
     };
 
-    let sub = this.route.queryParams.subscribe((params: any) => {
-
-
-      if( Object.values(params).length > 0 ){
-        query.name = params.name;
-        query.value = params.value;   
-      }
-   
-    });
-
-    if( query.value !== ''  ){      
-      this.filtrerForm.patchValue({
-        [query.name]: query.value
-      });
-
-
-
-      this.getProductShearched();
-    } else {
-      this.getdatas();
-    }
 
     this.productService.getAllCriterias().subscribe({
-      next: (data: any) => {
+      next: (data: ICriterias) => {
         this.reductionList = data.reduction;
-        this.categoriesList = data.categories.map((e:any) => ({
-          label: e.label,
+        this.categoriesList = data.categories.map((e: ICategory) => ({
+          label: e.title,
           slug: e.slug
         }));
-        this.brandsList = data.brands; 
+        this.brandsList = data.brands;
+    
+        if (this.categoriesList.length > 0) {
+          let sub = this.route.queryParams.subscribe((params: any) => {
+            if (Object.values(params).length > 0) {
+              query.name = params.name;
+              query.value = params.value;
+            }
+          });
+    
+          if (query.value !== '') {
+            this.filtrerForm.patchValue({
+              [query.name]: query.value
+            });
+            this.getProductShearched();
+          } else {
+            this.getdatas();
+          }
+    
+          this.dataSelected();
+        }
       },
       error: (err) => {
         console.error('Error fetching getProductShearchedGoodDealst:', err);
       }
-      })
-    this.data();
+    });
+    
+    
 
   }
 
@@ -153,22 +143,36 @@ export class AllProductsListComponent {
   }
 
   /** Affiche tableau des conditions de recherche  */
-  data() {
+  dataSelected() {
 
     const data = [];
+    let minMax = "" ;
+
     for (const [key, content] of Object.entries(this.controlFilterForm)) {
       if( key === 'brands' && (content.value !== '' && content.value !== null )){
-        data.push(`Marque: ${content.value}`);
+        data.push(`Marque: <b>${content.value}</b>`);
       } else if(key === 'categories' && (content.value !== '' && content.value !== null )) {
 
-        const found = this.categoriesList.find((element) => element.slug === content.value );
+        const found = this.categoriesList.find((element) => element.slug == content.value );
 
-        data.push(`Catégorie: ${found.label}`);
+        if(found !== undefined ) {
+          data.push(`Catégorie: <b>${found.label}</b>`);
+        }
       } else if(key === 'reductions' && (content.value !== '' && content.value !== null )) {
-        data.push(`Réduction: -${content.value}%`);
+        data.push(`Réduction: <b>- ${content.value}%</b>`);
       } else if((key === 'minPrice' || key === 'maxPrice') && content.value !== null) {
-        data.push(`Min: ${content} € - Max: ${content.value} €`);
-      } 
+
+        if( key === 'minPrice'){
+          minMax += `Min: <b>${content.value}€</b> - `
+        } else {
+          minMax += `Max: <b> ${content.value}€</b>`;
+        }  
+      }
+
+    }
+
+    if( minMax !== ''){
+      data.push(minMax);
     }
 
     this.listSelected = data ;
@@ -184,14 +188,14 @@ export class AllProductsListComponent {
     } else if(this.router.url.includes('/product')  ){      
       this.getAllProduct();
     }
-    this.data();
+    this.dataSelected();
 
   }
 
   /** Affiche les bonnes affaires */
   getGoodDealsProduct(): void {
     this.productService.getGoodDealsProduct().subscribe({
-      next: (data: any) => {
+      next: (data: IProduct[]) => {
         this.productsList = data;
       },
       error: (err) => {
@@ -207,7 +211,7 @@ export class AllProductsListComponent {
     let max = this.maxPrices.value !== null ? this.minPrices.value : '';
 
     this.productService.getProductShearchedGoodDeals( this.reductions.value, this.categories.value , this.brands.value, min , max).subscribe({
-      next: (data: any) => {
+      next: (data: IProduct[]) => {
         this.productsList = data;
       },
       error: (err) => {
@@ -219,7 +223,7 @@ export class AllProductsListComponent {
   /** Affiche les meilleures ventes */
   getBestSold() {
     this.productService.getBestSold().subscribe({
-      next: (data: any) => {
+      next: (data: IProduct[]) => {
         this.productsList = data;
       },
       error: (err) => {
@@ -234,7 +238,7 @@ export class AllProductsListComponent {
     let max = this.maxPrices.value !== null ? this.minPrices.value : '';
 
     this.productService.getProductShearchedBestSold( this.reductions.value, this.categories.value , this.brands.value, min , max).subscribe({
-      next: (data: any) => {
+      next: (data: IProduct[]) => {
         this.productsList = data;
       },
       error: (err) => {
@@ -280,7 +284,7 @@ export class AllProductsListComponent {
     } else {
       this.getProductShearched();
     }
-    this.data();
+    this.dataSelected();
 
   }
 
@@ -302,73 +306,26 @@ export class AllProductsListComponent {
     });
   }
 
-  // openModalComponent() {
-  //   this.modalService.open(ModalContentComponent, {
-  //     animations: {
-  //       modal: {
-  //         enter: 'enter-scaling 0.3s ease-out',
-  //         leave: 'fade-out 0.1s forwards',
-  //       },
-  //       overlay: {
-  //         enter: 'fade-in 1s',
-  //         leave: 'fade-out 0.3s forwards',
-  //       },
-  //     },
-  //     size: {
-  //       width: '40rem',
-  //     },
-  //   });
-  // }
+
 
   close() {
     this.modalService.close();
   }
 
-  /** Met le formulaire avec ses valeurs par défaut */
-  setDefaultValue() {
-    this.filtrerForm.setValue({
-      reductions:'',
-      brands: '',
-      categories: '',
+  /** Met Min et Max avec leur valeur par défaut */
+  setMinMaxDefaultValue() {      
+    this.filtrerForm.patchValue({
       minPrice: null,
       maxPrice: null
     });
   }
+  
 
 
   onReset(): void {
     this.submitted = false;
-    this.setDefaultValue();
+    this.filtrerForm.reset();
     this.getdatas();
   }
 
-  // getAllSearchDetail(data: any){
-  //   this.reductionList = [...new Set(data
-  //     .map((e: any) => e.reduction)
-  //     .filter((r: any) => r !== "")
-  //     .sort()
-  //   )];
-
-  //   this.brandsList = [...new Set(data
-  //     .map((e:any) => e.brands)          
-  //     .filter((r: any) => r !== "")
-  //     .sort()
-  //   )];
-
-  //   this.categoriesList = [...new Set(data
-  //     .map((e:any) => e.category)
-  //     .filter((r: any) => r !== "")
-  //     .sort()
-  //   )];
-
-  // }
-
-  onSubmit() {
-
-    this.submitted = true;
-
-    if (this.filtrerForm.invalid) {
-      return;
-    }
-  }
 }

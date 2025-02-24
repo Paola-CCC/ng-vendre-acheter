@@ -87,22 +87,10 @@ export class LoginComponent  {
     return this.profilePicture.setValue('')
   }
   
-  setDefaultValue() { 
-    // this.registerForm.setValue({
-    //   username:'',
-    //   email: '',
-    //   password: ''
-    // });
-  }
-  
-
   onReset(): void {
     this.submitted = false;
     this.registerForm.reset();
   }
-
-
-
 
   onSubmit(){
 

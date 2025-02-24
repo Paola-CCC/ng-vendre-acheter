@@ -8,7 +8,7 @@
       <h2>Filtrer</h2>
     </div>
     <div class="content">
-        <form [formGroup]="filtrerForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="filtrerForm">
 
           <div class="form-group">
             <span>Prix</span>
@@ -26,7 +26,12 @@
               placeholder="900"
               max="0" 
             />
+
+            <button class="trash" (click)="setMinMaxDefaultValue()">
+              <i class="fa-solid fa-trash fa-sm" style="color:dimgray"  ></i>
+            </button>
             </div>
+
 
           </div>
         
@@ -42,13 +47,7 @@
                 <input 
                   type="radio" 
                   formControlName="reductions" 
-                  [value]="reduction"
-                  [checked]="reductions.value === reduction + ''"
-                  [ngStyle]="{
-                    'border': reductions.value === reduction + '' ? '2px solid #0056b3' : '2px solid ##939393',
-                    'backgroundColor':  reductions.value === reduction + '' ? '##939393' : null,
-                    'boxShadow': reductions.value === reduction + '' ? '0 0 0 4px rgba(0, 123, 255, 0.2)' : null
-                  }"
+                  [value]="reduction + ''"
       
               />
                 {{ reduction }}%
@@ -143,7 +142,7 @@
 
   <div class="selected-sorting">
     @for(listValues of listSelected; track listValues){
-        <span>{{listValues}} </span>
+        <span [innerHTML]="listValues"> </span>
     }
   </div>
 

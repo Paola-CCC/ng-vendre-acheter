@@ -1,27 +1,36 @@
 import { NgClass } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { ProductService } from '@features/product/services/product.service';
+import { ModalService } from '@shared/components/modal/modal.service';
+import { RouterLink } from '@angular/router';
+import { ICategory, ICriterias, IProduct } from '@features/product/interfaces/product';
 
 @Component({
   selector: 'app-product-add',
   standalone: true,
-  imports: [ReactiveFormsModule, JsonPipe , ButtonComponent],
+  imports: [ReactiveFormsModule, ButtonComponent, RouterLink],
   templateUrl: './product-add.component.html',
   styleUrl: './product-add.component.scss'
 })
 export class ProductAddComponent implements OnInit{
 
+
+    @ViewChild('viewRef', { static: true, read: ViewContainerRef })
+    vcr!: ViewContainerRef;
+  
+
   addProductForm : FormGroup = this.fb.nonNullable.group({
-    productName: ['' , Validators.required],
+    title: ['' , Validators.required],
     description: ['' , Validators.required],
-    brandName: [''],
+    brands: [''],
     price: ['' , Validators.required],
     category: ['' , Validators.required],
+    reduction: null,
     tags: this.fb.array([]),
-    thumbnailUpload: [{ value: '', disabled: false }, Validators.required]
+    imgs_url: [{ value: '', disabled: false }, Validators.required]
   })
 
   userId: string = '';
@@ -40,18 +49,24 @@ export class ProductAddComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private productService: ProductService
+    private productService: ProductService,
+    private modalService : ModalService
   ) {}
 
-  get thumbnailUpload(): any {
-    return this.addProductForm.get('thumbnailUpload');
+  get imgs_url(): any {
+    return this.addProductForm.get('imgs_url');
+  }
+
+
+  get tags() {
+    return this.addProductForm.controls["tags"] as FormArray;
   }
 
   ngOnInit(): void {
     this.productService.getAllCriterias().subscribe({
-      next: (data: any) => {
-        this.categoriesList = data.categories.map((e:any) => ({
-          label: e.label,
+      next: (data: ICriterias) => {
+        this.categoriesList = data.categories.map((e: ICategory) => ({
+          label: e.title,
           slug: e.slug
         }));
       },
@@ -61,16 +76,24 @@ export class ProductAddComponent implements OnInit{
       })
   }
 
-  onSubmit() {
+  onSubmit(viewHtml:TemplateRef<Element> ) {
     if (this.addProductForm.valid) {
-      console.log('Produit ajouté:', this.addProductForm.value);
-    } else {
-      console.log('Formulaire invalide');
-    }
-  }
+        this.productService.addProduct(this.addProductForm.value).subscribe({
+          next:(data: IProduct) => {
+            if (data){
+              this.openModalTemplate(viewHtml);
+              this.addProductForm.reset();
+            } 
+          },
+          error:(error) => {
+            console.log('Error ', error);
+            
+          }
+        })
 
-  get tags() {
-    return this.addProductForm.controls["tags"] as FormArray;
+    } else {
+      console.error('Formulaire invalide');
+    }
   }
 
 
@@ -87,6 +110,8 @@ export class ProductAddComponent implements OnInit{
       this.valueTags.nativeElement.value = '';
     }
   }
+
+
   deleteTags(lessonIndex: number) {
     this.tags.removeAt(lessonIndex);
   }
@@ -110,8 +135,31 @@ export class ProductAddComponent implements OnInit{
     }
   }
 
-  public cleanThumbnailUpload(){
+  public cleanImgsUrl(){
     this.previewImageFile = '';
-    return this.thumbnailUpload.setValue('')
+    return this.imgs_url.setValue('')
+  }
+
+  public cleanForm(){
+    this.addProductForm.reset();
+    this.cleanImgsUrl()  
+  }
+
+
+  public openModalTemplate(view: TemplateRef<Element>) {
+    this.modalService.open(this.vcr, view, {
+      animations: {
+        modal: {
+          enter: 'enter-slide-down 0.8s',
+        },
+        overlay: {
+          enter: 'fade-in 0.8s',
+          leave: 'fade-out 0.3s forwards',
+        },
+      },
+      size: {
+        width: '40rem',
+      },
+    });
   }
 }

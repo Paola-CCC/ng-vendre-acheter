@@ -4,6 +4,7 @@ import { ButtonComponent } from '../button/button.component';
 import { Router, RouterLink } from '@angular/router';
 import { FavorisStorageService } from '@shared/services/favoris-storage/favoris-storage.service';
 import { ProductService } from '@features/product/services/product.service';
+import { IProduct } from '@features/product/interfaces/product';
 
 @Component({
   selector: 'app-card',
@@ -15,7 +16,7 @@ import { ProductService } from '@features/product/services/product.service';
 })
 export class CardComponent implements OnInit, AfterViewInit{
 
-  @Input({required: false}) id: number | null = null;
+  @Input({required: false}) id: string |number | null = null;
   @Input({required: false}) type:string = '';
   @Input({required: false}) imgSrc:string = '';
   @Input({required: false}) title:string = '';
@@ -26,7 +27,7 @@ export class CardComponent implements OnInit, AfterViewInit{
   @Input({required: false}) reductionPercentage: number| null = null;
   @Input({required: false}) categoryName: string | undefined = "";
   
-  @Input({required:false}) obj = {}
+  @Input({required:false}) obj: IProduct = {} as IProduct ;
   
   @ViewChild("heartRef") heartRef?: ElementRef<HTMLElement>;
 

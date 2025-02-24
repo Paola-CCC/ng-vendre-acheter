@@ -6,6 +6,7 @@ import { ProductService } from '@features/product/services/product.service';
 import { CardComponent } from '@shared/components/card/card.component';
 import { SwiperContainer } from 'swiper/element';
 import { faker } from '@faker-js/faker';
+import { ICategory, IProduct, ISavingOptions } from '@features/product/interfaces/product';
 
 
 @Component({
@@ -77,7 +78,7 @@ export class HomeComponent implements OnInit {
 
   getCategories(): void {
     this.productService.getAllCategories().subscribe({
-      next: (data: any) => {
+      next: (data: ICategory[]) => {
         this.categoriesList = data;
       },
       error: (err) => {
@@ -88,15 +89,7 @@ export class HomeComponent implements OnInit {
 
   getBestSold(): void {
     this.productService.getBestSold().subscribe({
-      next: (data: any) => {
-        let datas = data.map((obj : any) => {
-          if (Object.keys(obj).includes('imgSrc')) {
-            return { ...obj, imgSrc: faker.image.url() };
-          }
-          return obj;
-        });
-          
-
+      next: (datas: IProduct[]) => {
         this.bestSoldProduct = datas;
       },
       error: (err) => {
@@ -107,13 +100,8 @@ export class HomeComponent implements OnInit {
 
   getGoodDealsProduct(): void {
     this.productService.getGoodDealsProduct().subscribe({
-      next: (data: any) => {
-        this.goodDealsProduct = data.map((obj : any) => {
-          if (Object.keys(obj).includes('imgSrc')) {
-            return { ...obj, imgSrc: faker.image.url() };
-          }
-          return obj;
-        });
+      next: (data: IProduct[]) => {
+        this.goodDealsProduct = data
       },
       error: (err) => {
         console.error('Error fetching goodDealsProduct:', err);
@@ -123,7 +111,7 @@ export class HomeComponent implements OnInit {
 
   getSavingOptions(): void {
     this.productService.getSavingOptions().subscribe({
-      next: (data: any) => {
+      next: (data: ISavingOptions[]) => {
         
         this.savingOptions = data;
       },

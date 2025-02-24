@@ -87,13 +87,6 @@ export class RegistrationComponent {
     return this.profilePicture.setValue('')
   }
   
-  setDefaultValue() { 
-    // this.registerForm.setValue({
-    //   username:'',
-    //   email: '',
-    //   password: ''
-    // });
-  }
   
 
   onReset(): void {

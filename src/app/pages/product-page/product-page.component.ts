@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IProduct } from '@features/product/interfaces/product';
 import { ProductService } from '@features/product/services/product.service';
 import { StarsGroupComponent } from '@shared/components/stars-group/stars-group.component';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
@@ -41,7 +42,7 @@ export class ProductPageComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
 
     this.productService.getProductById(this.id).subscribe({
-      next:(data: any) => { 
+      next:(data: IProduct) => { 
         this.contentType = data ;
       },
       error: (err) => {
