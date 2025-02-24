@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '@core/auth/auth.service';
 import { FavorisStorageService } from '@shared/services/favoris-storage/favoris-storage.service';
@@ -8,7 +9,7 @@ import { LocalStorageService } from '@shared/services/local-storage/local-storag
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [  RouterModule ,NgClass  ],
+  imports: [  RouterModule ,NgClass, FormsModule  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -17,11 +18,14 @@ export class HeaderComponent implements OnInit {
   /** indique si navbar mobile est ouvert */
   mobileNavbarIsOpen: boolean = false;
   /** Id de l'utilisateur */
-  userIsLogger: boolean = true;
+  userIsLogger: boolean | null= true;
 
   user: any = {
     name: 'Lucienne'
   }
+
+  /** valeur saisie sur le searchInput */
+  searchInput: string = '';
 
   cartItemsCount: number | null = null;
 
@@ -36,6 +40,8 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userIsLogger = this.auth.isLoggedIn;    
+
     this.storageCart.getTotalQty();
     this.storageCart.totalQtyCart$.subscribe(qty => {
       this.cartItemsCount = qty;
@@ -46,16 +52,9 @@ export class HeaderComponent implements OnInit {
     })
   }
 
-  ngDoCheck() {
-    this.userIsLogger = this.auth.userIsLogged;    
-  }
 
-  logOutNow(){
-    if(localStorage.getItem('user')){
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('user');
-    }
-    
+  logOut(){
+    this.auth.logOutNow();
     this.router.navigate(['']);
     window.location.reload();
 
@@ -72,6 +71,20 @@ export class HeaderComponent implements OnInit {
     }
   };
 
+  public searchProductHeader(){
+
+    this.router.navigate(
+      ['/product'],
+      {queryParams:
+        { name: 'title', value: this.searchInput }
+      }
+    );
+    this.searchInput = '';
+
+    }
+
+  }
 
 
-}
+
+

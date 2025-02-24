@@ -35,22 +35,31 @@ header {
         position: relative;
 
         input[type="search"] {
-          background-color: rgb(246, 246, 246);
+          background-color: rgb(252, 252, 252);
           width: 100%;
-          padding: 5px 10px 5px 30px;
-          border: 1px solid rgb(232, 232, 232);
+          // padding: 5px 10px 5px 30px;
+          padding: 5px 30px 5px 10px;
+
+          border: 1px solid rgb(194, 194, 194);
           border-radius: 10px;
         }
 
         svg {
           position: absolute;
-          left: 10px;
+          right: 0px;
           top: 50%;
           transform: translateY(-50%);
-          width: 16px;
-          height: 16px;
-          fill: rgb(150, 150, 150);
-          pointer-events: none;
+          width: 10px;
+          height: 35.1px;
+          fill: rgb(194, 194, 194);
+          cursor: pointer;
+          // background-color: blue;
+          padding: 0 10px;
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px;
+          background-color: rgb(246, 246, 246);
+          border: 1px solid rgb(194, 194, 194);
+
         }
       }
     }

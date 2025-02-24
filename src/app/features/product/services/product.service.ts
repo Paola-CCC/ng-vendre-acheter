@@ -52,6 +52,19 @@ export class ProductService {
   }  
 
 
+  getProductShearchedByTitleAndDescription( 
+    title?: string,  
+  ): Observable<any> {
+
+    let params = new HttpParams();
+
+    if (title) params = params.set('q', title);
+
+    return this.http.get<any>(API + 'products',{ params });
+  }  
+
+
+
 
 
   
@@ -60,7 +73,7 @@ export class ProductService {
   } 
   
   getAllCriterias(): Observable<any> {
-    return this.http.get<any>(API + 'sheach_criterias' );
+    return this.http.get<any>(API + 'seach_criterias' );
   } 
 
   getBestSold(): Observable<any> {

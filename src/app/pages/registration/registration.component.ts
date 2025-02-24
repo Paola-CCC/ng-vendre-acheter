@@ -102,10 +102,26 @@ export class RegistrationComponent {
     this.submitted = true;
 
     if (this.registerForm.invalid) {
-      return;
+      this.authService.createUser(this.username.value, this.email.value, this.password.value, this.profilePicture.value).subscribe({
+        next:(user: any) => {
+          // console.log('data ',data)
+
+          const userDatas = {
+            userInfos: {
+              name:'tata'
+            },
+            token: 'LLL'
+          }
+
+          this.authService.saveUserInfo(userDatas.userInfos, userDatas.token)
+        },
+        error:(error) => {
+          console.error(error)
+        }
+      })
+      this.router.navigate(['/']);
     }
-
-
   }
   
 }
+

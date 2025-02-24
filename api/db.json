@@ -819,7 +819,7 @@
       ]
     }
   ],
-  "sheach_criterias": {
+  "seach_criterias": {
     
       "categories": [
         { "id": 1, "title": "Immobilier", "slug": "real-estate" },

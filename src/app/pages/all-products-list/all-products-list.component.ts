@@ -53,6 +53,8 @@ export class AllProductsListComponent {
 
   queryIsEmpty: boolean = true;
 
+  titleOrDescription: string = '';
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -105,21 +107,44 @@ export class AllProductsListComponent {
         this.brandsList = data.brands;
     
         if (this.categoriesList.length > 0) {
-          let sub = this.route.queryParams.subscribe((params: any) => {
+
+          this.route.queryParams.subscribe((params: any) => {
             if (Object.values(params).length > 0) {
               query.name = params.name;
               query.value = params.value;
             }
           });
-    
-          if (query.value !== '') {
+
+          console.log('getter S ' , this.filtrerForm.get(query.name)  );
+          
+
+
+          if (this.filtrerForm.get(query.name) && query.name !== '' && query.value !== '') {
+            // Le contrôle existe
+            this.console.log( ' YAAA ')
             this.filtrerForm.patchValue({
               [query.name]: query.value
             });
             this.getProductShearched();
-          } else {
+
+            
+          } else if (this.filtrerForm.get(query.name) === null && query.name === 'title' && query.value !== ''){
+            // Le contrôle n'existe pas
+            this.console.log( 'BOFF BOF ');
+            this.getProductShearchedHeader(query.value);
+          } else if( query.name === '' && query.value === ''){
             this.getdatas();
+
           }
+    
+          // if (query.value !== '') {
+          //   this.filtrerForm.patchValue({
+          //     [query.name]: query.value
+          //   });
+          //   this.getProductShearched();
+          // } else {
+          //   this.getdatas();
+          // }
     
           this.dataSelected();
         }
@@ -204,13 +229,10 @@ export class AllProductsListComponent {
     });
   }
 
-  /** Affiche les recherches parmis bonnes affaires */
-  getProductShearchedGoodDeals() {
+  /** Affiche les recherches issus du header titre et description */
+  getProductShearchedHeader(titleOrDescription: string) {
 
-    let min = this.minPrices.value !== null ? this.minPrices.value : '';
-    let max = this.maxPrices.value !== null ? this.minPrices.value : '';
-
-    this.productService.getProductShearchedGoodDeals( this.reductions.value, this.categories.value , this.brands.value, min , max).subscribe({
+    this.productService.getProductShearchedByTitleAndDescription(titleOrDescription).subscribe({
       next: (data: IProduct[]) => {
         this.productsList = data;
       },
@@ -219,6 +241,23 @@ export class AllProductsListComponent {
       }
     });
   }
+
+
+    /** Affiche les recherches parmis bonnes affaires */
+    getProductShearchedGoodDeals() {
+
+      let min = this.minPrices.value !== null ? this.minPrices.value : '';
+      let max = this.maxPrices.value !== null ? this.minPrices.value : '';
+  
+      this.productService.getProductShearchedGoodDeals( this.reductions.value, this.categories.value , this.brands.value, min , max).subscribe({
+        next: (data: IProduct[]) => {
+          this.productsList = data;
+        },
+        error: (err) => {
+          console.error('Error fetching getProductShearchedGoodDealst:', err);
+        }
+      });
+    }
 
   /** Affiche les meilleures ventes */
   getBestSold() {

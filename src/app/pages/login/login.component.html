@@ -1,6 +1,6 @@
 <div class="register-container">
     <h3> Connexion </h3>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     
       <div class="form-group">
         <label for="email">Adresse Email</label>
@@ -10,11 +10,11 @@
         class="form-control" 
         id="email" 
         name="email" 
-        [ngClass]="{ 'is-invalid': submitted && controlRegister['email'].errors || controlRegister['email'].touched && controlRegister['email'].invalid }"
+        [ngClass]="{ 'is-invalid': submitted && loginFormControls['email'].errors || loginFormControls['email'].touched && loginFormControls['email'].invalid }"
         >
-        <ng-template [ngIf]="controlRegister['email'].invalid" class="alert alert-danger">
-            <div *ngIf="!submitted && controlRegister['email'].touched && controlRegister['email'].invalid" [ngClass]= "'error'">L' Email n'est pas valide</div>
-            <div *ngIf="submitted && controlRegister['email'].errors && controlRegister['email'].errors['required'] ">L' Email requis.</div>
+        <ng-template [ngIf]="loginFormControls['email'].invalid" class="alert alert-danger">
+            <div *ngIf="!submitted && loginFormControls['email'].touched && loginFormControls['email'].invalid" [ngClass]= "'error'">L' Email n'est pas valide</div>
+            <div *ngIf="submitted && loginFormControls['email'].errors && loginFormControls['email'].errors['required'] ">L' Email requis.</div>
         </ng-template>
   
       </div>
@@ -26,11 +26,11 @@
           class="form-control" 
           id="password" 
           name="password"
-          [ngClass]="{ 'is-invalid': submitted && controlRegister['password'].errors || controlRegister['password'].touched && controlRegister['password'].invalid }"
+          [ngClass]="{ 'is-invalid': submitted && loginFormControls['password'].errors || loginFormControls['password'].touched && loginFormControls['password'].invalid }"
         >
-        <ng-template [ngIf]="controlRegister['password'].invalid" class="alert alert-danger">
-            <div *ngIf="!submitted && controlRegister['email'].touched && controlRegister['password'].invalid">Le mot de passe n'est pas valide</div>
-            <div *ngIf="submitted && controlRegister['password']">Le Mot de passe requis.</div>
+        <ng-template [ngIf]="loginFormControls['password'].invalid" class="alert alert-danger">
+            <div *ngIf="!submitted && loginFormControls['email'].touched && loginFormControls['password'].invalid">Le mot de passe n'est pas valide</div>
+            <div *ngIf="submitted && loginFormControls['password']">Le Mot de passe requis.</div>
   
         </ng-template>
       </div>

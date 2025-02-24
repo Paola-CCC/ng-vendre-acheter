@@ -14,12 +14,9 @@ import { TokenStorageService } from '@shared/services/token/token-storage.servic
   styleUrl: './login.component.scss'
 })
 export class LoginComponent  {
-  registerForm = this.fb.group({
-    username: ['' , Validators.required],
+  loginForm = this.fb.group({
     email: ['' , Validators.required],
     password: ['' , Validators.required],
-    profilePicture: ['' , Validators.required],
-
   })
   /** indique si le formulaire a été envoyé ou non  */
   submitted : boolean = false;
@@ -42,65 +39,52 @@ export class LoginComponent  {
     private router: Router,
     ) {}
 
-  get username (): any {
-    return this.registerForm.get('username') ;
-  }
 
   get email (): any {
-    return this.registerForm.get('email') ;
+    return this.loginForm.get('email') ;
   }
 
   get password (): any {
-    return this.registerForm.get('password');
+    return this.loginForm.get('password');
   }
 
-  get profilePicture (): any {
-    return this.registerForm.get('profilePicture');
-  }
-
-  get controlRegister() : { [key: string]: AbstractControl } {
-    return this.registerForm.controls;
+  get loginFormControls() : { [key: string]: AbstractControl } {
+    return this.loginForm.controls;
   }
 
 
   ngOnInit(): void {}
   
 
-  public onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-
-    if (file) {
-      this.file = file;
-      this.fileName = this.file.name;
-      const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-        this.previewImageFile = e.target.result;
-      };
-
-      reader.readAsDataURL(this.file);
-    }
-  }
-
-  public cleanThumbnailUpload(){
-    this.previewImageFile = '';
-    return this.profilePicture.setValue('')
-  }
-  
   onReset(): void {
     this.submitted = false;
-    this.registerForm.reset();
+    this.loginForm.reset();
   }
 
   onSubmit(){
 
     this.submitted = true;
 
-    if (this.registerForm.invalid) {
-      return;
+    if (this.loginForm.invalid) {
+      this.authService.loginUser(this.email.value, this.password.value).subscribe({
+        next:(data: any) => {
+          console.log('data ',data)
+
+          const userDatas = {
+            userInfos: {
+              name:'tata'
+            },
+            token: 'LLL'
+          }
+
+          this.authService.saveUserInfo(userDatas.userInfos, userDatas.token);
+        },
+        error:(error) => {
+          console.error(error)
+        }
+      })
+      this.router.navigate(['/']);
     }
-
-
   }
   
 }
