@@ -113,14 +113,10 @@ export class AllProductsListComponent {
               query.name = params.name;
               query.value = params.value;
             }
-          });
-
-          console.log('getter S ' , this.filtrerForm.get(query.name)  );
-          
+          });          
 
 
           if (this.filtrerForm.get(query.name) && query.name !== '' && query.value !== '') {
-            // Le contrôle existe
             this.console.log( ' YAAA ')
             this.filtrerForm.patchValue({
               [query.name]: query.value
@@ -129,23 +125,13 @@ export class AllProductsListComponent {
 
             
           } else if (this.filtrerForm.get(query.name) === null && query.name === 'title' && query.value !== ''){
-            // Le contrôle n'existe pas
             this.console.log( 'BOFF BOF ');
             this.getProductShearchedHeader(query.value);
           } else if( query.name === '' && query.value === ''){
             this.getdatas();
 
           }
-    
-          // if (query.value !== '') {
-          //   this.filtrerForm.patchValue({
-          //     [query.name]: query.value
-          //   });
-          //   this.getProductShearched();
-          // } else {
-          //   this.getdatas();
-          // }
-    
+
           this.dataSelected();
         }
       },
