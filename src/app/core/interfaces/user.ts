@@ -4,6 +4,11 @@ export interface IUser {
     email?: string,
     username?: string,
     fullName?: string,
-    profilePicture?: string
+    likes:number;
+    profilePicture?: string,
+    status?: string,
+    reviewsCount?: number,
+    adCount?: number,
+
 
 }

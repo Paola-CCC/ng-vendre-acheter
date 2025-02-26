@@ -135,39 +135,51 @@
       "price": 256,
       "title": "Nike",
       "description": "La conception AF1 confortable et intemporelle de ce classique revisité associe des tons neutres riches à des détails hivernaux. Tissu CORDURA résistant, notamment à l'abrasion, pour un look et une sensation de chaleur qui surmonteront l'épreuve du temps et des intempéries.",
-      "category": "chaussures",
+      "category": "shoes",
       "tags": [],
       "brands": "Nike",
-      "reduction": "",
+      "reduction": 25,
       "imgs_url": [
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg",
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg",
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg",
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
       ],
+      "seller": {
+        "id": 105,
+        "status": "pro",
+        "profilePicture": "https://resize.prod.femina.ladmedia.fr/rblr/652,438/img/var/2024-02/beyoncepso.jpg",
+        "likes": 3,
+        "reviewsCount": 3,
+        "username": "emmac",
+        "fullName": "Emma Wilson",
+        "adCount": 0
+      },
       "comments":[
-        {
-          "id": 1,
-          "body": "This is some awesome thinking!",
-          "postId": 1,
-          "likes": 3,
-          "user": {
-            "id": 105,
-            "username": "emmac",
-            "fullName": "Emma Wilson"
+          {
+            "id": 1,
+            "body": "This is some awesome thinking!",
+            "postId": 1,
+            "likes": 3,
+            "date": "10-06-1995",
+            "user": {
+              "id": 105,
+              "username": "emmac",
+              "fullName": "Emma Wilson"
+            }
+          },
+          {
+            "id": 2,
+            "body": "What terrific math skills you're showing!",
+            "postId": 1,
+            "likes": 4,
+            "date": "15-10-1995",
+            "user": {
+              "id": 183,
+              "username": "cameron",
+              "fullName": "Cameron Perez"
+            }
           }
-        },
-        {
-          "id": 2,
-          "body": "What terrific math skills you're showing!",
-          "postId": 1,
-          "likes": 4,
-          "user": {
-            "id": 183,
-            "username": "cameronp",
-            "fullName": "Cameron Perez"
-          }
-        }
       ]
     },
     {
@@ -175,10 +187,11 @@
       "price": 45,
       "title": "Adidas",
       "description": "Adidas Superstar, noir et blanc",
-      "category": "chaussures",
+      "category": "shoes",
       "tags": [""],
       "brands": "Adidas",
-      "reduction": "",
+      "reduction": null,
+      "date": "10-06-1995",
       "imgs_url": [
         "https://img01.ztat.net/article/spp-media-p1/64737e3beef63a83aa88bf922efe5658/6bc277fb181e4f3298a3caf4c6bc2eac.jpg?imwidth=1800",
         "https://img01.ztat.net/article/spp-media-p1/7a52e21b516736b79bb83dc423e7b61d/cd6180be0bff456489710c8823a4acbc.jpg?imwidth=1800&filter=packshot",
@@ -213,7 +226,7 @@
     {
       "id": 3,
       "price": 60,
-      "title": "Puma chaussures",
+      "title": "Adidas chaussures",
       "description": "Chaussure Samba OG",
       "category": "chaussures",
       "tags": [],
@@ -437,7 +450,7 @@
       "price": 256,
       "title": "Nike",
       "description": "La conception AF1 confortable et intemporelle de ce classique revisité associe des tons neutres riches à des détails hivernaux. Tissu CORDURA résistant, notamment à l'abrasion, pour un look et une sensation de chaleur qui surmonteront l'épreuve du temps et des intempéries.",
-      "category": "chaussures",
+      "category": "shoes",
       "tags": [],
       "brands": "Nike",
       "reduction": 25,
@@ -447,29 +460,31 @@
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg",
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
       ],
-       "comments":[
-        {
-          "id": 1,
-          "body": "This is some awesome thinking!",
-          "postId": 1,
-          "likes": 3,
-          "user": {
-            "id": 105,
-            "username": "emmac",
-            "fullName": "Emma Wilson"
+      "comments":[
+          {
+            "id": 1,
+            "body": "This is some awesome thinking!",
+            "postId": 1,
+            "likes": 3,
+            "date": "10-06-1995",
+            "user": {
+              "id": 105,
+              "username": "emmac",
+              "fullName": "Emma Wilson"
+            }
+          },
+          {
+            "id": 2,
+            "body": "What terrific math skills you're showing!",
+            "postId": 1,
+            "likes": 4,
+            "date": "15-10-1995",
+            "user": {
+              "id": 183,
+              "username": "cameron",
+              "fullName": "Cameron Perez"
+            }
           }
-        },
-        {
-          "id": 2,
-          "body": "What terrific math skills you're showing!",
-          "postId": 1,
-          "likes": 4,
-          "user": {
-            "id": 183,
-            "username": "cameronp",
-            "fullName": "Cameron Perez"
-          }
-        }
       ]
     },
     {
@@ -477,10 +492,11 @@
       "price": 45,
       "title": "Adidas",
       "description": "Adidas Superstar, noir et blanc",
-      "category": "chaussures",
+      "category": "shoes",
       "tags": [""],
       "brands": "Adidas",
-      "reduction": 25,
+      "reduction": null,
+      "date": "10-06-1995",
       "imgs_url": [
         "https://img01.ztat.net/article/spp-media-p1/64737e3beef63a83aa88bf922efe5658/6bc277fb181e4f3298a3caf4c6bc2eac.jpg?imwidth=1800",
         "https://img01.ztat.net/article/spp-media-p1/7a52e21b516736b79bb83dc423e7b61d/cd6180be0bff456489710c8823a4acbc.jpg?imwidth=1800&filter=packshot",
@@ -515,7 +531,7 @@
     {
       "id": 3,
       "price": 60,
-      "title": "Puma chaussures",
+      "title": "Adidas chaussures",
       "description": "Chaussure Samba OG",
       "category": "chaussures",
       "tags": [],
@@ -749,6 +765,16 @@
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg",
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
       ],
+      "seller": {
+        "id": 105,
+        "status": "pro",
+        "profilePicture": "https://resize.prod.femina.ladmedia.fr/rblr/652,438/img/var/2024-02/beyoncepso.jpg",
+        "likes": 3,
+        "reviewsCount": 3,
+        "username": "emmac",
+        "fullName": "Emma Wilson",
+        "adCount": 0
+      },
       "comments":[
           {
             "id": 1,
@@ -820,7 +846,7 @@
     {
       "id": 3,
       "price": 60,
-      "title": "Puma chaussures",
+      "title": "Adidas chaussures",
       "description": "Chaussure Samba OG",
       "category": "shoes",
       "tags": [],

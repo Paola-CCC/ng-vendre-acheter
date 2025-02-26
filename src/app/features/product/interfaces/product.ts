@@ -11,7 +11,7 @@ export interface IProduct {
   reduction?: number;
   imgs_url: string[];
   comments?: IComments[];
-  author: IUser
+  seller: IUser,
 }
 
 export interface IComments {

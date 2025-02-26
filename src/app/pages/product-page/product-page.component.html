@@ -36,10 +36,14 @@
   
             <div class="product-price">                
               @if (product.reduction) {
-                <p class="new-price">{{product.price}} €</p>
-                <p class="last-price">Prix d'origine : <span>{{product.price}} €</span></p> 
+                <p class="new-price">{{getReductionPrice( product.price, product.reduction)}}    €</p>
+                <p class="last-price">
+                  Prix d'origine : 
+                  <span>{{product.price}} €  </span> 
+                  <strong>-{{product.reduction}}  % </strong>
+                </p> 
               } @else {
-                <p class="default-price">{{product.price}} €</p>
+                <p class="new-price">{{product.price}} €</p>
 
               }
             </div>
@@ -86,6 +90,45 @@
                   <p> Il n'y a aucun avis pour le moment</p>
                 }
               </div>
+
+
+
+              @if (product.seller) {
+                <div class="author-post">
+
+                  <div class="author-img">
+                    <img src="{{product.seller.profilePicture}}">
+                  </div>
+  
+                  <div class="coco">
+                    <div>
+                      <h3> 
+                          <span>{{product.seller.username}} | </span>
+                          <app-stars-group 
+                          [note]="product.seller.likes ? product.seller.likes : 0"
+                           [className]="'fa-sm'"
+                          >
+                          </app-stars-group>
+                      </h3>
+  
+               
+  
+                      <span> {{product.seller.status}}</span>
+  
+                    </div>
+                    <p> {{product.seller.adCount}} annonces
+  
+                      
+                    </p>
+  
+                    <!-- <button> Message</button> -->
+  
+                  </div>
+  
+  
+                </div>
+              }
+
             </div>
           </div>
     </div>

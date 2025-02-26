@@ -53,7 +53,10 @@ export class ProductPageComponent implements OnInit {
     })
   }
 
-  
+  getReductionPrice(prixInitial: number, pourcentage: number){
+    return this.productService.calculerReductionDetail(prixInitial, pourcentage);
+  }
+
 
   updatePreview(item: any){
     this.imageSrc.nativeElement.src = item;
