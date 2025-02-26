@@ -9,6 +9,10 @@ export interface IUser {
     status?: string,
     reviewsCount?: number,
     adCount?: number,
-
-
+    gender?: string,
+    image?: string,
+    accessToken?: string,
+    refreshToken?:string,
+    firstName?: string,
+    lastName?: string
 }

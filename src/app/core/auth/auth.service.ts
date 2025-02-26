@@ -18,7 +18,7 @@ export class AuthService {
 
 
   get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('access_token');
+    let authToken = localStorage.getItem(this.TOKEN_KEY);
     return authToken !== null ?  true : false;
   }
 
@@ -32,13 +32,10 @@ export class AuthService {
   }
 
   loginUser(email: string, password: string){
-    return this.http.post<any>(API + 'login', {
-      email: email,
-      password:password
-    }, {
-      headers: {
-        'Authorization': `Bearer ${this.getToken()}` 
-      }
+    return this.http.post<any>('https://dummyjson.com/auth/login', {
+      username: email,
+      password:password,
+      expiresInMins: 30
     });
   }
 
@@ -49,7 +46,7 @@ export class AuthService {
 
   public getUser() {
     const data = localStorage.getItem(this.USER_DATA);
-    return data ? JSON.parse(data) : [];
+    return data ? JSON.parse(data) : {};
   }
 
   public getToken() {
