@@ -15,8 +15,9 @@ import { TokenStorageService } from '@shared/services/token/token-storage.servic
 })
 export class LoginComponent  {
   loginForm = this.fb.group({
-    email: ['' , Validators.required],
-    password: ['' , Validators.required],
+    email: [{value:'emilys@oulook.com' , disabled:true}],
+    username: [{value:'emilys' , disabled:true}],
+    password: [{value:'emilyspass' , disabled:true} ],
   })
   /** indique si le formulaire a été envoyé ou non  */
   submitted : boolean = false;
@@ -44,6 +45,10 @@ export class LoginComponent  {
     return this.loginForm.get('email') ;
   }
 
+  get username (): any {
+    return this.loginForm.get('username');
+  }
+
   get password (): any {
     return this.loginForm.get('password');
   }
@@ -65,26 +70,21 @@ export class LoginComponent  {
 
     this.submitted = true;
 
-    if (this.loginForm.invalid) {
-      this.authService.loginUser(this.email.value, this.password.value).subscribe({
+      this.authService.loginUser(this.username.value, this.password.value).subscribe({
         next:(data: any) => {
-          console.log('data ',data)
 
-          const userDatas = {
-            userInfos: {
-              name:'tata'
-            },
-            token: 'LLL'
+
+          if( data.accessToken){
+            this.authService.saveUserInfo(data, data.accessToken);
+            this.router.navigate(['/']);
+
           }
-
-          this.authService.saveUserInfo(userDatas.userInfos, userDatas.token);
         },
         error:(error) => {
           console.error(error)
         }
       })
-      this.router.navigate(['/']);
-    }
+    
   }
   
 }

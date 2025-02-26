@@ -23,9 +23,11 @@ export class ProductPageComponent implements OnInit {
 
   chosenQuantity: number = 0; 
 
-  contentType : any ;
+  product: IProduct = {} as IProduct ;
 
-  cartStorage : any[] = [];
+  cartStorage: any[] = [];
+
+  object = Object
 
   /** id du produit */
   id: string = '';
@@ -43,7 +45,7 @@ export class ProductPageComponent implements OnInit {
 
     this.productService.getProductById(this.id).subscribe({
       next:(data: IProduct) => { 
-        this.contentType = data ;
+        this.product = data ;
       },
       error: (err) => {
         console.error('Error fetching goodDealsProduct:', err);
@@ -51,12 +53,17 @@ export class ProductPageComponent implements OnInit {
     })
   }
 
+  getReductionPrice(prixInitial: number, pourcentage: number){
+    return this.productService.calculerReductionDetail(prixInitial, pourcentage);
+  }
+
+
   updatePreview(item: any){
     this.imageSrc.nativeElement.src = item;
   }
 
   addToCart() {
-    this.localStorageService.saveData(this.contentType);
+    this.localStorageService.saveData(this.product);
   }
 
   chooseQuantity(event: any){

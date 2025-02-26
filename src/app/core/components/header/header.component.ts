@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '@core/auth/auth.service';
+import { IUser } from '@core/interfaces/user';
 import { FavorisStorageService } from '@shared/services/favoris-storage/favoris-storage.service';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 
@@ -20,10 +21,7 @@ export class HeaderComponent implements OnInit {
   /** Id de l'utilisateur */
   userIsLogger: boolean | null= true;
 
-  user: any = {
-    name: 'Lucienne'
-  }
-
+  user: IUser = {} as IUser;
   /** valeur saisie sur le searchInput */
   searchInput: string = '';
 
@@ -32,7 +30,7 @@ export class HeaderComponent implements OnInit {
   favorisCount: number | null = null;
 
   constructor(
-    private auth: AuthService,
+    private authService: AuthService,
     private router: Router,
     private storageCart: LocalStorageService,
     private storageFavoris: FavorisStorageService
@@ -40,7 +38,9 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userIsLogger = this.auth.isLoggedIn;    
+    this.userIsLogger = this.authService.isLoggedIn;   
+    
+    this.user = this.authService.getUser();
 
     this.storageCart.getTotalQty();
     this.storageCart.totalQtyCart$.subscribe(qty => {
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
 
 
   logOut(){
-    this.auth.logOutNow();
+    this.authService.logOutNow();
     this.router.navigate(['']);
     window.location.reload();
 
