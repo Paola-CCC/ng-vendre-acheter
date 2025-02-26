@@ -1,53 +1,91 @@
 <section class="container-product">
     <div class="card-wrapper">
-          <div 
-          class="product-imgs" 
-          [ngClass]="{'full-imgs': (contentType.imgs_url).length > 1}"
-           >
-            <div class="img-display">
-              <div class="img-showcase">
-                <img
-                  #imageSrc
-                  src="{{contentType.imgs_url[0]}}"
-                  alt="shoes image"
-                />
+      <div 
+      class="product-imgs" 
+      [ngClass]="{'full-imgs': (product.imgs_url.length ) > 1}"
+    >
+      <div class="img-display">
+        <div class="img-showcase">
+          <img
+            #imageSrc
+            [src]="product.imgs_url[0] || 'assets/default-image.jpg'"
+            alt="shoes image"
+          />
+        </div>
+      </div>
+    
+      @if (product.imgs_url.length > 1) {
+        <div class="img-select">
+          @for (item of product.imgs_url; track item) {
+            <div class="img-item">
+              <div (click)="updatePreview(item)">
+                <img [src]="item" alt="product image" />
               </div>
-            </div>
-            @if((contentType.imgs_url).length > 1){
-              <div class="img-select">
-                @for (item of contentType.imgs_url; track item) {
-                  <div class="img-item">
-                      <div (click)="updatePreview(item)" >
-                        <img src={{item}}  />
-                      </div>
-                  </div>             
-                  
-                  }
-              </div>
-            }
-
-          </div>
+            </div>             
+          }
+        </div>
+      }
+    </div>
+    
           <div class="product-content">
-            <h2 class="product-title">{{contentType.title}}</h2>
+            <h2 class="product-title">{{product.title}}</h2>
             <div class="product-rating">
               <app-stars-group [note]="productNote ? productNote : 0" ></app-stars-group>
 
             </div>
   
             <div class="product-price">                
-              <p class="new-price">{{contentType.price}} €</p>
-              <p class="last-price">Prix d'origine : <span>{{contentType.price}} €</span></p> 
+              @if (product.reduction) {
+                <p class="new-price">{{product.price}} €</p>
+                <p class="last-price">Prix d'origine : <span>{{product.price}} €</span></p> 
+              } @else {
+                <p class="default-price">{{product.price}} €</p>
+
+              }
             </div>
   
             <div class="product-detail">
               <h2>Description:</h2>
-              <p> {{ contentType.description}} </p>
+              <p> {{ product.description}} </p>
             </div>
   
             <div class="purchase-info">
               <button type="button" class="btn" (click)="addToCart()">
                 Ajouter au panier 
               </button>
+            </div>
+
+            <div class="product-review">
+
+              <h2>Avis:</h2>
+
+              <div class="reviews-list">
+
+                @for (review of product.comments; track $index) {
+                  <div class="review-container">
+
+                    <div class="review-header">
+  
+                      <p> 
+                        <span class="username"> {{review.user.username}} | 
+                          <app-stars-group [note]="review.likes ? review.likes : 0" [className]="'fa-xs'" ></app-stars-group> 
+
+                        </span>
+                        <span class="date">{{review.date}}</span>
+
+                      </p>
+                      
+                    </div>
+    
+                    <div class="review-body">
+                      {{review.body}}
+                    </div>
+    
+                  </div>
+                } @empty {
+                  <p> Il n'y a aucun avis pour le moment</p>
+                }
+              </div>
             </div>
           </div>
     </div>

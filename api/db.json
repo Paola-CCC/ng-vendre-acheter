@@ -144,6 +144,30 @@
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg",
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg",
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
+      ],
+      "comments":[
+        {
+          "id": 1,
+          "body": "This is some awesome thinking!",
+          "postId": 1,
+          "likes": 3,
+          "user": {
+            "id": 105,
+            "username": "emmac",
+            "fullName": "Emma Wilson"
+          }
+        },
+        {
+          "id": 2,
+          "body": "What terrific math skills you're showing!",
+          "postId": 1,
+          "likes": 4,
+          "user": {
+            "id": 183,
+            "username": "cameronp",
+            "fullName": "Cameron Perez"
+          }
+        }
       ]
     },
     {
@@ -160,6 +184,30 @@
         "https://img01.ztat.net/article/spp-media-p1/7a52e21b516736b79bb83dc423e7b61d/cd6180be0bff456489710c8823a4acbc.jpg?imwidth=1800&filter=packshot",
         "https://img01.ztat.net/article/spp-media-p1/1b820bc736d23e899c33460475a286df/36cca3cdaca24819880215d6b5eea6ad.jpg?imwidth=1800",
         "https://img01.ztat.net/article/spp-media-p1/4570b02bed773e8995688cbbcdcc470d/00d77cb4b413450ea3f145db21e8b509.jpg?imwidth=1800"
+      ],
+      "comments":[
+        {
+          "id": 1,
+          "body": "This is some awesome thinking!",
+          "postId": 1,
+          "likes": 3,
+          "user": {
+            "id": 105,
+            "username": "emmac",
+            "fullName": "Emma Wilson"
+          }
+        },
+        {
+          "id": 2,
+          "body": "What terrific math skills you're showing!",
+          "postId": 1,
+          "likes": 4,
+          "user": {
+            "id": 183,
+            "username": "cameronp",
+            "fullName": "Cameron Perez"
+          }
+        }
       ]
     },
     {
@@ -176,6 +224,30 @@
         "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/b067d21288bc43ec8298a8bf01180400_9366/Chaussure_Samba_OG_Blanc_B75806_04_standard.jpg",
         "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f9ce5733049f4ca8a93aa8bf011858bd_9366/Chaussure_Samba_OG_Blanc_B75806_09_standard.jpg",
         "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ec595635a2994adea094a8bf0117ef1a_9366/Chaussure_Samba_OG_Blanc_B75806_02_standard.jpg"
+      ],
+      "comments":[
+        {
+          "id": 1,
+          "body": "This is some awesome thinking!",
+          "postId": 1,
+          "likes": 3,
+          "user": {
+            "id": 105,
+            "username": "emmac",
+            "fullName": "Emma Wilson"
+          }
+        },
+        {
+          "id": 2,
+          "body": "What terrific math skills you're showing!",
+          "postId": 1,
+          "likes": 4,
+          "user": {
+            "id": 183,
+            "username": "cameronp",
+            "fullName": "Cameron Perez"
+          }
+        }
       ]
     },
     {
@@ -374,6 +446,30 @@
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg",
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg",
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
+      ],
+       "comments":[
+        {
+          "id": 1,
+          "body": "This is some awesome thinking!",
+          "postId": 1,
+          "likes": 3,
+          "user": {
+            "id": 105,
+            "username": "emmac",
+            "fullName": "Emma Wilson"
+          }
+        },
+        {
+          "id": 2,
+          "body": "What terrific math skills you're showing!",
+          "postId": 1,
+          "likes": 4,
+          "user": {
+            "id": 183,
+            "username": "cameronp",
+            "fullName": "Cameron Perez"
+          }
+        }
       ]
     },
     {
@@ -390,6 +486,30 @@
         "https://img01.ztat.net/article/spp-media-p1/7a52e21b516736b79bb83dc423e7b61d/cd6180be0bff456489710c8823a4acbc.jpg?imwidth=1800&filter=packshot",
         "https://img01.ztat.net/article/spp-media-p1/1b820bc736d23e899c33460475a286df/36cca3cdaca24819880215d6b5eea6ad.jpg?imwidth=1800",
         "https://img01.ztat.net/article/spp-media-p1/4570b02bed773e8995688cbbcdcc470d/00d77cb4b413450ea3f145db21e8b509.jpg?imwidth=1800"
+      ],
+      "comments":[
+        {
+          "id": 1,
+          "body": "This is some awesome thinking!",
+          "postId": 1,
+          "likes": 3,
+          "user": {
+            "id": 105,
+            "username": "emmac",
+            "fullName": "Emma Wilson"
+          }
+        },
+        {
+          "id": 2,
+          "body": "What terrific math skills you're showing!",
+          "postId": 1,
+          "likes": 4,
+          "user": {
+            "id": 183,
+            "username": "cameronp",
+            "fullName": "Cameron Perez"
+          }
+        }
       ]
     },
     {
@@ -406,6 +526,30 @@
         "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/b067d21288bc43ec8298a8bf01180400_9366/Chaussure_Samba_OG_Blanc_B75806_04_standard.jpg",
         "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f9ce5733049f4ca8a93aa8bf011858bd_9366/Chaussure_Samba_OG_Blanc_B75806_09_standard.jpg",
         "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ec595635a2994adea094a8bf0117ef1a_9366/Chaussure_Samba_OG_Blanc_B75806_02_standard.jpg"
+      ],
+      "comments":[
+        {
+          "id": 1,
+          "body": "This is some awesome thinking!",
+          "postId": 1,
+          "likes": 3,
+          "user": {
+            "id": 105,
+            "username": "emmac",
+            "fullName": "Emma Wilson"
+          }
+        },
+        {
+          "id": 2,
+          "body": "What terrific math skills you're showing!",
+          "postId": 1,
+          "likes": 4,
+          "user": {
+            "id": 183,
+            "username": "cameronp",
+            "fullName": "Cameron Perez"
+          }
+        }
       ]
     },
     {
@@ -604,6 +748,32 @@
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg",
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg",
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
+      ],
+      "comments":[
+          {
+            "id": 1,
+            "body": "This is some awesome thinking!",
+            "postId": 1,
+            "likes": 3,
+            "date": "10-06-1995",
+            "user": {
+              "id": 105,
+              "username": "emmac",
+              "fullName": "Emma Wilson"
+            }
+          },
+          {
+            "id": 2,
+            "body": "What terrific math skills you're showing!",
+            "postId": 1,
+            "likes": 4,
+            "date": "15-10-1995",
+            "user": {
+              "id": 183,
+              "username": "cameron",
+              "fullName": "Cameron Perez"
+            }
+          }
       ]
     },
     {
@@ -614,12 +784,37 @@
       "category": "shoes",
       "tags": [""],
       "brands": "Adidas",
-      "reduction": 25,
+      "reduction": null,
+      "date": "10-06-1995",
       "imgs_url": [
         "https://img01.ztat.net/article/spp-media-p1/64737e3beef63a83aa88bf922efe5658/6bc277fb181e4f3298a3caf4c6bc2eac.jpg?imwidth=1800",
         "https://img01.ztat.net/article/spp-media-p1/7a52e21b516736b79bb83dc423e7b61d/cd6180be0bff456489710c8823a4acbc.jpg?imwidth=1800&filter=packshot",
         "https://img01.ztat.net/article/spp-media-p1/1b820bc736d23e899c33460475a286df/36cca3cdaca24819880215d6b5eea6ad.jpg?imwidth=1800",
         "https://img01.ztat.net/article/spp-media-p1/4570b02bed773e8995688cbbcdcc470d/00d77cb4b413450ea3f145db21e8b509.jpg?imwidth=1800"
+      ],
+      "comments":[
+        {
+          "id": 1,
+          "body": "This is some awesome thinking!",
+          "postId": 1,
+          "likes": 3,
+          "user": {
+            "id": 105,
+            "username": "emmac",
+            "fullName": "Emma Wilson"
+          }
+        },
+        {
+          "id": 2,
+          "body": "What terrific math skills you're showing!",
+          "postId": 1,
+          "likes": 4,
+          "user": {
+            "id": 183,
+            "username": "cameronp",
+            "fullName": "Cameron Perez"
+          }
+        }
       ]
     },
     {

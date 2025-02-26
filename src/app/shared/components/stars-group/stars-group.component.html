@@ -1,11 +1,11 @@
 @for (traker of choiceArray; track traker) {
   @if((note && note >= 0 && note <=5 ) && note >= traker){
     <span> 
-      <i class="fa-solid fa-star" style="color: #181818;"></i>
+      <i class="fa-solid fa-star"  [ngClass]="size"  style="color: #181818;"></i>
     </span>
   } @else {
     <span> 
-      <i class="fa-solid fa-star" style="color: #b5b5b5;"></i>
+      <i class="fa-solid fa-star" [ngClass]="size" style="color: #b5b5b5;"></i>
     </span>
   }
 }
